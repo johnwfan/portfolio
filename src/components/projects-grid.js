@@ -23,12 +23,13 @@ function ProjectThumb({ p }) {
 export default function ProjectsGrid({ projects = [] }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {projects.map((p) => (
-        <Link
-          key={p.slug ?? p.title}
-          href={p.slug ? `/projects/${p.slug}` : "/projects"}
-          className="group block"
-        >
+{projects.map((p) => (
+  <Link
+    key={p.slug ?? p.title}
+    href={`/projects/${p.slug}`}
+    scroll={false}
+    className="group block"
+  >
           <ParallaxCard className="h-full">
             <Card className="relative h-full overflow-hidden border bg-background/40 backdrop-blur transition-colors group-hover:border-border/80">
               <CardContent className="relative p-6 space-y-4">

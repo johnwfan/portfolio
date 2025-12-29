@@ -54,10 +54,19 @@ export default function Hero() {
         </div>
 
         <div className="mt-7 animate-[fade-up_1150ms_ease-out_both] flex flex-wrap gap-2">
-          <Badge variant="secondary" className="rounded-full">design</Badge>
-          <Badge variant="secondary" className="rounded-full">code</Badge>
-          <Badge variant="secondary" className="rounded-full">ship</Badge>
-          <Badge variant="secondary" className="rounded-full">product</Badge>
+          <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm">
+            design
+          </Badge>
+          <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm">
+            code
+          </Badge>
+          <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm">
+            ship
+          </Badge>
+          <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm">
+            product
+          </Badge>
+
         </div>
       </div>
     </div>

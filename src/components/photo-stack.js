@@ -133,7 +133,7 @@ function TopCard({ card, size, isTop, depth, animateTo, onSwipe }) {
 
         {isTop && (
           <div className="pointer-events-none absolute bottom-3 left-3 rounded-full border bg-background/60 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
-            swipe →
+            swipe! →
           </div>
         )}
       </div>

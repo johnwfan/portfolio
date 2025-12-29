@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { PROJECTS } from "@/lib/content";
 import GlowLink from "@/components/glow-link";
+import { PROJECTS } from "@/lib/content";
 
 export default async function ProjectPage({ params }) {
   const { slug: rawSlug } = await params;
@@ -45,6 +44,11 @@ export default async function ProjectPage({ params }) {
             </GlowLink>
           ) : null}
 
+          {project.links?.live ? (
+            <GlowLink href={project.links.live} target="_blank" rel="noreferrer">
+              live demo ↗
+            </GlowLink>
+          ) : null}
         </div>
       </header>
 

@@ -67,6 +67,49 @@ const BRAND_COLORS = {
   github: "#FFFFFF",
 };
 
+function hexToRgba(hex, a) {
+  const h = hex.replace("#", "");
+  const full = h.length === 3 ? h.split("").map((c) => c + c).join("") : h;
+  const r = parseInt(full.slice(0, 2), 16);
+  const g = parseInt(full.slice(2, 4), 16);
+  const b = parseInt(full.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
+
+function TechBadge({ techKey, children }) {
+  const hex = BRAND_COLORS[techKey] ?? "#FFFFFF";
+  const isWhite = hex.toUpperCase() === "#FFFFFF";
+
+  const bg = isWhite ? "rgba(255,255,255,0.08)" : hexToRgba(hex, 0.14);
+  const border = isWhite ? "rgba(255, 255, 255, 0.15)" : hexToRgba(hex, 0.15);
+
+  return (
+    <Badge
+      variant="secondary"
+      className={[
+        "relative overflow-hidden rounded-full gap-2.5 px-4 py-2 text-sm",
+        "border", 
+        "transition-all duration-200",
+        "hover:-translate-y-[1px]",
+        "hover:shadow-[0_14px_38px_-28px_rgba(0,0,0,0.9)]",
+      ].join(" ")}
+      style={{
+        backgroundColor: bg,
+        borderColor: border,
+      }}
+    >
+      {/* subtle top highlight so it feels less flat */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          opacity: 0.6,
+        }}
+      />
+      <span className="relative inline-flex items-center gap-2.5">{children}</span>
+    </Badge>
+  );
+}
 
 function Row({ title, items }) {
   return (
@@ -76,11 +119,8 @@ function Row({ title, items }) {
         {items.map((it) => {
           const Icon = ICONS[it.key];
           return (
-            <Badge
-              key={it.key}
-              variant="secondary"
-              className="rounded-full gap-2.5 px-4 py-2 text-sm"
-            >
+        <TechBadge key={it.key} techKey={it.key}>
+
               {Icon ? (
                 <Icon
                     size={16}
@@ -88,7 +128,7 @@ function Row({ title, items }) {
                 />
                 ) : null}
               <span>{it.label}</span>
-            </Badge>
+            </TechBadge>
           );
         })}
       </div>

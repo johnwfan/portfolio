@@ -62,7 +62,7 @@ export const TIMELINE = [
 export const PROJECTS = [
   {
     slug: "outfit-picker",
-    title: "outfit picker",
+    title: "windows 98 style outfit picker",
     blurb: "wardrobe manager + outfit ranking with a real api + storage.",
     tags: ["fastapi", "rest", "db", "ranking"],
     metric: "7 endpoints",
@@ -118,10 +118,9 @@ export const FEATURED_PROJECTS = PROJECTS.slice(0, 3);
 
 
 export const HERO_PHOTOS = [
+  { src: "/hero/IMG_9326.JPEG", alt: "" },
   { src: "/hero/IMG_1871.jpg", alt: "" },
   { src: "/hero/IMG_4667.JPEG", alt: "" },
   { src: "/hero/IMG_5091.JPEG", alt: "" },
-  { src: "/hero/IMG_8610.JPEG", alt: "" },
-  { src: "/hero/IMG_9326.JPEG", alt: "" },
 ];
 
