@@ -20,8 +20,8 @@ export default function ParallaxCard({ children, className = "" }) {
     const px = x / r.width - 0.5;  // -0.5..0.5
     const py = y / r.height - 0.5;
 
-    const rotY = px * 10;
-    const rotX = -py * 10;
+    const rotY = px * 20;
+    const rotX = -py * 20;
 
     setStyle({
       transform: `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-3px) scale(1.01)`,

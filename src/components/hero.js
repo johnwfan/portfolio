@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { PROFILE } from "@/lib/content";
+import { HERO_PHOTOS, PROFILE } from "@/lib/content";
+import PhotoStack from "@/components/photo-stack";
+
 
 function GlowBg() {
   return (
@@ -17,7 +19,10 @@ export default function Hero() {
   return (
     <section className="relative">
       <GlowBg />
-
+      <div className="relative mx-auto max-w-5xl px-6 pt-14 pb-10 sm:pt-20 sm:pb-14">
+  <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+    {/* left */}
+    <div className="lg:col-span-7">      
       <div className="relative mx-auto max-w-5xl px-6 pt-14 pb-10 sm:pt-20 sm:pb-14">
         <div className="animate-[fade-in_600ms_ease-out_both] inline-flex items-center gap-2 rounded-full border bg-background/60 px-3 py-1 text-sm text-muted-foreground backdrop-blur">
           <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
@@ -49,12 +54,24 @@ export default function Hero() {
         </div>
 
         <div className="mt-7 animate-[fade-up_1150ms_ease-out_both] flex flex-wrap gap-2">
-          <Badge variant="secondary" className="rounded-full">ships code</Badge>
-          <Badge variant="secondary" className="rounded-full">likes ux</Badge>
-          <Badge variant="secondary" className="rounded-full">lowkey silly</Badge>
-          <Badge variant="secondary" className="rounded-full">highkey locked in</Badge>
+          <Badge variant="secondary" className="rounded-full">design</Badge>
+          <Badge variant="secondary" className="rounded-full">code</Badge>
+          <Badge variant="secondary" className="rounded-full">ship</Badge>
+          <Badge variant="secondary" className="rounded-full">product</Badge>
         </div>
       </div>
+    </div>
+
+    {/* right */}
+    <div className="lg:col-span-5 flex justify-center lg:justify-end">
+      <div className="animate-[fade-up_900ms_ease-out_both]">
+        <PhotoStack photos={HERO_PHOTOS} size={340} />
+      </div>
+    </div>
+  </div>
+</div>
+
+
     </section>
   );
 }

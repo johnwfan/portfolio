@@ -62,7 +62,7 @@ export default function FeaturedProjects() {
         <div>
           <h2 className="text-2xl font-semibold tracking-tight">featured projects</h2>
           <p className="mt-2 text-muted-foreground">
-            some cool projects i've been worked on!
+            some cool projects i've worked on!
           </p>
         </div>
 

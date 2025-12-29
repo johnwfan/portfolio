@@ -102,7 +102,7 @@ export default function TechStack() {
       <div className="animate-[fade-up_700ms_ease-out_both]">
         <h2 className="text-2xl font-semibold tracking-tight">tech i actually use</h2>
         <p className="mt-2 text-muted-foreground">
-          no buzzword soup — just the stuff i build with.
+          the stuff i like to build with.
         </p>
       </div>
 

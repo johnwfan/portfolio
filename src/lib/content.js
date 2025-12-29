@@ -61,7 +61,7 @@ export const TIMELINE = [
 
 export const FEATURED_PROJECTS = [
   {
-    title: "outfit picker",
+    title: "windows 98 style outfit picker",
     blurb: "wardrobe manager + outfit ranking with a real api + storage.",
     tags: ["fastapi", "rest", "db", "ranking"],
     href: "/projects/outfit-picker",
@@ -69,7 +69,7 @@ export const FEATURED_PROJECTS = [
     image: "/projects/outfit-picker.png",
   },
   {
-    title: "lol stats tracker",
+    title: "league of legends stats tracker",
     blurb: "player analytics dashboard with search + profiles + insights.",
     tags: ["next.js", "api", "charts"],
     href: "/projects/lol-stats-tracker",
@@ -77,7 +77,7 @@ export const FEATURED_PROJECTS = [
     image: "/projects/lol-stats-tracker.png",
   },
   {
-    title: "storm-1 flood risk",
+    title: "flood risk assessment",
     blurb: "flood-risk concept: segmentation + scoring + map-based insights.",
     tags: ["cv", "data", "maps"],
     href: "/projects/storm-1",
@@ -85,3 +85,12 @@ export const FEATURED_PROJECTS = [
     image: "/projects/storm.png",
   },
 ];
+
+export const HERO_PHOTOS = [
+  { src: "/hero/IMG_1871.jpg", alt: "" },
+  { src: "/hero/IMG_4667.jpg.jpeg", alt: "" },
+  { src: "/hero/IMG_5091.JPEG", alt: "" },
+  { src: "/hero/IMG_8610.JPEG", alt: "" },
+  { src: "/hero/IMG_9326.JPEG", alt: "" },
+];
+
