@@ -30,7 +30,7 @@ export default function Hero() {
         </div>
 
         <h1 className="mt-6 animate-[fade-up_700ms_ease-out_both] text-4xl font-semibold tracking-tight sm:text-6xl">
-          hi, i’m {PROFILE.name}!
+          hi! i’m {PROFILE.name}
         </h1>
 
         <p className="mt-4 animate-[fade-up_850ms_ease-out_both] max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed">

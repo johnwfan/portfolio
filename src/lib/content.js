@@ -83,14 +83,14 @@ export const PROJECTS = [
 
   {
     slug: "lol-stats-tracker",
-    title: "lol stats tracker",
+    title: "league of legends stats tracker",
     blurb: "player analytics dashboard with search + profiles + insights.",
     tags: ["next.js", "api", "charts"],
     metric: "deployed",
     image: "/projects/lol-stats-tracker.png",
     links: {
       github: "https://github.com/johnwfan/lol_stats_tracker",
-      live: "",
+      live: "https://lol-stats-tracker-johnf.vercel.app/",
     },
     overview:
       "a stats dashboard that pulls player data and turns it into a clean profile + insights experience.",

@@ -7,13 +7,12 @@ export const metadata = {
   description: "full-stack software developer",
 };
 
-export default function RootLayout({ children, modal }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark">
-      <body className="min-h-screen bg-background text-foreground">
+      <body className="min-h-screen bg-background text-foreground antialiased">
         <Navbar />
         {children}
-        {modal}
         <Footer />
       </body>
     </html>

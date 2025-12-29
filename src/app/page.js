@@ -13,6 +13,7 @@ export default function Home() {
       <TechStack />
       <Separator />
       <FeaturedProjects />
+      <Separator />
       <ContactCTA />
     </main>
   );

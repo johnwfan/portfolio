@@ -5,17 +5,17 @@ export const metadata = { title: "projects • john fan" };
 
 export default function ProjectsPage() {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-14">
+    <main className="mx-auto max-w-5xl px-6 py-12">
       <header className="animate-[fade-up_700ms_ease-out_both]">
-        <h1 className="text-4xl font-semibold tracking-tight">projects</h1>
-        <p className="mt-3 max-w-2xl text-muted-foreground leading-relaxed">
+        <h1 className="text-3xl font-semibold tracking-tight">projects</h1>
+        <p className="mt-2 text-muted-foreground">
           click any project for the full breakdown + screenshots.
         </p>
       </header>
 
-      <section className="mt-10">
+      <div className="mt-8">
         <ProjectsGrid projects={PROJECTS} />
-      </section>
+      </div>
     </main>
   );
 }
