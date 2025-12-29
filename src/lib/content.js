@@ -59,32 +59,63 @@ export const TIMELINE = [
   },
 ];
 
-export const FEATURED_PROJECTS = [
+export const PROJECTS = [
   {
-    title: "windows 98 style outfit picker",
+    slug: "outfit-picker",
+    title: "outfit picker",
     blurb: "wardrobe manager + outfit ranking with a real api + storage.",
     tags: ["fastapi", "rest", "db", "ranking"],
-    href: "/projects/outfit-picker",
     metric: "7 endpoints",
-    image: "/projects/outfit-picker.png",
+    image: "/projects/outfit-picker.png", // optional
+    links: {
+      github: "https://github.com/johnwfan/outfit-picker",
+      live: "", // optional
+    },
+    overview:
+      "a full-stack wardrobe tool that lets you upload items, tag metadata, and generate ranked outfits based on constraints.",
+    bullets: [
+      "built 7 crud endpoints + validation + persistence",
+      "safe-delete routines to keep db/files consistent",
+      "outfit scoring pipeline designed to be ml-ready later",
+    ],
+    stack: ["fastapi", "python", "sqlite", "next.js"],
   },
+
   {
-    title: "league of legends stats tracker",
+    slug: "lol-stats-tracker",
+    title: "lol stats tracker",
     blurb: "player analytics dashboard with search + profiles + insights.",
     tags: ["next.js", "api", "charts"],
-    href: "/projects/lol-stats-tracker",
     metric: "deployed",
     image: "/projects/lol-stats-tracker.png",
+    links: {
+      github: "https://github.com/johnwfan/lol_stats_tracker",
+      live: "",
+    },
+    overview:
+      "a stats dashboard that pulls player data and turns it into a clean profile + insights experience.",
+    bullets: ["search + profile pages", "visual analytics with charts", "deployed end-to-end"],
+    stack: ["next.js", "react", "tailwind"],
   },
+
   {
+    slug: "storm",
     title: "flood risk assessment",
     blurb: "flood-risk concept: segmentation + scoring + map-based insights.",
     tags: ["cv", "data", "maps"],
-    href: "/projects/storm-1",
     metric: "prototype",
     image: "/projects/storm.png",
+    links: { github: "https://github.com/johnwfan/storm-flood-risk", live: "" },
+    overview:
+      "concept project for flood-risk intelligence: vision segmentation + risk scoring + readable summaries.",
+    bullets: ["risk scoring concept", "map-first ui", "ml pipeline direction"],
+    stack: ["python", "cv", "maps"],
   },
 ];
+
+// keep your homepage featured section using the same cards:
+export const FEATURED_PROJECTS = PROJECTS.slice(0, 3);
+
 
 export const HERO_PHOTOS = [
   { src: "/hero/IMG_1871.jpg", alt: "" },
