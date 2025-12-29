@@ -88,7 +88,7 @@ export const FEATURED_PROJECTS = [
 
 export const HERO_PHOTOS = [
   { src: "/hero/IMG_1871.jpg", alt: "" },
-  { src: "/hero/IMG_4667.jpg.jpeg", alt: "" },
+  { src: "/hero/IMG_4667.jpeg", alt: "" },
   { src: "/hero/IMG_5091.JPEG", alt: "" },
   { src: "/hero/IMG_8610.JPEG", alt: "" },
   { src: "/hero/IMG_9326.JPEG", alt: "" },
