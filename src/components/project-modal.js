@@ -4,25 +4,20 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-
-import { Badge } from "@/components/ui/badge";
-import GlowLink from "@/components/glow-link"; // your shiny link component
+import ProjectCaseStudy from "@/components/project-case-study";
 
 export default function ProjectModal({ project }) {
   const router = useRouter();
 
   function close() {
-    router.back(); // back button closes modal (classic pattern) :contentReference[oaicite:3]{index=3}
+    router.back();
   }
 
   useEffect(() => {
-    // lock background scroll while modal is open
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    const onKeyDown = (e) => {
-      if (e.key === "Escape") close();
-    };
+    const onKeyDown = (e) => e.key === "Escape" && close();
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
@@ -50,18 +45,8 @@ export default function ProjectModal({ project }) {
           onMouseDown={(e) => e.stopPropagation()}
         >
           <div className="h-full overflow-y-auto px-6 py-6">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h1 className="text-2xl font-semibold tracking-tight">
-                  {project.title}
-                </h1>
-                {project.overview ? (
-                  <p className="mt-2 text-muted-foreground leading-relaxed">
-                    {project.overview}
-                  </p>
-                ) : null}
-              </div>
-
+            <div className="mb-5 flex items-start justify-between gap-4">
+              <div className="text-sm text-muted-foreground">case study</div>
               <button
                 onClick={close}
                 className="rounded-full border border-white/10 bg-background/40 p-2 hover:bg-background/60 transition"
@@ -71,49 +56,7 @@ export default function ProjectModal({ project }) {
               </button>
             </div>
 
-            <div className="mt-5 flex flex-wrap gap-2">
-              {(project.stack ?? project.tags ?? []).map((t) => (
-                <Badge key={t} variant="secondary" className="rounded-full">
-                  {t}
-                </Badge>
-              ))}
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              {project.links?.github ? (
-                <GlowLink href={project.links.github} target="_blank" rel="noreferrer">
-                  github ↗
-                </GlowLink>
-              ) : null}
-
-              {project.links?.live ? (
-                <GlowLink href={project.links.live} target="_blank" rel="noreferrer">
-                  live demo ↗
-                </GlowLink>
-              ) : null}
-            </div>
-
-            {project.image ? (
-              <div className="mt-8 overflow-hidden rounded-2xl border bg-muted/20">
-                <img
-                  src={project.image}
-                  alt={`${project.title} screenshot`}
-                  className="w-full object-cover"
-                  draggable={false}
-                />
-              </div>
-            ) : null}
-
-            {project.bullets?.length ? (
-              <div className="mt-8">
-                <h2 className="text-lg font-semibold tracking-tight">highlights</h2>
-                <ul className="mt-3 list-disc pl-5 space-y-2 text-muted-foreground leading-relaxed">
-                  {project.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
+            <ProjectCaseStudy project={project} />
           </div>
         </motion.div>
       </motion.div>
