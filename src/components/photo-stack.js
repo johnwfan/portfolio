@@ -114,7 +114,7 @@ function TopCard({ card, size, isTop, depth, animateTo, onSwipe }) {
             alt={card.alt ?? "photo"}
             fill
             sizes={`${size}px`}
-            quality={100}
+            quality={75}
             className="object-cover select-none pointer-events-none"
             draggable={false}
             priority={isTop}

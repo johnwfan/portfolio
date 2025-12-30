@@ -5,7 +5,7 @@ export const PROFILE = {
   status: "open to internships",
   headline: "i'm a student at Rice University who likes to  build clean, fast web products end-to-end.",
   about:
-    "i like shipping things that feel fun + usable — frontend, apis, databases, and whatever it takes to make the idea real.",
+    "i like shipping things that feel fun + usable - frontend, apis, databases, and whatever it takes to make the idea real.",
   email: "johnfan.dev@gmail.com",
   links: {
     github: "https://github.com/johnwfan",
@@ -120,7 +120,5 @@ export const FEATURED_PROJECTS = PROJECTS.slice(0, 3);
 export const HERO_PHOTOS = [
   { src: "/hero/IMG_9326.JPEG", alt: "" },
   { src: "/hero/IMG_1871.jpg", alt: "" },
-  { src: "/hero/IMG_4667.JPEG", alt: "" },
-  { src: "/hero/IMG_5091.JPEG", alt: "" },
 ];
 

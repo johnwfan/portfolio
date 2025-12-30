@@ -24,20 +24,20 @@ export default function Hero() {
     {/* left */}
     <div className="lg:col-span-7">      
       <div className="relative mx-auto max-w-5xl px-6 pt-14 pb-10 sm:pt-20 sm:pb-14">
-        <div className="animate-[fade-in_600ms_ease-out_both] inline-flex items-center gap-2 rounded-full border bg-background/60 px-3 py-1 text-sm text-muted-foreground backdrop-blur">
+        <div className="animate-[fade-in_700ms_ease-out_both] inline-flex items-center gap-2 rounded-full border bg-background/60 px-3 py-1 text-sm text-muted-foreground backdrop-blur">
           <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
           {PROFILE.role} • based in {PROFILE.location} • {PROFILE.status}
         </div>
 
-        <h1 className="mt-6 animate-[fade-up_700ms_ease-out_both] text-4xl font-semibold tracking-tight sm:text-6xl">
+        <h1 className="mt-6 animate-[fade-up_800ms_ease-out_both] text-4xl font-semibold tracking-tight sm:text-6xl">
           hi! i’m {PROFILE.name}
         </h1>
 
-        <p className="mt-4 animate-[fade-up_850ms_ease-out_both] max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed">
+        <p className="mt-4 animate-[fade-up_950ms_ease-out_both] max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed">
           <span className="text-foreground">{PROFILE.headline}</span> {PROFILE.about}
         </p>
 
-        <div className="mt-6 animate-[fade-up_1000ms_ease-out_both] flex flex-wrap items-center gap-3">
+        <div className="mt-6 animate-[fade-up_1100ms_ease-out_both] flex flex-wrap items-center gap-3">
           <Button asChild>
             <Link href="/projects">view projects</Link>
           </Button>
@@ -53,7 +53,7 @@ export default function Hero() {
           </Button>
         </div>
 
-        <div className="mt-7 animate-[fade-up_1150ms_ease-out_both] flex flex-wrap gap-2">
+        <div className="mt-7 animate-[fade-up_1250ms_ease-out_both] flex flex-wrap gap-2">
           <Badge variant="secondary" className="rounded-full px-4 py-1.5 text-sm">
             design
           </Badge>
@@ -73,7 +73,7 @@ export default function Hero() {
 
     {/* right */}
     <div className="lg:col-span-5 flex justify-center lg:justify-end">
-      <div className="animate-[fade-up_900ms_ease-out_both]">
+      <div className="animate-[fade-up_1000ms_ease-out_both]">
         <PhotoStack photos={HERO_PHOTOS} size={340} />
       </div>
     </div>

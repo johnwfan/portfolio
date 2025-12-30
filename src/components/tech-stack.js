@@ -140,7 +140,7 @@ export default function TechStack() {
   return (
     <section className="mx-auto max-w-5xl px-6 py-12">
       <div className="animate-[fade-up_700ms_ease-out_both]">
-        <h2 className="text-2xl font-semibold tracking-tight">tech i actually use</h2>
+        <h2 className="text-2xl font-semibold tracking-tight">my tech stack</h2>
         <p className="mt-2 text-muted-foreground">
           the stuff i like to build with.
         </p>

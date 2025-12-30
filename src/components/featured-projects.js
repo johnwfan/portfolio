@@ -21,7 +21,7 @@ export default function FeaturedProjects() {
         <div>
           <h2 className="text-2xl font-semibold tracking-tight">featured projects</h2>
           <p className="mt-2 text-muted-foreground">
-            the ones i’d click first if i were you.
+            stuff i've been working on!
           </p>
         </div>
 
