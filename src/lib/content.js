@@ -63,20 +63,20 @@ export const PROJECTS = [
   {
     slug: "outfit-picker",
     title: "windows 98 style outfit picker",
-    blurb: "wardrobe manager + outfit ranking with a real api + storage.",
-    tags: ["fastapi", "rest", "db", "ranking"],
+    blurb: "wardrobe manager + constraint-based outfit ranking with real file storage + a clean api.",
+    tags: ["fastapi", "python", "rest api", "crud", "next.js"],
     metric: "7 endpoints",
-    image: "/projects/outfit-picker.png", // optional
+    image: "/projects/outfit-picker.png",
     links: {
       github: "https://github.com/johnwfan/outfit-picker",
-      live: "", // optional
+      live: "",
     },
     overview:
-      "a full-stack wardrobe tool that lets you upload items, tag metadata, and generate ranked outfits based on constraints.",
+      "a full-stack wardrobe tool where you upload clothing items, add metadata (season/color/style tags), and generate a ranked list of outfits that match your constraints.",
     bullets: [
-      "built 7 crud endpoints + validation + persistence",
-      "safe-delete routines to keep db/files consistent",
-      "outfit scoring pipeline designed to be ml-ready later",
+      "built a fastapi backend with 7 restful crud endpoints, request validation, and sqlite persistence",
+      "implemented safe-delete + cleanup logic to keep the database and stored images in sync (no orphans)",
+      "designed an outfit scoring pipeline that normalizes item metadata and ranks candidates (structured to be ml-ready later)",
     ],
     stack: ["fastapi", "python", "sqlite", "next.js"],
   },
@@ -84,8 +84,8 @@ export const PROJECTS = [
   {
     slug: "lol-stats-tracker",
     title: "league of legends stats tracker",
-    blurb: "player analytics dashboard with search + profiles + insights.",
-    tags: ["next.js", "api", "charts"],
+    blurb: "player lookup → profile pages + match insights with charts, deployed on vercel.",
+    tags: ["next.js", "react", "tailwind css", "vercel", "charts", "api integration"],
     metric: "deployed",
     image: "/projects/lol-stats-tracker.png",
     links: {
@@ -93,25 +93,34 @@ export const PROJECTS = [
       live: "https://lol-stats-tracker-johnf.vercel.app/",
     },
     overview:
-      "a stats dashboard that pulls player data and turns it into a clean profile + insights experience.",
-    bullets: ["search + profile pages", "visual analytics with charts", "deployed end-to-end"],
+      "a web dashboard that fetches player data from a game-data api and turns it into a clean, readable stats/profile experience with visual analytics.",
+    bullets: [
+      "built a search flow + dynamic profile pages for players",
+      "added visual analytics (charts + breakdowns) to summarize performance at a glance",
+      "shipped a production deployment end-to-end (next.js app hosted on vercel)",
+    ],
     stack: ["next.js", "react", "tailwind"],
   },
 
   {
     slug: "storm",
     title: "flood risk assessment",
-    blurb: "flood-risk concept: segmentation + scoring + map-based insights.",
-    tags: ["cv", "data", "maps"],
+    blurb: "prototype flood-risk concept with a map-first ui + risk-scoring direction.",
+    tags: ["computer vision", "react", "python"],
     metric: "prototype",
     image: "/projects/storm.png",
     links: { github: "https://github.com/johnwfan/storm-flood-risk", live: "" },
     overview:
-      "concept project for flood-risk intelligence: vision segmentation + risk scoring + readable summaries.",
-    bullets: ["risk scoring concept", "map-first ui", "ml pipeline direction"],
+      "a prototype exploring flood-risk intelligence: map-based exploration, a risk score concept, and a direction for combining vision segmentation + data into readable insights.",
+    bullets: [
+      "built/iterated on a map-first interface to explore risk visually",
+      "defined a risk-scoring concept + how it would plug into the user experience",
+      "outlined an ml pipeline direction (segmentation → scoring → summary) for future expansion",
+    ],
     stack: ["python", "cv", "maps"],
   },
 ];
+
 
 // keep your homepage featured section using the same cards:
 export const FEATURED_PROJECTS = PROJECTS.slice(0, 3);

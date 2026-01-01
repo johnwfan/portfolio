@@ -42,11 +42,11 @@ export default function Hero() {
             <Link href="/projects">view projects</Link>
           </Button>
 
-          <Button variant="secondary" asChild>
+          {/* <Button variant="secondary" asChild>
             <a href={PROFILE.links.resume} target="_blank" rel="noreferrer">
               resume pdf
             </a>
-          </Button>
+          </Button> */}
 
           <Button variant="outline" asChild>
             <a href={`mailto:${PROFILE.email}`}>email me</a>

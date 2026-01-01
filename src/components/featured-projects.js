@@ -19,7 +19,7 @@ export default function FeaturedProjects() {
     <section className="mx-auto max-w-5xl px-6 py-12">
       <div className="animate-[fade-up_700ms_ease-out_both] flex items-end justify-between gap-6">
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight">featured projects</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">some of my projects</h2>
           <p className="mt-2 text-muted-foreground">
             stuff i've been working on!
           </p>
