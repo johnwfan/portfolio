@@ -62,9 +62,9 @@ export const TIMELINE = [
 export const PROJECTS = [
   {
     slug: "outfit-picker",
-    title: "windows 98 style outfit picker",
-    blurb: "wardrobe manager + constraint-based outfit ranking with real file storage + a clean api.",
-    tags: ["fastapi", "python", "rest api", "crud", "next.js"],
+    title: "Windows 98 Style Outfit Picker",
+    blurb: "Wardrobe manager + constraint-based outfit ranking with real file storage + a clean api.",
+    tags: ["FastAPI", "Python", "REST API", "CRUD", "Next.js"],
     metric: "7 endpoints",
     image: "/projects/outfit-picker.png",
     links: {
@@ -72,52 +72,52 @@ export const PROJECTS = [
       live: "",
     },
     overview:
-      "a full-stack wardrobe tool where you upload clothing items, add metadata (season/color/style tags), and generate a ranked list of outfits that match your constraints.",
+      "A full-stack wardrobe tool where you upload clothing items, add metadata (season/color/style tags), and generate a ranked list of outfits that match your constraints.",
     bullets: [
-      "built a fastapi backend with 7 restful crud endpoints, request validation, and sqlite persistence",
-      "implemented safe-delete + cleanup logic to keep the database and stored images in sync (no orphans)",
-      "designed an outfit scoring pipeline that normalizes item metadata and ranks candidates (structured to be ml-ready later)",
+      "Built a fastapi backend with 7 restful crud endpoints, request validation, and sqlite persistence",
+      "Implemented safe-delete + cleanup logic to keep the database and stored images in sync (no orphans)",
+      "Designed an outfit scoring pipeline that normalizes item metadata and ranks candidates (structured to be ml-ready later)",
     ],
-    stack: ["fastapi", "python", "sqlite", "next.js"],
+    stack: ["FastAPI", "Python", "SQLite", "Next.js"],
   },
 
   {
     slug: "lol-stats-tracker",
-    title: "league of legends stats tracker",
-    blurb: "player lookup → profile pages + match insights with charts, deployed on vercel.",
-    tags: ["next.js", "react", "tailwind css", "vercel", "charts", "api integration"],
-    metric: "deployed",
+    title: "League of Legends Stats Tracker",
+    blurb: "Player lookup → profile pages + match insights with charts, deployed on vercel.",
+    tags: ["Next.js", "React", "Tailwind CSS", "Vercel", "Charts", "API Integration"],
+    metric: "Deployed",
     image: "/projects/lol-stats-tracker.png",
     links: {
       github: "https://github.com/johnwfan/lol_stats_tracker",
       live: "https://lol-stats-tracker-johnf.vercel.app/",
     },
     overview:
-      "a web dashboard that fetches player data from a game-data api and turns it into a clean, readable stats/profile experience with visual analytics.",
+      "A web dashboard that fetches player data from a game-data api and turns it into a clean, readable stats/profile experience with visual analytics.",
     bullets: [
-      "built a search flow + dynamic profile pages for players",
-      "added visual analytics (charts + breakdowns) to summarize performance at a glance",
-      "shipped a production deployment end-to-end (next.js app hosted on vercel)",
+      "Built a search flow + dynamic profile pages for players",
+      "Added visual analytics (charts + breakdowns) to summarize performance at a glance",
+      "Shipped a production deployment end-to-end (next.js app hosted on vercel)",
     ],
-    stack: ["next.js", "react", "tailwind"],
+    stack: ["Next.js", "React", "Tailwind CSS"],
   },
 
   {
     slug: "storm",
-    title: "flood risk assessment",
-    blurb: "prototype flood-risk concept with a map-first ui + risk-scoring direction.",
-    tags: ["computer vision", "react", "python"],
-    metric: "prototype",
+    title: "Flood Risk Assessment",
+    blurb: "Prototype flood-risk concept with a map-first ui + risk-scoring direction.",
+    tags: ["Computer Vision", "React", "Python"],
+    metric: "Prototype",
     image: "/projects/storm.png",
     links: { github: "https://github.com/johnwfan/storm-flood-risk", live: "" },
     overview:
-      "a prototype exploring flood-risk intelligence: map-based exploration, a risk score concept, and a direction for combining vision segmentation + data into readable insights.",
+      "A prototype exploring flood-risk intelligence: map-based exploration, a risk score concept, and a direction for combining vision segmentation + data into readable insights.",
     bullets: [
-      "built/iterated on a map-first interface to explore risk visually",
-      "defined a risk-scoring concept + how it would plug into the user experience",
-      "outlined an ml pipeline direction (segmentation → scoring → summary) for future expansion",
+      "Built/iterated on a map-first interface to explore risk visually",
+      "Defined a risk-scoring concept + how it would plug into the user experience",
+      "Outlined an ml pipeline direction (segmentation → scoring → summary) for future expansion",
     ],
-    stack: ["python", "cv", "maps"],
+    stack: ["Python", "Computer Vision", "Maps", "React"],
   },
 ];
 
