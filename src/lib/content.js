@@ -1,11 +1,11 @@
 export const PROFILE = {
-  name: "john fan",
-  role: "full-stack software developer",
-  location: "houston, tx",
+  name: "John Fan",
+  role: "Full-Stack Developer",
+  location: "Houston, TX",
   status: "open to internships",
-  headline: "i'm a student at Rice University who likes to  build clean, fast web products end-to-end.",
+  headline: "I'm a student at Rice University who is interested in full-stack development and likes to build clean, fast web products end-to-end.",
   about:
-    "i like shipping things that feel fun + usable - frontend, apis, databases, and whatever it takes to make the idea real.",
+    "I like shipping things that feel fun and usable - design, frontend, backend, apis, databases, and more.",
   email: "johnfan.dev@gmail.com",
   links: {
     github: "https://github.com/johnwfan",
@@ -16,25 +16,25 @@ export const PROFILE = {
 
 export const STACK = {
   languages: [
-    { key: "javascript", label: "javascript" },
-    { key: "python", label: "python" },
-    { key: "java", label: "java" },
-    { key: "c", label: "c" },
-    { key: "cpp", label: "c++" },
-    { key: "html", label: "html" },
-    { key: "css", label: "css" },
-    { key: "postgresql", label: "postgresql" },
-    { key: "sql", label: "sql" },
+    { key: "javascript", label: "Javascript" },
+    { key: "python", label: "Python" },
+    { key: "java", label: "Java" },
+    { key: "c", label: "C" },
+    { key: "cpp", label: "C++" },
+    { key: "html", label: "HTML" },
+    { key: "css", label: "CSS" },
+    { key: "postgresql", label: "PostgreSQL" },
+    { key: "sql", label: "SQL" },
   ],
   tools: [
-    { key: "nextjs", label: "next.js" },
-    { key: "react", label: "react" },
-    { key: "tailwind", label: "tailwind" },
-    { key: "nodejs", label: "node.js" },
-    { key: "mongodb", label: "mongodb" },
-    { key: "vercel", label: "vercel" },
-    { key: "git", label: "git" },
-    { key: "github", label: "github" },
+    { key: "nextjs", label: "Next.js" },
+    { key: "react", label: "React" },
+    { key: "tailwind", label: "Tailwind CSS" },
+    { key: "nodejs", label: "Node.js" },
+    { key: "mongodb", label: "MongoDB" },
+    { key: "vercel", label: "Vercel" },
+    { key: "git", label: "Git" },
+    { key: "github", label: "GitHub" },
   ],
 };
 
@@ -127,7 +127,7 @@ export const FEATURED_PROJECTS = PROJECTS.slice(0, 3);
 
 
 export const HERO_PHOTOS = [
-  { src: "/hero/IMG_9326.JPEG", alt: "" },
   { src: "/hero/IMG_1871.jpg", alt: "" },
+  { src: "/hero/IMG_9326.JPEG", alt: "" },
 ];
 

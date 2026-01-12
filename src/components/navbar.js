@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const links = [
-  { href: "/", label: "home" },
-  { href: "/projects", label: "projects" },
-  { href: "/about", label: "about" },
-  { href: "/contact", label: "contact" },
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -16,7 +16,7 @@ export default function Navbar() {
     className="group relative font-semibold tracking-tight hover:opacity-95"
     >
     <span className="relative inline-block will-change-transform group-hover:animate-[name-wiggle_450ms_ease-in-out]">
-        john fan
+        John Fan
         {/* shine overlay */}
         <span
         aria-hidden

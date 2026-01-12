@@ -26,11 +26,11 @@ export default function Hero() {
       <div className="relative mx-auto max-w-5xl px-6 pt-14 pb-10 sm:pt-20 sm:pb-14">
         <div className="animate-[fade-in_700ms_ease-out_both] inline-flex items-center gap-2 rounded-full border bg-background/60 px-3 py-1 text-sm text-muted-foreground backdrop-blur">
           <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
-          {PROFILE.role} • based in {PROFILE.location} • {PROFILE.status}
+          {PROFILE.role} • Based in {PROFILE.location}
         </div>
 
         <h1 className="mt-6 animate-[fade-up_800ms_ease-out_both] text-4xl font-semibold tracking-tight sm:text-6xl">
-          hi! i’m {PROFILE.name}
+          Hi I’m John!
         </h1>
 
         <p className="mt-4 animate-[fade-up_950ms_ease-out_both] max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed">
@@ -39,17 +39,17 @@ export default function Hero() {
 
         <div className="mt-6 animate-[fade-up_1100ms_ease-out_both] flex flex-wrap items-center gap-3">
           <Button asChild>
-            <Link href="/projects">view projects</Link>
+            <Link href="/projects">View Projects</Link>
           </Button>
 
-          {/* <Button variant="secondary" asChild>
+          <Button variant="secondary" asChild>
             <a href={PROFILE.links.resume} target="_blank" rel="noreferrer">
-              resume pdf
+              My Resume
             </a>
-          </Button> */}
+          </Button>
 
           <Button variant="outline" asChild>
-            <a href={`mailto:${PROFILE.email}`}>email me</a>
+            <a href={`mailto:${PROFILE.email}`}>Email Me</a>
           </Button>
         </div>
 

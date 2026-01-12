@@ -140,15 +140,15 @@ export default function TechStack() {
   return (
     <section className="mx-auto max-w-5xl px-6 py-12">
       <div className="animate-[fade-up_700ms_ease-out_both]">
-        <h2 className="text-2xl font-semibold tracking-tight">my tech stack</h2>
+        <h2 className="text-2xl font-semibold tracking-tight">My Tech Stack</h2>
         <p className="mt-2 text-muted-foreground">
-          the stuff i like to build with.
+          Technologies I use to build!
         </p>
       </div>
 
       <div className="mt-7 grid gap-8 sm:grid-cols-2">
-        <Row title="languages" items={STACK.languages} />
-        <Row title="tools" items={STACK.tools} />
+        <Row title="Languages" items={STACK.languages} />
+        <Row title="Tools" items={STACK.tools} />
       </div>
     </section>
   );
