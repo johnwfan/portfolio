@@ -58,7 +58,7 @@ export default function ProjectsGrid({ projects = [], onSelect }) {
                 </div>
 
                 <p className="pt-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  read case study →
+                  Read case study →
                 </p>
               </CardContent>
             </Card>

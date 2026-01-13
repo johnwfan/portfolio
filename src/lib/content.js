@@ -78,14 +78,14 @@ export const PROJECTS = [
       "Implemented safe-delete + cleanup logic to keep the database and stored images in sync (no orphans)",
       "Designed an outfit scoring pipeline that normalizes item metadata and ranks candidates (structured to be ml-ready later)",
     ],
-    stack: ["FastAPI", "Python", "SQLite", "Next.js"],
+    stack: ["FastAPI", "Python", "SQLite", "Next.js", "REST API", "Gemini API"],
   },
 
   {
     slug: "lol-stats-tracker",
     title: "League of Legends Stats Tracker",
     blurb: "Player lookup → profile pages + match insights with charts, deployed on vercel.",
-    tags: ["Next.js", "React", "Tailwind CSS", "Vercel", "Charts", "API Integration"],
+    tags: ["Next.js", "React", "Tailwind CSS", "Vercel", "MongoDB", "API Integration"],
     metric: "Deployed",
     image: "/projects/lol-stats-tracker.png",
     links: {
@@ -99,7 +99,7 @@ export const PROJECTS = [
       "Added visual analytics (charts + breakdowns) to summarize performance at a glance",
       "Shipped a production deployment end-to-end (next.js app hosted on vercel)",
     ],
-    stack: ["Next.js", "React", "Tailwind CSS"],
+    stack: ["Next.js", "React", "Tailwind CSS", "MongoDB", "Riot Games API"],
   },
 
   {
@@ -117,7 +117,7 @@ export const PROJECTS = [
       "Defined a risk-scoring concept + how it would plug into the user experience",
       "Outlined an ml pipeline direction (segmentation → scoring → summary) for future expansion",
     ],
-    stack: ["Python", "Computer Vision", "Maps", "React"],
+    stack: ["Python", "Computer Vision", "Google Maps API", "React"],
   },
 ];
 

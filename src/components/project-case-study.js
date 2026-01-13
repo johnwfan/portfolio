@@ -22,13 +22,13 @@ export default function ProjectCaseStudy({ project, showBackLink = false }) {
         <div className="flex flex-wrap gap-3">
           {project.links?.github ? (
             <GlowLink href={project.links.github} target="_blank" rel="noreferrer">
-              github ↗
+              Github ↗
             </GlowLink>
           ) : null}
 
           {project.links?.live ? (
             <GlowLink href={project.links.live} target="_blank" rel="noreferrer">
-              live demo ↗
+              Live Demo ↗
             </GlowLink>
           ) : null}
         </div>
@@ -47,7 +47,7 @@ export default function ProjectCaseStudy({ project, showBackLink = false }) {
 
       {project.bullets?.length ? (
         <section>
-          <h2 className="text-xl font-semibold tracking-tight">highlights</h2>
+          <h2 className="text-xl font-semibold tracking-tight">Highlights</h2>
           <ul className="mt-3 list-disc pl-5 space-y-2 text-muted-foreground leading-relaxed">
             {project.bullets.map((b) => (
               <li key={b}>{b}</li>

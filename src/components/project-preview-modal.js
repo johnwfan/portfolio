@@ -47,7 +47,7 @@ export default function ProjectPreviewModal({ open, project, onClose }) {
             transition={{ type: "spring", stiffness: 420, damping: 35, mass: 0.7 }}
           >
             <div className="flex items-center justify-between gap-4 border-b border-white/10 p-4">
-              <div className="text-sm text-muted-foreground">case study preview</div>
+              <div className="text-sm text-muted-foreground">Case Study Preview</div>
               <button
                 onClick={onClose}
                 className="rounded-full border border-white/10 bg-background/60 p-2 hover:bg-background/80 transition"
