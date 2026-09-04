@@ -1,91 +1,92 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import ParallaxCard from "@/components/parallax-card";
+import Reveal from "@/components/reveal";
 
-function ProjectThumb({ p }) {
-  if (!p.image) return <div className="h-48 rounded-xl border bg-muted/25" />;
+function ProjectThumb({ p, tall = false }) {
+  if (!p.image) {
+    return <div className={tall ? "h-64 rounded-xl border bg-muted sm:h-80" : "h-48 rounded-xl border bg-muted"} />;
+  }
 
   return (
-    <div className="relative h-48 overflow-hidden rounded-xl border bg-muted/25">
+    <div
+      className={
+        "relative overflow-hidden rounded-xl border bg-muted " + (tall ? "h-64 sm:h-80" : "h-48")
+      }
+    >
       <img
         src={p.image}
         alt={`${p.title} preview`}
-        className="h-full w-full object-cover"
+        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         loading="lazy"
         draggable={false}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-background/35 to-transparent" />
     </div>
   );
 }
 
-/**
- * If you pass onSelect(project), cards become buttons that open a modal (no URL change).
- * If you DON'T pass onSelect, cards are Links to /projects/[slug].
- */
-export default function ProjectsGrid({ projects = [], onSelect }) {
+function ProjectMeta({ p }) {
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {projects.map((p) => {
-        const CardInner = (
-          <ParallaxCard className="h-full">
-            <Card className="relative h-full overflow-hidden border bg-background/40 backdrop-blur transition-colors hover:border-border/80">
-              <CardContent className="relative p-6 space-y-4">
-                <ProjectThumb p={p} />
+    <>
+      <div>
+        <h3 className="text-lg font-semibold tracking-tight transition-colors group-hover:text-primary">
+          {p.title}
+        </h3>
+        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.blurb}</p>
+      </div>
 
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="text-lg font-semibold tracking-tight">{p.title}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                      {p.blurb}
-                    </p>
-                  </div>
+      <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+        <div className="flex flex-wrap gap-2">
+          {(p.tags ?? []).map((t) => (
+            <Badge key={t} variant="outline" className="rounded-full">
+              {t}
+            </Badge>
+          ))}
+        </div>
+        {p.duration ? (
+          <span className="shrink-0 text-xs text-muted-foreground">{p.duration}</span>
+        ) : null}
+      </div>
+    </>
+  );
+}
 
-                  {p.metric ? (
-                    <span className="shrink-0 text-xs text-muted-foreground rounded-full border px-2 py-1">
-                      {p.metric}
-                    </span>
-                  ) : null}
-                </div>
+function ProjectCard({ p, featured = false }) {
+  return (
+    <Link href={`/projects/${p.slug}`} className="group block h-full">
+      <Card className="h-full overflow-hidden border bg-card transition-colors hover:border-primary/40 hover:shadow-md">
+        <CardContent
+          className={featured ? "grid gap-6 p-6 sm:grid-cols-2 sm:items-center" : "space-y-4 p-6"}
+        >
+          <ProjectThumb p={p} tall={featured} />
+          <div className={featured ? "space-y-4" : "space-y-4"}>
+            <ProjectMeta p={p} />
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
+  );
+}
 
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {(p.tags ?? []).map((t) => (
-                    <Badge key={t} variant="outline" className="rounded-full">
-                      {t}
-                    </Badge>
-                  ))}
-                </div>
+export default function ProjectsGrid({ projects = [] }) {
+  const flagship = projects.find((p) => p.flagship);
+  const rest = projects.filter((p) => !p.flagship);
 
-                <p className="pt-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  read case study →
-                </p>
-              </CardContent>
-            </Card>
-          </ParallaxCard>
-        );
+  return (
+    <div className="space-y-6">
+      {flagship ? (
+        <Reveal>
+          <ProjectCard p={flagship} featured />
+        </Reveal>
+      ) : null}
 
-        // HOME mode (modal): button, no navigation
-        if (onSelect) {
-          return (
-            <button
-              key={p.slug}
-              type="button"
-              className="group block text-left"
-              onClick={() => onSelect(p)}
-            >
-              {CardInner}
-            </button>
-          );
-        }
-
-        // PROJECTS page mode: real route navigation
-        return (
-          <Link key={p.slug} href={`/projects/${p.slug}`} className="group block">
-            {CardInner}
-          </Link>
-        );
-      })}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {rest.map((p, i) => (
+          <Reveal key={p.slug} delay={i * 0.05}>
+            <ProjectCard p={p} />
+          </Reveal>
+        ))}
+      </div>
     </div>
   );
 }

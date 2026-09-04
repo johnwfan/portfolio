@@ -1,50 +1,30 @@
-"use client";
-
-import { useMemo, useState } from "react";
 import Link from "next/link";
 import ProjectsGrid from "@/components/projects-grid";
-import ProjectPreviewModal from "@/components/project-preview-modal";
-import { FEATURED_PROJECTS } from "@/lib/content";
+import Reveal from "@/components/reveal";
+import { PROJECTS } from "@/lib/content";
 
 export default function FeaturedProjects() {
-  const projects = useMemo(() => FEATURED_PROJECTS ?? [], []);
-  const [openSlug, setOpenSlug] = useState(null);
-
-  const active = useMemo(
-    () => projects.find((p) => p.slug === openSlug) ?? null,
-    [projects, openSlug]
-  );
-
   return (
-    <section className="mx-auto max-w-5xl px-6 py-12">
-      <div className="animate-[fade-up_700ms_ease-out_both] flex items-end justify-between gap-6">
+    <section className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+      <Reveal className="flex items-end justify-between gap-6">
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight">some of my projects</h2>
-          <p className="mt-2 text-muted-foreground">
-            stuff i've been working on!
-          </p>
+          <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+            my work
+          </h2>
+          <p className="mt-2 text-muted-foreground">a few of the things i&apos;ve been building lately.</p>
         </div>
 
         <Link
           href="/projects"
-          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="shrink-0 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           see all →
         </Link>
-      </div>
+      </Reveal>
 
-      <div className="mt-6">
-        <ProjectsGrid
-          projects={projects}
-          onSelect={(p) => setOpenSlug(p.slug)} // ✅ home opens modal, no URL change
-        />
+      <div className="mt-8">
+        <ProjectsGrid projects={PROJECTS} />
       </div>
-
-      <ProjectPreviewModal
-        open={!!active}
-        project={active}
-        onClose={() => setOpenSlug(null)}
-      />
     </section>
   );
 }
