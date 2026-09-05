@@ -83,7 +83,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
+    <nav className="sticky top-0 z-50 border-b border-white/40 bg-white/60 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6)]">
       <div className="mx-auto grid max-w-5xl grid-cols-[1fr_auto_1fr] items-center px-6 py-4">
         <Link
           href="/"
@@ -131,7 +131,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-border md:hidden"
+            className="overflow-hidden border-t border-white/40 md:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-4">
               {LINKS.map((l) => (

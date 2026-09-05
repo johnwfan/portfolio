@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { FileDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PROFILE } from "@/lib/content";
 
@@ -53,6 +54,11 @@ export default function Hero() {
           </Button>
           <Button size="lg" variant="outline" asChild>
             <a href={`mailto:${PROFILE.email}`}>email me</a>
+          </Button>
+          <Button size="lg" variant="outline" asChild>
+            <a href={PROFILE.links.resume} target="_blank" rel="noreferrer">
+              <FileDown /> resume
+            </a>
           </Button>
         </motion.div>
       </motion.div>
