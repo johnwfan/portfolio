@@ -71,10 +71,14 @@ export default function Home() {
         {experience ? (
           <div className="mt-6">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-              <p className="font-medium">{experience.title}</p>
+              <h3 className="font-display text-xl font-semibold tracking-tight sm:text-2xl">
+                {experience.title}
+              </h3>
               <span className="text-sm text-muted-foreground">{experience.time}</span>
             </div>
-            <p className="mt-1 text-sm text-muted-foreground">{experience.subtitle}</p>
+            <p className="mt-2 max-w-[640px] text-foreground/90 leading-relaxed">
+              {experience.subtitle}
+            </p>
             {experience.bullets?.length ? (
               <ul className="mt-3 max-w-[640px] list-disc space-y-1.5 pl-5 leading-relaxed text-foreground/90">
                 {experience.bullets.map((b) => (
