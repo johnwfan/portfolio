@@ -4,24 +4,17 @@ import { useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { Github, Linkedin, Mail, Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { PROFILE } from "@/lib/content";
+import { STAGE_TIMES, isEntrancePending } from "@/lib/entrance";
 
 const LINKS = [
-  { href: "/", label: "home" },
-  { href: "/projects", label: "my work" },
-  { href: "/contact", label: "contact" },
+  { href: "/projects", label: "work" },
   { href: "/about", label: "about" },
-];
-
-const ICON_LINKS = [
-  { href: PROFILE.links.linkedin, label: "linkedin", icon: Linkedin, external: true },
-  { href: PROFILE.links.github, label: "github", icon: Github, external: true },
-  { href: `mailto:${PROFILE.email}`, label: "email", icon: Mail, external: false },
+  { href: "/contact", label: "contact" },
 ];
 
 function isActive(pathname, href) {
-  if (href === "/") return pathname === "/";
   return pathname.startsWith(href);
 }
 
@@ -30,12 +23,18 @@ function NavLinks({ pathname }) {
   const linkRefs = useRef({});
   const [indicator, setIndicator] = useState(null);
 
+  // Both setIndicator calls sync React state with measured DOM layout via
+  // ResizeObserver — an external system, not a derived-state anti-pattern.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useLayoutEffect(() => {
     const container = containerRef.current;
     const activeHref = LINKS.find((l) => isActive(pathname, l.href))?.href;
     const el = activeHref ? linkRefs.current[activeHref] : null;
 
-    if (!container || !el) return;
+    if (!container || !el) {
+      setIndicator(null);
+      return;
+    }
 
     const measure = () => {
       // Offsets are relative to the row itself, not the viewport, so page
@@ -50,9 +49,10 @@ function NavLinks({ pathname }) {
     observer.observe(el);
     return () => observer.disconnect();
   }, [pathname]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   return (
-    <div ref={containerRef} className="relative hidden items-center gap-6 justify-self-center md:flex">
+    <div ref={containerRef} className="relative hidden items-center gap-7 md:flex">
       {LINKS.map((l) => (
         <Link
           key={l.href}
@@ -60,7 +60,7 @@ function NavLinks({ pathname }) {
             linkRefs.current[l.href] = node;
           }}
           href={l.href}
-          className="relative px-1 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground data-[active=true]:text-foreground"
+          className="relative px-1 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground data-[active=true]:text-foreground"
           data-active={isActive(pathname, l.href)}
         >
           {l.label}
@@ -82,42 +82,58 @@ export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  // Independent of the homepage entrance coordinator (this lives in the root
+  // layout, rendered on every route) — it only needs to know once, at mount,
+  // whether an entrance is about to play on this load, so its own fade-in can
+  // wait until the entrance's settle stage instead of appearing mid-overlay.
+  const [navReady, setNavReady] = useState(true);
+  // setNavReady here synchronizes React state with the same external
+  // data-intro DOM attribute referenced above — not the derived-state
+  // anti-pattern the rule targets.
+  /* eslint-disable react-hooks/set-state-in-effect */
+  useLayoutEffect(() => {
+    if (!isEntrancePending()) return;
+    setNavReady(false);
+    const id = setTimeout(() => setNavReady(true), STAGE_TIMES.settle);
+    return () => clearTimeout(id);
+  }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
+
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/40 bg-white/60 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6)]">
-      <div className="mx-auto grid max-w-5xl grid-cols-[1fr_auto_1fr] items-center px-6 py-4">
+    <motion.nav
+      initial={false}
+      animate={{ opacity: navReady ? 1 : 0 }}
+      transition={{ duration: 0.4 }}
+      className="sticky top-0 z-50 border-b border-white/40 bg-white/60 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6)]"
+    >
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="group relative w-fit justify-self-start font-display text-lg font-semibold tracking-tight"
+          className="group relative w-fit font-display text-lg font-semibold tracking-tight"
           onClick={() => setOpen(false)}
         >
-          <span className="inline-block will-change-transform group-hover:animate-[name-wiggle_450ms_ease-in-out]">
+          <span className="inline-block will-change-transform group-hover:animate-[name-wiggle_450ms_ease-in-out] group-focus-visible:animate-[name-wiggle_450ms_ease-in-out]">
             john fan
           </span>
         </Link>
 
         <NavLinks pathname={pathname} />
 
-        <div className="hidden items-center gap-1 justify-self-end md:flex">
-          {ICON_LINKS.map(({ href, label, icon: Icon, external }) => (
-            <a
-              key={label}
-              href={href}
-              target={external ? "_blank" : undefined}
-              rel={external ? "noreferrer" : undefined}
-              aria-label={label}
-              className="flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              <Icon size={18} />
-            </a>
-          ))}
-        </div>
+        <a
+          href={PROFILE.links.resume}
+          target="_blank"
+          rel="noreferrer"
+          className="hidden items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground md:flex"
+        >
+          resume <ArrowUpRight size={13} />
+        </a>
 
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "close menu" : "open menu"}
           aria-expanded={open}
-          className="flex size-9 items-center justify-center justify-self-end rounded-full text-foreground md:hidden"
+          className="flex size-9 items-center justify-center rounded-full text-foreground md:hidden"
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -139,30 +155,25 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-md px-2 py-2.5 text-base font-medium text-foreground data-[active=true]:text-primary"
+                  className="rounded-md px-2 py-2.5 text-sm text-foreground data-[active=true]:text-primary"
                   data-active={isActive(pathname, l.href)}
                 >
                   {l.label}
                 </Link>
               ))}
-              <div className="mt-3 flex items-center gap-2 border-t border-border pt-3">
-                {ICON_LINKS.map(({ href, label, icon: Icon, external }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target={external ? "_blank" : undefined}
-                    rel={external ? "noreferrer" : undefined}
-                    aria-label={label}
-                    className="flex size-10 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground"
-                  >
-                    <Icon size={19} />
-                  </a>
-                ))}
-              </div>
+              <a
+                href={PROFILE.links.resume}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setOpen(false)}
+                className="mt-2 flex items-center gap-1 rounded-md border-t border-white/40 px-2 py-2.5 pt-4 text-sm text-foreground"
+              >
+                resume <ArrowUpRight size={14} />
+              </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 }

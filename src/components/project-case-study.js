@@ -1,63 +1,63 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Github, ExternalLink } from "lucide-react";
+import { PROJECTS } from "@/lib/content";
+
+function isPlaceholder(text) {
+  return typeof text === "string" && text.startsWith("[") && text.endsWith("]");
+}
 
 export default function ProjectCaseStudy({ project }) {
   const isTeam = Boolean(project.credit);
+  const index = PROJECTS.findIndex((p) => p.slug === project.slug);
+  const number = String(index + 1).padStart(2, "0");
 
   return (
-    <div className="space-y-10">
-      <header className="space-y-5">
-        <div className="flex flex-wrap items-center gap-3 text-xs font-medium text-muted-foreground">
-          <span className="rounded-full border px-2.5 py-1">
-            {isTeam ? "team project" : "solo project"}
-          </span>
-          {project.duration ? (
-            <span className="rounded-full border px-2.5 py-1">{project.duration}</span>
-          ) : null}
+    <div>
+      <header className="space-y-6">
+        <div className="flex items-baseline gap-4">
+          <span className="font-mono text-sm text-muted-foreground">{number}</span>
+          <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-6xl">
+            {project.title}
+          </h1>
         </div>
 
-        <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-          {project.title}
-        </h1>
-
-        {project.overview ? (
-          <p className="max-w-3xl text-muted-foreground leading-relaxed">{project.overview}</p>
+        {project.blurb ? (
+          <p className="max-w-2xl text-lg text-muted-foreground leading-relaxed">
+            {project.blurb}
+          </p>
         ) : null}
+
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-5 text-sm text-muted-foreground">
+          <span>{isTeam ? "team project" : "solo project"}</span>
+          {project.year ? <span>{project.year}</span> : null}
+          {project.links?.github ? (
+            <a
+              href={project.links.github}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 text-foreground transition-colors hover:text-primary"
+            >
+              <Github size={13} /> github
+            </a>
+          ) : null}
+          {project.links?.live ? (
+            <a
+              href={project.links.live}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 text-foreground transition-colors hover:text-primary"
+            >
+              <ExternalLink size={13} /> live demo
+            </a>
+          ) : null}
+        </div>
 
         {isTeam ? (
-          <p className="text-sm text-muted-foreground italic">{project.credit}</p>
+          <p className="text-xs italic text-muted-foreground">{project.credit}</p>
         ) : null}
-
-        <div className="flex flex-wrap gap-2">
-          {(project.stack ?? project.tags ?? []).map((t) => (
-            <Badge key={t} variant="secondary" className="rounded-full">
-              {t}
-            </Badge>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap gap-3 pt-1">
-          {project.links?.github ? (
-            <Button variant="outline" asChild>
-              <a href={project.links.github} target="_blank" rel="noreferrer">
-                <Github /> github
-              </a>
-            </Button>
-          ) : null}
-
-          {project.links?.live ? (
-            <Button variant="outline" asChild>
-              <a href={project.links.live} target="_blank" rel="noreferrer">
-                <ExternalLink /> live demo
-              </a>
-            </Button>
-          ) : null}
-        </div>
       </header>
 
       {project.image ? (
-        <div className="overflow-hidden rounded-2xl border bg-muted">
+        <div className="mt-10 overflow-hidden border border-border">
           <img
             src={project.image}
             alt={`${project.title} screenshot`}
@@ -67,14 +67,33 @@ export default function ProjectCaseStudy({ project }) {
         </div>
       ) : null}
 
+      {project.stack?.length ? (
+        <p className="mt-6 font-mono text-sm text-muted-foreground">
+          {project.stack.join(" · ")}
+        </p>
+      ) : null}
+
+      {project.overview ? (
+        <section className="mt-16">
+          <h2 className="text-sm font-medium text-muted-foreground">
+            why i built it
+          </h2>
+          <p className="mt-4 max-w-2xl text-foreground leading-relaxed">{project.overview}</p>
+        </section>
+      ) : null}
+
       {project.bullets?.length ? (
-        <section>
-          <h2 className="font-display text-xl font-semibold tracking-tight">highlights</h2>
-          <ul className="mt-4 space-y-2.5 text-muted-foreground leading-relaxed">
-            {project.bullets.map((b) => (
-              <li key={b} className="flex gap-3">
-                <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-primary" />
-                <span>{b}</span>
+        <section className="mt-16">
+          <h2 className="text-sm font-medium text-muted-foreground">
+            selected details
+          </h2>
+          <ul className="mt-4 max-w-2xl space-y-4">
+            {project.bullets.map((b, i) => (
+              <li key={b} className="flex gap-4">
+                <span className="pt-0.5 font-mono text-xs text-primary">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="text-foreground leading-relaxed">{b}</span>
               </li>
             ))}
           </ul>
@@ -82,18 +101,31 @@ export default function ProjectCaseStudy({ project }) {
       ) : null}
 
       {project.architecture?.length ? (
-        <section>
-          <h2 className="font-display text-xl font-semibold tracking-tight">how it works</h2>
-          <ol className="mt-4 space-y-3">
+        <section className="mt-16">
+          <h2 className="text-sm font-medium text-muted-foreground">
+            how it works
+          </h2>
+          <ol className="mt-4 max-w-2xl space-y-4">
             {project.architecture.map((step, i) => (
-              <li key={step} className="flex gap-4 text-muted-foreground leading-relaxed">
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-full border text-xs font-medium text-foreground">
-                  {i + 1}
+              <li key={step} className="flex gap-4">
+                <span className="pt-0.5 font-mono text-xs text-primary">
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="pt-0.5">{step}</span>
+                <span className="text-foreground leading-relaxed">{step}</span>
               </li>
             ))}
           </ol>
+        </section>
+      ) : null}
+
+      {project.learned && !isPlaceholder(project.learned) ? (
+        <section className="mt-16 border-t border-border pt-10">
+          <h2 className="text-sm font-medium text-muted-foreground">
+            what i learned
+          </h2>
+          <p className="mt-4 max-w-2xl italic text-foreground leading-relaxed">
+            {project.learned}
+          </p>
         </section>
       ) : null}
     </div>

@@ -29,21 +29,23 @@ export default async function ProjectPage({ params }) {
         href="/projects"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
-        <ArrowLeft size={15} /> back to my work
+        <ArrowLeft size={13} /> back to work
       </Link>
 
-      <div className="mt-8">
+      <div className="mt-10">
         <ProjectCaseStudy project={project} />
       </div>
 
-      <div className="mt-16 border-t pt-8">
+      <div className="mt-16 border-t border-border pt-8">
         <Link
           href={`/projects/${next.slug}`}
-          className="group flex items-center justify-between gap-4 rounded-xl border p-5 transition-colors hover:border-primary/40"
+          className="group flex items-center justify-between gap-4 border border-border p-6 transition-colors hover:border-primary/40"
         >
           <div>
-            <p className="text-xs text-muted-foreground">next project</p>
-            <p className="mt-1 font-display text-lg font-semibold tracking-tight">
+            <p className="text-xs text-muted-foreground">
+              next project
+            </p>
+            <p className="mt-2 font-display text-2xl font-semibold tracking-tight">
               {next.title}
             </p>
           </div>

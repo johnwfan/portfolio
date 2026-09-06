@@ -1,14 +1,15 @@
 export const PROFILE = {
   name: "john fan",
-  role: "full-stack software developer",
+  role: "software engineer",
+  school: "cs @ rice",
   location: "houston, tx",
   status: "open to internships",
-  // [HERO HEADLINE — JOHN TO WRITE]: the large H1 statement in the hero. Keep it short (fits one/two lines at 6xl-8xl type).
-  headline: "hi i'm john!",
-  subhead:
-    "a rice university cs student and full-stack software engineer who loves turning ideas into real, working products.",
-  // [HOME ABOUT-TEASER — JOHN TO WRITE]: 1-2 lines used on the home page teaser block, links through to /about.
-  aboutTeaser: "click here to learn",
+  // Drafted from John's own working notes for the redesign brief — his words,
+  // treat as a strong first pass he can still tweak, not invented voice.
+  tagline:
+    "i build full-stack products, and somewhere along the way started treating league of legends drafts like a data problem.",
+  // [HOME ABOUT-TEASER — JOHN TO WRITE]: 1 short line for the home page about-teaser link.
+  aboutTeaser: "click here to learn more about me and my work",
   email: "johnfan.dev@gmail.com",
   links: {
     github: "https://github.com/johnwfan",
@@ -26,6 +27,17 @@ export const ABOUT = {
     "outside of coding, i enjoy playing video games, spending time with loved ones, and going on fun adventures. i also really like to work out and stay active.",
     "i have so much to learn and explore, and i'm excited to see where my journey takes me. if you want to connect or collaborate, feel free to reach out!",
   ],
+  // "now" — building is derived from the flagship project elsewhere; the rest
+  // needs real input from John, nothing here is invented.
+  now: {
+    // [NOW LEARNING — JOHN TO WRITE]
+    learning: "[NOW LEARNING — JOHN TO WRITE]",
+    // [NOW PLAYING — JOHN TO WRITE]: a game, if any, worth naming.
+    playing: "[NOW PLAYING — JOHN TO WRITE]",
+  },
+  elsewhere: ["houston, tx", "rice university"],
+  // Pulled directly from the bio paragraphs above — not new facts.
+  likes: ["video games", "time with people i love", "fun adventures", "staying active"],
 };
 
 // Synced against John's resume (public/John_Fan_Resume.pdf) — languages/tools split
@@ -98,6 +110,9 @@ export const PROJECTS = [
     slug: "scuttle",
     title: "Scuttle.gg",
     flagship: true,
+    // Short line for the homepage row list / archive — distinct from the
+    // longer `blurb` used on the detail page header.
+    teaser: "what started as a stats tracker turned into an ml rabbit hole.",
     blurb:
       "a full-stack league of legends stats tracker with real-time match data, cached riot api integration, and an ml-powered draft analysis tool.",
     overview:
@@ -115,6 +130,9 @@ export const PROJECTS = [
       "built a counterfactual draft explorer that swaps one pick and shows how the model's score changes, without ever claiming a win probability the data can't support",
     ],
     duration: "november 2025 — present",
+    year: "2025—now",
+    // [SCUTTLE LEARNED — JOHN TO WRITE]: a sentence or two, optional.
+    learned: "[SCUTTLE LEARNED — JOHN TO WRITE]",
     tags: ["next.js", "typescript", "mongodb", "redis", "ml"],
     stack: [
       "next.js",
@@ -140,6 +158,7 @@ export const PROJECTS = [
     slug: "studioflow",
     title: "StudioFlow",
     flagship: false,
+    teaser: "a calmer workspace for creative teams to plan and ship content.",
     blurb:
       "a full-stack workflow platform for creative teams to manage projects, tasks, comments, and shared assets.",
     overview:
@@ -152,6 +171,9 @@ export const PROJECTS = [
     ],
     architecture: [],
     duration: "april 2026 — present",
+    year: "2026—now",
+    // [STUDIOFLOW LEARNED — JOHN TO WRITE]: a sentence or two, optional.
+    learned: "[STUDIOFLOW LEARNED — JOHN TO WRITE]",
     tags: ["next.js", "postgresql", "prisma", "docker", "aws"],
     stack: [
       "next.js",
@@ -179,6 +201,7 @@ export const PROJECTS = [
     slug: "outfit-picker",
     title: "Outfit Picker",
     flagship: false,
+    teaser: "a very unnecessary solution to choosing clothes.",
     blurb:
       "an ai try-on app — upload your wardrobe and a photo of yourself, and generate a styled outfit preview.",
     overview:
@@ -192,6 +215,9 @@ export const PROJECTS = [
     architecture: [],
     // Sourced from the repo's commit history: first commit 2025-12-20, last commit 2025-12-27.
     duration: "december 2025",
+    year: "2025",
+    // [OUTFIT PICKER LEARNED — JOHN TO WRITE]: a sentence or two, optional.
+    learned: "[OUTFIT PICKER LEARNED — JOHN TO WRITE]",
     tags: ["next.js", "fastapi", "python", "gemini api"],
     stack: ["next.js", "react", "tailwind css", "fastapi", "python", "google-genai"],
     image: "/projects/outfit-picker.png",
@@ -205,6 +231,7 @@ export const PROJECTS = [
     slug: "storm",
     title: "Storm",
     flagship: false,
+    teaser: "mapping flood risk from street-level imagery.",
     blurb:
       "an ai-powered flood risk platform that scores real-world locations from street-level imagery.",
     overview:
@@ -224,7 +251,10 @@ export const PROJECTS = [
       "generates mitigation recommendations and renders results as an interactive heat map",
     ],
     duration: "fall 2025",
+    year: "2025",
     credit: "built with kacem ettahali and diego rico at hackrice, fall 2025.",
+    // [STORM LEARNED — JOHN TO WRITE]: a sentence or two, optional.
+    learned: "[STORM LEARNED — JOHN TO WRITE]",
     tags: ["react", "computer vision", "python", "pytorch"],
     stack: [
       "react",

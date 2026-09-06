@@ -1,4 +1,4 @@
-import { Mail, Linkedin, Github, FileDown } from "lucide-react";
+import { Mail, Linkedin, Github, FileDown, ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/reveal";
 import { PROFILE } from "@/lib/content";
 
@@ -39,10 +39,10 @@ const TILES = [
 
 export default function ContactCTA({ showHeading = true }) {
   return (
-    <section className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+    <section className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
       {showHeading ? (
         <Reveal>
-          <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
             let&apos;s connect
           </h2>
           <p className="mt-2 text-muted-foreground">
@@ -51,22 +51,28 @@ export default function ContactCTA({ showHeading = true }) {
         </Reveal>
       ) : null}
 
-      <Reveal delay={0.1} className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <Reveal delay={0.1} className="mt-8 border-t border-border">
         {TILES.map(({ key, label, detail, icon: Icon, href, external }) => (
           <a
             key={key}
             href={href}
             target={external ? "_blank" : undefined}
             rel={external ? "noreferrer" : undefined}
-            className="group flex flex-col gap-3 rounded-xl border border-border p-5 transition-colors hover:border-primary/40 hover:bg-secondary/50"
+            className="group flex items-center justify-between gap-4 border-b border-border py-5 transition-colors hover:border-b-primary/40"
           >
-            <span className="flex size-9 items-center justify-center rounded-full bg-secondary text-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-              <Icon size={17} />
+            <span className="flex items-center gap-4">
+              <Icon size={17} className="shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+              <span>
+                <span className="block text-xs text-muted-foreground">
+                  {label}
+                </span>
+                <span className="mt-0.5 block text-foreground">{detail}</span>
+              </span>
             </span>
-            <span>
-              <span className="block font-medium">{label}</span>
-              <span className="block text-sm text-muted-foreground">{detail}</span>
-            </span>
+            <ArrowUpRight
+              size={16}
+              className="shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground"
+            />
           </a>
         ))}
       </Reveal>
