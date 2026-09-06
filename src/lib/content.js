@@ -88,6 +88,8 @@ export const TIMELINE = [
     bullets: [
       "shipped a cost analytics dashboard",
       "fixed cross-system auth/session bugs and redesigned the landing page, clearing 260+ SEO crawl issues",
+      "improved RankMonster search and PDF reporting workflows through production feature updates",
+      "shipped and tested production fixes across both products, using Playwright E2E tests and CI checks to validate changes",
     ],
   },
   {
