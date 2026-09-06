@@ -24,12 +24,12 @@ export default async function ProjectPage({ params }) {
   const next = PROJECTS[(index + 1) % PROJECTS.length];
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+    <main className="mx-auto max-w-[900px] px-6 py-16 sm:py-20">
       <Link
         href="/projects"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
-        <ArrowLeft size={13} /> back to work
+        <ArrowLeft size={13} className="text-primary" /> back to projects
       </Link>
 
       <div className="mt-10">
@@ -51,7 +51,7 @@ export default async function ProjectPage({ params }) {
           </div>
           <ArrowRight
             size={18}
-            className="shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground"
+            className="shrink-0 text-primary transition-transform group-hover:translate-x-1"
           />
         </Link>
       </div>

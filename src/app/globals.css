@@ -34,28 +34,28 @@
 :root {
   --radius: 0.625rem;
 
-  /* light mode only -- clean, digital, sharp: pure white canvas, softened ink */
+  /* pure white canvas, neutral near-black ink */
   --background: #ffffff;
-  --foreground: #171614;
+  --foreground: #171717;
   --card: #ffffff;
-  --card-foreground: #171614;
+  --card-foreground: #171717;
   --popover: #ffffff;
-  --popover-foreground: #171614;
+  --popover-foreground: #171717;
 
-  /* signal blue -- the single accent hue, used with intent, not decoration */
+  /* electric blue -- the single accent hue, used with intent, not decoration */
   --primary: #2547fa;
   --primary-foreground: #ffffff;
 
-  --secondary: #f0eee8;
-  --secondary-foreground: #171614;
-  --muted: #f0eee8;
-  --muted-foreground: #6f6b62;
-  --accent: #f0eee8;
-  --accent-foreground: #171614;
+  --secondary: #f2f2f2;
+  --secondary-foreground: #171717;
+  --muted: #f2f2f2;
+  --muted-foreground: #6b7280;
+  --accent: #f2f2f2;
+  --accent-foreground: #171717;
 
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #e4e0d7;
-  --input: #e4e0d7;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
   --ring: #2547fa;
 }
 
@@ -68,20 +68,14 @@
   }
 }
 
-/* Homepage entrance: #entrance-ring is always rendered (see
-   src/components/entrance-ring.js) so this pure-CSS gate can show/hide it
-   before React ever hydrates, driven by the data-intro attribute the
-   pre-hydration script in src/app/layout.js sets on <html>. This is the
-   only thing standing between "no flash" and "hero flashes before the
-   overlay covers it." */
-#entrance-ring {
-  display: none;
+html {
+  scroll-behavior: smooth;
 }
-html[data-intro="pending"] #entrance-ring {
-  display: block;
-}
-html[data-intro="pending"] body {
-  overflow: hidden;
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 @keyframes name-wiggle {

@@ -1,5 +1,4 @@
 import { Github, ExternalLink } from "lucide-react";
-import { PROJECTS } from "@/lib/content";
 
 function isPlaceholder(text) {
   return typeof text === "string" && text.startsWith("[") && text.endsWith("]");
@@ -7,21 +6,16 @@ function isPlaceholder(text) {
 
 export default function ProjectCaseStudy({ project }) {
   const isTeam = Boolean(project.credit);
-  const index = PROJECTS.findIndex((p) => p.slug === project.slug);
-  const number = String(index + 1).padStart(2, "0");
 
   return (
     <div>
       <header className="space-y-6">
-        <div className="flex items-baseline gap-4">
-          <span className="font-mono text-sm text-muted-foreground">{number}</span>
-          <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-6xl">
-            {project.title}
-          </h1>
-        </div>
+        <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+          {project.title}
+        </h1>
 
         {project.blurb ? (
-          <p className="max-w-2xl text-lg text-muted-foreground leading-relaxed">
+          <p className="max-w-[640px] text-lg leading-relaxed text-foreground/90">
             {project.blurb}
           </p>
         ) : null}
@@ -46,7 +40,7 @@ export default function ProjectCaseStudy({ project }) {
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 text-foreground transition-colors hover:text-primary"
             >
-              <ExternalLink size={13} /> live demo
+              <ExternalLink size={13} className="text-primary" /> live demo
             </a>
           ) : null}
         </div>
@@ -74,26 +68,19 @@ export default function ProjectCaseStudy({ project }) {
       ) : null}
 
       {project.overview ? (
-        <section className="mt-16">
-          <h2 className="text-sm font-medium text-muted-foreground">
-            why i built it
-          </h2>
-          <p className="mt-4 max-w-2xl text-foreground leading-relaxed">{project.overview}</p>
+        <section className="mt-14">
+          <h2 className="text-sm font-medium text-muted-foreground">why i built it</h2>
+          <p className="mt-3 max-w-[640px] leading-relaxed">{project.overview}</p>
         </section>
       ) : null}
 
       {project.bullets?.length ? (
-        <section className="mt-16">
-          <h2 className="text-sm font-medium text-muted-foreground">
-            selected details
-          </h2>
-          <ul className="mt-4 max-w-2xl space-y-4">
-            {project.bullets.map((b, i) => (
-              <li key={b} className="flex gap-4">
-                <span className="pt-0.5 font-mono text-xs text-primary">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="text-foreground leading-relaxed">{b}</span>
+        <section className="mt-14">
+          <h2 className="text-sm font-medium text-muted-foreground">selected details</h2>
+          <ul className="mt-3 max-w-[640px] list-disc space-y-3 pl-5">
+            {project.bullets.map((b) => (
+              <li key={b} className="leading-relaxed">
+                {b}
               </li>
             ))}
           </ul>
@@ -101,17 +88,12 @@ export default function ProjectCaseStudy({ project }) {
       ) : null}
 
       {project.architecture?.length ? (
-        <section className="mt-16">
-          <h2 className="text-sm font-medium text-muted-foreground">
-            how it works
-          </h2>
-          <ol className="mt-4 max-w-2xl space-y-4">
-            {project.architecture.map((step, i) => (
-              <li key={step} className="flex gap-4">
-                <span className="pt-0.5 font-mono text-xs text-primary">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="text-foreground leading-relaxed">{step}</span>
+        <section className="mt-14">
+          <h2 className="text-sm font-medium text-muted-foreground">how it works</h2>
+          <ol className="mt-3 max-w-[640px] list-decimal space-y-3 pl-5">
+            {project.architecture.map((step) => (
+              <li key={step} className="leading-relaxed">
+                {step}
               </li>
             ))}
           </ol>
@@ -119,13 +101,9 @@ export default function ProjectCaseStudy({ project }) {
       ) : null}
 
       {project.learned && !isPlaceholder(project.learned) ? (
-        <section className="mt-16 border-t border-border pt-10">
-          <h2 className="text-sm font-medium text-muted-foreground">
-            what i learned
-          </h2>
-          <p className="mt-4 max-w-2xl italic text-foreground leading-relaxed">
-            {project.learned}
-          </p>
+        <section className="mt-14 border-t border-border pt-8">
+          <h2 className="text-sm font-medium text-muted-foreground">what i learned</h2>
+          <p className="mt-3 max-w-[640px] italic leading-relaxed">{project.learned}</p>
         </section>
       ) : null}
     </div>
