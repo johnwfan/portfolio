@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PROFILE } from "@/lib/content";
+import { ACCENT } from "@/lib/accent";
 
 const LINKS = [
-  { href: "/#experience", label: "experience" },
-  { href: "/projects", label: "projects" },
-  { href: "/about", label: "about" },
+  { href: "/#experience", label: "experience", accent: "green" },
+  { href: "/projects", label: "projects", accent: "blue" },
+  { href: "/about", label: "about", accent: "yellow" },
 ];
 
-const linkClass =
-  "text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-primary hover:underline";
+const sectionLinkClass =
+  "relative text-sm text-muted-foreground transition-colors hover:text-foreground after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:transition-transform after:duration-200 motion-reduce:after:transition-none hover:after:scale-x-100";
 
 export default function Navbar() {
   return (
@@ -23,7 +24,11 @@ export default function Navbar() {
 
         <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
           {LINKS.map((l) => (
-            <Link key={l.href} href={l.href} className={linkClass}>
+            <Link
+              key={l.href}
+              href={l.href}
+              className={`${sectionLinkClass} ${ACCENT[l.accent].afterBg}`}
+            >
               {l.label}
             </Link>
           ))}
@@ -31,9 +36,9 @@ export default function Navbar() {
             href={PROFILE.links.resume}
             target="_blank"
             rel="noreferrer"
-            className={`inline-flex items-center gap-1 ${linkClass}`}
+            className={`inline-flex items-center gap-1 ${sectionLinkClass} ${ACCENT.blue.afterBg}`}
           >
-            resume <ArrowUpRight size={13} className="text-primary" />
+            resume <ArrowUpRight size={13} />
           </a>
         </div>
       </div>

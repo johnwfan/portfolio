@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { ACCENT } from "@/lib/accent";
 
 function ProjectListItem({ project, expanded }) {
   const stack = expanded ? project.stack : project.stackShort;
+  const accent = ACCENT[project.accent];
 
   return (
-    <div className={`py-8 ${expanded ? "border-t border-border/60 first:border-t-0" : ""}`}>
+    <div
+      className={`-mx-6 px-6 transition-colors ${accent.hoverBgSoft} py-8 ${expanded ? "border-t border-border/60 first:border-t-0" : ""}`}
+    >
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <h3 className="font-display text-xl font-semibold tracking-tight sm:text-2xl">
           {project.title}
@@ -22,18 +26,18 @@ function ProjectListItem({ project, expanded }) {
       <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">
         <Link
           href={`/projects/${project.slug}`}
-          className="text-foreground underline underline-offset-4 transition-colors hover:text-primary hover:decoration-primary"
+          className={`group text-foreground underline underline-offset-4 transition-colors ${accent.hoverDecoration}`}
         >
-          view project <span className="text-primary">→</span>
+          view project <span className={accent.groupHoverIcon}>→</span>
         </Link>
         {project.links?.github ? (
           <a
             href={project.links.github}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1 text-muted-foreground transition-colors hover:text-foreground"
+            className="group inline-flex items-center gap-1 text-muted-foreground transition-colors"
           >
-            github <ArrowUpRight size={12} className="text-primary" />
+            github <ArrowUpRight size={12} className={accent.groupHoverIcon} />
           </a>
         ) : null}
         {project.links?.live ? (
@@ -41,9 +45,9 @@ function ProjectListItem({ project, expanded }) {
             href={project.links.live}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1 text-muted-foreground transition-colors hover:text-foreground"
+            className="group inline-flex items-center gap-1 text-muted-foreground transition-colors"
           >
-            live <ArrowUpRight size={12} className="text-primary" />
+            live <ArrowUpRight size={12} className={accent.groupHoverIcon} />
           </a>
         ) : null}
       </div>

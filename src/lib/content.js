@@ -38,6 +38,11 @@ export const ABOUT = {
   elsewhere: ["Houston, TX", "Rice University"],
   // Pulled directly from the bio paragraphs above — not new facts.
   likes: ["video games", "time with people i love", "fun adventures", "staying active"],
+  photos: {
+    nyc: { src: "/about/nyc.jpg", alt: "John in Central Park with the Manhattan skyline behind him" },
+    torii: { src: "/about/torii.jpg", alt: "John standing under the orange torii gates at Fushimi Inari, Japan" },
+    canyon: { src: "/about/canyon.jpg", alt: "John crouched inside a red slot canyon" },
+  },
 };
 
 // Synced against John's resume (public/John_Fan_Resume.pdf) — languages/tools split
@@ -114,6 +119,7 @@ export const PROJECTS = [
     slug: "scuttle",
     title: "Scuttle.gg",
     flagship: true,
+    accent: "blue",
     // Short descriptor for the homepage/archive row list — distinct from the
     // longer `blurb` used on the detail page header.
     teaser: "league analytics + ML draft intelligence",
@@ -169,6 +175,7 @@ export const PROJECTS = [
     slug: "studioflow",
     title: "StudioFlow",
     flagship: false,
+    accent: "green",
     teaser: "collaborative workspace for creative teams",
     summary:
       "a collaborative workspace for projects, tasks, shared assets, and role-based access.",
@@ -215,6 +222,7 @@ export const PROJECTS = [
     slug: "outfit-picker",
     title: "Outfit Picker",
     flagship: false,
+    accent: "yellow",
     teaser: "outfit planning + AI-assisted visualization",
     summary:
       "a full-stack app for planning outfits and generating AI-assisted visual previews.",
@@ -248,6 +256,7 @@ export const PROJECTS = [
     slug: "storm",
     title: "Storm",
     flagship: false,
+    accent: "red",
     teaser: "street-level flood-risk analysis",
     summary:
       "a flood-risk mapping project combining street-level imagery, computer vision, and environmental data.",

@@ -22,6 +22,14 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-xbox-blue: var(--xbox-blue);
+  --color-xbox-red: var(--xbox-red);
+  --color-xbox-green: var(--xbox-green);
+  --color-xbox-yellow: var(--xbox-yellow);
+  --color-xbox-blue-soft: var(--xbox-blue-soft);
+  --color-xbox-red-soft: var(--xbox-red-soft);
+  --color-xbox-green-soft: var(--xbox-green-soft);
+  --color-xbox-yellow-soft: var(--xbox-yellow-soft);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -42,8 +50,18 @@
   --popover: #ffffff;
   --popover-foreground: #171717;
 
-  /* electric blue -- the single accent hue, used with intent, not decoration */
-  --primary: #2547fa;
+  /* xbox 360 ABXY palette -- the site's restrained accent system, used with intent, not decoration.
+     note: unrelated to --accent/--accent-foreground below, which are neutral UI-surface tokens. */
+  --xbox-blue: #0571dd;
+  --xbox-red: #e70000;
+  --xbox-green: #78af00;
+  --xbox-yellow: #ffa100;
+  --xbox-blue-soft: color-mix(in srgb, var(--xbox-blue) 8%, white);
+  --xbox-red-soft: color-mix(in srgb, var(--xbox-red) 8%, white);
+  --xbox-green-soft: color-mix(in srgb, var(--xbox-green) 8%, white);
+  --xbox-yellow-soft: color-mix(in srgb, var(--xbox-yellow) 8%, white);
+
+  --primary: var(--xbox-blue);
   --primary-foreground: #ffffff;
 
   --secondary: #f2f2f2;
@@ -56,7 +74,11 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: #e5e5e5;
   --input: #e5e5e5;
-  --ring: #2547fa;
+  --ring: var(--primary);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--xbox-blue) 20%, white);
 }
 
 @layer base {

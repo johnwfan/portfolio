@@ -2,9 +2,10 @@ import Link from "next/link";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { PROFILE, TIMELINE, PROJECTS } from "@/lib/content";
 import { ProjectList } from "@/components/project-list";
+import SectionMarker from "@/components/section-marker";
 
 const iconLinkClass =
-  "flex size-9 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors hover:border-primary hover:text-primary";
+  "flex size-9 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors hover:border-xbox-red hover:text-xbox-red";
 
 const experience = TIMELINE.find((entry) => entry.title.startsWith("Screenz.ai"));
 
@@ -36,7 +37,7 @@ export default function Home() {
             rel="noreferrer"
             className="inline-flex items-center gap-1 text-foreground transition-colors hover:text-primary"
           >
-            github <ArrowUpRight size={13} className="text-primary" />
+            github <ArrowUpRight size={13} />
           </a>
           <a
             href={PROFILE.links.linkedin}
@@ -44,13 +45,13 @@ export default function Home() {
             rel="noreferrer"
             className="inline-flex items-center gap-1 text-foreground transition-colors hover:text-primary"
           >
-            linkedin <ArrowUpRight size={13} className="text-primary" />
+            linkedin <ArrowUpRight size={13} />
           </a>
           <a
             href={`mailto:${PROFILE.email}`}
             className="inline-flex items-center gap-1 text-foreground transition-colors hover:text-primary"
           >
-            email <ArrowUpRight size={13} className="text-primary" />
+            email <ArrowUpRight size={13} />
           </a>
           <a
             href={PROFILE.links.resume}
@@ -58,16 +59,19 @@ export default function Home() {
             rel="noreferrer"
             className="inline-flex items-center gap-1 text-foreground transition-colors hover:text-primary"
           >
-            resume <ArrowUpRight size={13} className="text-primary" />
+            resume <ArrowUpRight size={13} />
           </a>
         </div>
       </section>
 
       {/* experience */}
       <section id="experience" className="scroll-mt-20 py-9 sm:py-12">
-        <h2 className="font-display text-2xl font-semibold tracking-tight text-primary">
-          experience
-        </h2>
+        <div className="flex items-center gap-2.5">
+          <SectionMarker accent="green" />
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">
+            experience
+          </h2>
+        </div>
         {experience ? (
           <div className="mt-6">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
@@ -93,14 +97,17 @@ export default function Home() {
       {/* projects */}
       <section id="projects" className="scroll-mt-20 py-9 sm:py-12">
         <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-          <h2 className="font-display text-2xl font-semibold tracking-tight text-primary">
-            projects
-          </h2>
+          <div className="flex items-center gap-2.5">
+            <SectionMarker accent="blue" />
+            <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">
+              projects
+            </h2>
+          </div>
           <Link
             href="/projects"
-            className="text-sm text-foreground underline underline-offset-4 transition-colors hover:text-primary hover:decoration-primary"
+            className="group text-sm text-foreground underline underline-offset-4 transition-colors hover:decoration-primary"
           >
-            all projects <span className="text-primary">→</span>
+            all projects <span className="group-hover:text-primary">→</span>
           </Link>
         </div>
         <ProjectList projects={PROJECTS} />
@@ -108,26 +115,32 @@ export default function Home() {
 
       {/* about teaser */}
       <section className="py-9 sm:py-12">
-        <h2 className="font-display text-2xl font-semibold tracking-tight text-primary">
-          about
-        </h2>
+        <div className="flex items-center gap-2.5">
+          <SectionMarker accent="yellow" />
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">
+            about
+          </h2>
+        </div>
         <p className="mt-4 max-w-[640px] leading-relaxed text-foreground/90">
           i&apos;m interested in software, systems, data, and understanding how the
           things i use actually work.{" "}
           <Link
             href="/about"
-            className="text-foreground underline underline-offset-4 transition-colors hover:text-primary hover:decoration-primary"
+            className="group text-foreground underline underline-offset-4 transition-colors hover:decoration-xbox-yellow"
           >
-            more about me <span className="text-primary">→</span>
+            more about me <span className="group-hover:text-xbox-yellow">→</span>
           </Link>
         </p>
       </section>
 
       {/* say hi */}
       <section id="contact" className="scroll-mt-20 py-9 sm:py-12">
-        <h2 className="font-display text-2xl font-semibold tracking-tight text-primary">
-          say hi
-        </h2>
+        <div className="flex items-center gap-2.5">
+          <SectionMarker accent="red" />
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">
+            say hi
+          </h2>
+        </div>
         <p className="mt-3 text-foreground/90">feel free to reach out!</p>
         <div className="mt-4 flex items-center gap-3">
           <a href={`mailto:${PROFILE.email}`} aria-label="email" className={iconLinkClass}>

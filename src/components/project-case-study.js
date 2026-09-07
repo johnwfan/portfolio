@@ -1,4 +1,6 @@
 import { Github, ExternalLink } from "lucide-react";
+import { ACCENT } from "@/lib/accent";
+import SectionMarker from "@/components/section-marker";
 
 function isPlaceholder(text) {
   return typeof text === "string" && text.startsWith("[") && text.endsWith("]");
@@ -6,6 +8,7 @@ function isPlaceholder(text) {
 
 export default function ProjectCaseStudy({ project }) {
   const isTeam = Boolean(project.credit);
+  const accent = ACCENT[project.accent];
 
   return (
     <div>
@@ -28,9 +31,9 @@ export default function ProjectCaseStudy({ project }) {
               href={project.links.github}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-foreground transition-colors hover:text-primary"
+              className="group inline-flex items-center gap-1.5 text-foreground transition-colors"
             >
-              <Github size={13} /> github
+              <Github size={13} className={accent.groupHoverIcon} /> github
             </a>
           ) : null}
           {project.links?.live ? (
@@ -38,9 +41,9 @@ export default function ProjectCaseStudy({ project }) {
               href={project.links.live}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-foreground transition-colors hover:text-primary"
+              className="group inline-flex items-center gap-1.5 text-foreground transition-colors"
             >
-              <ExternalLink size={13} className="text-primary" /> live demo
+              <ExternalLink size={13} className={accent.groupHoverIcon} /> live demo
             </a>
           ) : null}
         </div>
@@ -51,7 +54,9 @@ export default function ProjectCaseStudy({ project }) {
       </header>
 
       {project.image ? (
-        <div className="mt-10 overflow-hidden border border-border">
+        <div
+          className={`mt-10 overflow-hidden border-x border-b border-t-2 border-x-border border-b-border ${accent.borderTop}`}
+        >
           <img
             src={project.image}
             alt={`${project.title} screenshot`}
@@ -69,14 +74,18 @@ export default function ProjectCaseStudy({ project }) {
 
       {project.overview ? (
         <section className="mt-14">
-          <h2 className="text-sm font-medium text-muted-foreground">why i built it</h2>
+          <h2 className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+            <SectionMarker accent={project.accent} /> why i built it
+          </h2>
           <p className="mt-3 max-w-[640px] leading-relaxed">{project.overview}</p>
         </section>
       ) : null}
 
       {project.bullets?.length ? (
         <section className="mt-14">
-          <h2 className="text-sm font-medium text-muted-foreground">selected details</h2>
+          <h2 className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+            <SectionMarker accent={project.accent} /> selected details
+          </h2>
           <ul className="mt-3 max-w-[640px] list-disc space-y-3 pl-5">
             {project.bullets.map((b) => (
               <li key={b} className="leading-relaxed">
@@ -89,7 +98,9 @@ export default function ProjectCaseStudy({ project }) {
 
       {project.architecture?.length ? (
         <section className="mt-14">
-          <h2 className="text-sm font-medium text-muted-foreground">how it works</h2>
+          <h2 className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+            <SectionMarker accent={project.accent} /> how it works
+          </h2>
           <ol className="mt-3 max-w-[640px] list-decimal space-y-3 pl-5">
             {project.architecture.map((step) => (
               <li key={step} className="leading-relaxed">
@@ -102,7 +113,9 @@ export default function ProjectCaseStudy({ project }) {
 
       {project.learned && !isPlaceholder(project.learned) ? (
         <section className="mt-14 border-t border-border pt-8">
-          <h2 className="text-sm font-medium text-muted-foreground">what i learned</h2>
+          <h2 className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+            <SectionMarker accent={project.accent} /> what i learned
+          </h2>
           <p className="mt-3 max-w-[640px] italic leading-relaxed">{project.learned}</p>
         </section>
       ) : null}

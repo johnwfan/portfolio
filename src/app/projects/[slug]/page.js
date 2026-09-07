@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { PROJECTS } from "@/lib/content";
 import ProjectCaseStudy from "@/components/project-case-study";
+import { ACCENT } from "@/lib/accent";
 
 export function generateStaticParams() {
   return PROJECTS.map((p) => ({ slug: p.slug }));
@@ -22,14 +23,15 @@ export default async function ProjectPage({ params }) {
   if (!project) notFound();
 
   const next = PROJECTS[(index + 1) % PROJECTS.length];
+  const nextAccent = ACCENT[next.accent];
 
   return (
     <main className="mx-auto max-w-[900px] px-6 py-16 sm:py-20">
       <Link
         href="/projects"
-        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
-        <ArrowLeft size={13} className="text-primary" /> back to projects
+        <ArrowLeft size={13} className="group-hover:text-xbox-blue" /> back to projects
       </Link>
 
       <div className="mt-10">
@@ -39,7 +41,7 @@ export default async function ProjectPage({ params }) {
       <div className="mt-16 border-t border-border pt-8">
         <Link
           href={`/projects/${next.slug}`}
-          className="group flex items-center justify-between gap-4 border border-border p-6 transition-colors hover:border-primary/40"
+          className={`group flex items-center justify-between gap-4 border border-border p-6 transition-colors ${nextAccent.hoverBorderSoft}`}
         >
           <div>
             <p className="text-xs text-muted-foreground">
@@ -51,7 +53,7 @@ export default async function ProjectPage({ params }) {
           </div>
           <ArrowRight
             size={18}
-            className="shrink-0 text-primary transition-transform group-hover:translate-x-1"
+            className={`shrink-0 transition-transform group-hover:translate-x-1 ${nextAccent.text}`}
           />
         </Link>
       </div>
