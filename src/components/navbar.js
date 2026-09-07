@@ -13,7 +13,7 @@ const linkClass =
 
 export default function Navbar() {
   return (
-    <nav className="bg-background">
+    <nav className="sticky top-0 z-50 bg-background/90 backdrop-blur">
       <div className="mx-auto flex max-w-[900px] flex-wrap items-baseline justify-between gap-x-6 gap-y-3 px-6 py-6">
         <Link href="/" className="group font-display text-base font-semibold tracking-tight">
           <span className="inline-block will-change-transform group-hover:animate-[name-wiggle_450ms_ease-in-out] group-focus-visible:animate-[name-wiggle_450ms_ease-in-out]">
