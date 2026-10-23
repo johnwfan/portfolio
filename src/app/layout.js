@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import PageTransition from "@/components/page-transition";
+import AnnouncementBanner from "@/components/announcement-banner";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${plexMono.variable}`}>
       <body className="min-h-screen bg-background text-foreground antialiased font-sans">
+        <AnnouncementBanner />
         <Navbar />
         <PageTransition>{children}</PageTransition>
         <Footer />
