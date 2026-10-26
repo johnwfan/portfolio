@@ -5,8 +5,9 @@ import { Ratelimit } from "@upstash/ratelimit";
 // in-memory store so local dev works without credentials. Memory is per server
 // process and resets on restart.
 
-const url = process.env.UPSTASH_REDIS_REST_URL;
-const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+// The Vercel Marketplace integration may name these KV_REST_API_*; accept both.
+const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
 const redis = url && token ? new Redis({ url, token }) : null;
 
 const VISITS = "visits";
