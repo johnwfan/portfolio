@@ -119,6 +119,7 @@
   gap: 8px;
 }
 
+
 .input {
   flex: 1;
   min-width: 0;
@@ -143,14 +144,21 @@
   font-weight: 500;
 }
 
+.scroller {
+  height: 220px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-top: 1px solid var(--ln);
+  scrollbar-width: thin;
+  scrollbar-color: var(--ln2) transparent;
+}
+
 .entries {
   margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
-  min-height: 220px;
-  border-top: 1px solid var(--ln);
 }
 
 .empty {
@@ -178,6 +186,11 @@
   font-size: 11px;
   color: var(--t2);
   white-space: nowrap;
+}
+
+.scroller:focus-visible {
+  outline: 1px solid var(--acc2);
+  outline-offset: 4px;
 }
 
 .counter {
