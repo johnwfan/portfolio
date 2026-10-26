@@ -16,6 +16,9 @@ export function focusClass(selected) {
 // internal hrefs render a <Link>, external ones an <a target="_blank">, and
 // items without an href a <button>.
 //
+// With `tapToSelect`, a tap on an unselected link only selects it (touch
+// screens have no hover); tapping the selected one opens it.
+//
 // With `keyboard`, ↑/↓ move the selection and Enter opens it. The listener only
 // acts when nothing else has focus or focus is inside this list, so it never
 // takes keys from inputs or other controls.
@@ -27,10 +30,12 @@ export default function FocusList({
   className = "",
   itemClassName = "",
   keyboard = false,
+  tapToSelect = false,
   label,
 }) {
   const listRef = useRef(null);
   const itemRefs = useRef([]);
+  const tap = useRef(null);
   const router = useRouter();
 
   const select = (i) => {
@@ -82,6 +87,16 @@ export default function FocusList({
           className: itemClassName,
           onMouseEnter: () => select(i),
           onFocus: () => select(i),
+          onPointerDown: (e) => {
+            // remember whether it was already selected before the tap selects it
+            tap.current = e.pointerType === "mouse" ? null : { i, was: isSelected };
+          },
+          onClick: (e) => {
+            const t = tap.current;
+            tap.current = null;
+            if (tapToSelect && item.href && t?.i === i && !t.was) e.preventDefault();
+            item.onClick?.(e);
+          },
         };
         const content = renderItem ? (
           renderItem(item, isSelected)
@@ -91,7 +106,7 @@ export default function FocusList({
         let el;
         if (!item.href) {
           el = (
-            <button type="button" {...props} onClick={item.onClick}>
+            <button type="button" {...props}>
               {content}
             </button>
           );

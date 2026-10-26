@@ -87,6 +87,7 @@ export default function Home({ initialRecruiter = false }) {
           onSelect={setSel}
           itemClassName={styles.menuItem}
           keyboard
+          tapToSelect
         />
       </nav>
 
@@ -96,7 +97,7 @@ export default function Home({ initialRecruiter = false }) {
       </div>
 
       <footer className={`${styles.footer} ${styles.fade} ${styles.introFooter}`}>
-        <span>↑ ↓ to move, enter to open</span>
+        <span className={styles.keyHint}>↑ ↓ to move, enter to open</span>
         <VisitorNo />
       </footer>
 

@@ -31,7 +31,7 @@ export default function HazardTape() {
       <button
         type="button"
         onClick={poke}
-        aria-label="play is under construction"
+        aria-label="under construction, do not enter"
         className={`${styles.tape} ${shaking ? styles.shake : ""}`}
       >
         <span className={`${styles.strip} ${styles.strip1}`}>

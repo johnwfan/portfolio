@@ -170,3 +170,29 @@
   color: #6b6f7a;
   text-align: right;
 }
+
+@media (max-width: 899px) {
+  .view {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+  }
+  .header {
+    left: 24px;
+    right: 24px;
+  }
+  .grid {
+    position: static;
+    padding: 120px 24px 48px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+  .links {
+    flex-wrap: wrap;
+  }
+  .project,
+  .project:hover {
+    grid-template-columns: 96px minmax(0, 1fr) 56px;
+    gap: 12px;
+  }
+}

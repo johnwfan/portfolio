@@ -46,6 +46,7 @@ export default function WorkIndex() {
           itemClassName={styles.item}
           label="projects"
           keyboard
+          tapToSelect
           renderItem={(item, on) => (
             <>
               <span className={`${styles.name} ${focusClass(on)}`}>{item.name}</span>

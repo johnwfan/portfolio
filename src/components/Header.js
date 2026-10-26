@@ -2,6 +2,7 @@ import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import SoundToggle from "./SoundToggle";
 import RecruiterToggle from "./RecruiterToggle";
+import MobileMenu from "./MobileMenu";
 import styles from "./Header.module.css";
 
 // Site header (HANDOFF §6). On home the recruiter switch toggles in place;
@@ -19,7 +20,7 @@ export default function Header({ home = false, onRecruiter, className = "" }) {
           <span className={styles.name}>john fan</span>
         </div>
       )}
-      <nav className={styles.nav} aria-label="site">
+      <nav className={`${styles.nav} ${styles.desktopNav}`} aria-label="site">
         <ThemeToggle className={styles.btn} />
         <SoundToggle className={styles.btn} />
         {home ? (
@@ -33,6 +34,9 @@ export default function Header({ home = false, onRecruiter, className = "" }) {
           résumé ↗
         </a>
       </nav>
+      <div className={`${styles.nav} ${styles.mobileNav}`}>
+        <MobileMenu home={home} onRecruiter={onRecruiter} />
+      </div>
     </header>
   );
 }

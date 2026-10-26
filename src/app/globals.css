@@ -95,6 +95,19 @@
     display: none;
   }
 
+  /* Reduced motion: no fog, drift, blur or weight transitions, no typing —
+     everything swaps instantly. (Components also handle their own cases:
+     loader skipped, typing shows full text, covers show the final frame.) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   .sr-only {
     position: absolute;
     width: 1px;

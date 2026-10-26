@@ -1,17 +1,22 @@
+/* Flow layout that lands on the reference coordinates at 1440: text and photos
+   from y=130, experience 68px under the photos (y=1010), page 1720px tall. */
 .page {
   position: relative;
   width: 100%;
-  height: 1720px;
-  overflow: hidden;
+  box-sizing: border-box;
+  padding: 130px 56px 228px;
   background: var(--bg);
   color: var(--tx);
 }
 
+.top {
+  display: grid;
+  grid-template-columns: clamp(455px, 44.44vw, 640px) minmax(0, 1fr);
+  column-gap: clamp(57px, 5.556vw, 80px);
+  align-items: start;
+}
+
 .words {
-  position: absolute;
-  left: 56px;
-  top: 130px;
-  width: 640px;
   display: flex;
   flex-direction: column;
   gap: 34px;
@@ -19,7 +24,7 @@
 
 .title {
   margin: 0;
-  font-size: 72px;
+  font-size: clamp(52px, 5vw, 72px);
   line-height: 1;
   font-weight: 640;
   letter-spacing: -0.05em;
@@ -62,11 +67,12 @@
 }
 
 .intoItem {
+  --into: clamp(32px, 2.778vw, 40px);
   display: block;
   width: 100%;
-  height: 50px;
-  font-size: 40px;
-  line-height: 50px;
+  height: calc(var(--into) * 1.25);
+  font-size: var(--into);
+  line-height: calc(var(--into) * 1.25);
   letter-spacing: -0.045em;
 }
 
@@ -91,13 +97,9 @@
 }
 
 .photos {
-  position: absolute;
-  left: 776px;
-  right: 56px;
-  top: 130px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: 398px 398px;
+  grid-template-rows: repeat(2, clamp(283px, 27.64vw, 398px));
   gap: 16px;
 }
 
@@ -116,10 +118,7 @@
 }
 
 .experience {
-  position: absolute;
-  left: 56px;
-  right: 56px;
-  top: 1010px;
+  margin-top: 68px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -150,7 +149,7 @@
 }
 
 .org {
-  font-size: 30px;
+  font-size: clamp(24px, 2.083vw, 30px);
   letter-spacing: -0.035em;
   font-weight: 300;
   transition:
@@ -196,4 +195,50 @@
   font-family: var(--mono);
   font-size: 11px;
   color: var(--t3);
+}
+
+/* single column: photos stack below the text */
+@media (max-width: 899px) {
+  .page {
+    padding: 130px 24px 96px;
+  }
+  .top {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 48px;
+  }
+  .intoDesc {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+  }
+  .intoRow {
+    gap: 24px;
+  }
+  .photos {
+    grid-template-rows: repeat(2, 60vw);
+    gap: 12px;
+  }
+  .experience {
+    margin-top: 64px;
+  }
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "org when" "role role";
+    row-gap: 6px;
+    height: auto;
+    padding: 18px 0;
+  }
+  .org {
+    grid-area: org;
+  }
+  .role {
+    grid-area: role;
+  }
+  .when {
+    grid-area: when;
+  }
+  .footer {
+    left: 24px;
+    right: 24px;
+  }
 }
