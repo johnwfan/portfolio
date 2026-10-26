@@ -1,0 +1,101 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Header from "./Header";
+import Fog from "./Fog";
+import FocusList from "./FocusList";
+import RecruiterView from "./RecruiterView";
+import styles from "./Home.module.css";
+
+const MENU = [
+  { key: "work", label: "work", href: "/work", caption: "5 projects from 2025–26" },
+  {
+    key: "about",
+    label: "about",
+    href: "/about",
+    caption: "background, experience, and what i do outside of code",
+  },
+  { key: "play", label: "play", href: "/play", caption: "under construction. nothing here yet" },
+  { key: "contact", label: "contact", href: "/contact", caption: "email, links, and a guestbook" },
+];
+
+const IDLE_AFTER = 8000;
+
+// Attract mode: after 8s without input the UI fades and the fog thickens.
+// Mouse, keyboard, wheel, scroll and touch all wake it. Never on touch-only devices.
+function useIdle(enabled) {
+  const [idle, setIdle] = useState(false);
+  useEffect(() => {
+    if (!enabled || window.matchMedia("(hover: none)").matches) return;
+    let last = Date.now();
+    const wake = () => {
+      last = Date.now();
+      setIdle(false);
+    };
+    const events = ["mousemove", "keydown", "wheel", "scroll", "touchstart"];
+    events.forEach((e) => window.addEventListener(e, wake, { passive: true }));
+    const timer = setInterval(() => {
+      if (Date.now() - last > IDLE_AFTER) setIdle(true);
+    }, 500);
+    return () => {
+      events.forEach((e) => window.removeEventListener(e, wake));
+      clearInterval(timer);
+    };
+  }, [enabled]);
+  return enabled && idle;
+}
+
+export default function Home({ initialRecruiter = false }) {
+  const [sel, setSel] = useState(0);
+  const [recruiter, setRecruiter] = useState(initialRecruiter);
+  const idle = useIdle(!recruiter);
+
+  // ?recruiter=1 keeps the mode in the URL so it can be shared.
+  const toggleRecruiter = () => {
+    const next = !recruiter;
+    setRecruiter(next);
+    window.history.replaceState(null, "", next ? "/?recruiter=1" : "/");
+  };
+
+  if (recruiter) return <RecruiterView onToggle={toggleRecruiter} />;
+
+  const current = MENU[sel];
+
+  return (
+    <main className={`${styles.home} ${idle ? styles.idle : ""}`}>
+      <Fog className={styles.fog} />
+
+      <Header home onRecruiter={toggleRecruiter} className={styles.fadeBlur} />
+
+      <p className={`${styles.intro} ${styles.fade}`}>
+        i&apos;m john. a computer science student and aspiring software engineer. previously at
+        screenz.ai.
+      </p>
+
+      <nav className={`${styles.menu} ${styles.fadeBlur}`} aria-label="main menu">
+        <FocusList
+          items={MENU}
+          selected={sel}
+          onSelect={setSel}
+          itemClassName={styles.menuItem}
+          keyboard
+        />
+      </nav>
+
+      <div className={`${styles.caption} ${styles.fade}`}>
+        <span className={styles.capKey}>{current.label}</span>
+        <span className={styles.capText}>{current.caption}</span>
+      </div>
+
+      <footer className={`${styles.footer} ${styles.fade}`}>
+        <span>↑ ↓ to move, enter to open</span>
+        <span>visitor no. 000001</span>
+      </footer>
+
+      <div className={styles.attract} aria-hidden={!idle}>
+        <span className={styles.dot} />
+        move your mouse to continue
+      </div>
+    </main>
+  );
+}

@@ -1,0 +1,95 @@
+.header {
+  position: absolute;
+  left: 56px;
+  right: 56px;
+  top: 40px;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  gap: 22px;
+  align-items: baseline;
+}
+
+.back {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t2);
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+.back:hover {
+  color: var(--t2);
+}
+
+.name {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.nav {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t2);
+}
+
+.btn {
+  min-height: 32px;
+}
+
+.link {
+  color: var(--t2);
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+.link:hover {
+  color: var(--acc2);
+}
+
+.toggle {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.track {
+  width: 26px;
+  height: 14px;
+  border: 1px solid var(--kn);
+  border-radius: 8px;
+  position: relative;
+  display: inline-block;
+}
+
+.knob {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--t2);
+}
+
+.trackOn {
+  border: 0;
+  background: #1f6fff;
+}
+.trackOn .knob {
+  left: auto;
+  right: 3px;
+  top: 3px;
+  background: #ffffff;
+}

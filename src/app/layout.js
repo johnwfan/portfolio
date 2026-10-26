@@ -1,43 +1,40 @@
-import { Space_Grotesk, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import PageTransition from "@/components/page-transition";
-import AnnouncementBanner from "@/components/announcement-banner";
 
-const spaceGrotesk = Space_Grotesk({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-geist",
   display: "swap",
 });
 
-const inter = Inter({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
+  variable: "--font-geist-mono",
   display: "swap",
 });
 
 export const metadata = {
-  title: "john fan",
-  description: "full-stack software developer",
+  title: { default: "john fan", template: "%s — john fan" },
+  description:
+    "i'm john. a computer science student and aspiring software engineer.",
 };
+
+// Runs before paint: saved theme (or the OS preference) and the sound setting.
+const prefsScript = `(function(){var d=document.documentElement,t,s;try{t=localStorage.getItem("theme");s=localStorage.getItem("sound")}catch(e){}if(t!=="light"&&t!=="dark")t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";d.dataset.theme=t;d.dataset.sound=s==="on"?"on":"off"})()`;
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${plexMono.variable}`}>
-      <body className="min-h-screen bg-background text-foreground antialiased font-sans">
-        <AnnouncementBanner />
-        <Navbar />
-        <PageTransition>{children}</PageTransition>
-        <Footer />
-      </body>
+    <html
+      lang="en"
+      data-theme="dark"
+      data-sound="off"
+      className={`${geist.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: prefsScript }} />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }

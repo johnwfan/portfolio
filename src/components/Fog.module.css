@@ -1,0 +1,35 @@
+.fog {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fog > div {
+  position: absolute;
+  inset: 0;
+  background-image: var(--fog-image);
+  background-size: 1200% 1200%;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  animation:
+    fogx 2s steps(12) infinite,
+    fogy 24s steps(12) infinite;
+}
+
+/* 109.0909% = 12/11 × 100%, so steps(12) lands exactly on each column/row */
+@keyframes fogx {
+  from { background-position-x: 0%; }
+  to { background-position-x: 109.0909%; }
+}
+
+@keyframes fogy {
+  from { background-position-y: 0%; }
+  to { background-position-y: 109.0909%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fog > div {
+    animation: none;
+  }
+}
