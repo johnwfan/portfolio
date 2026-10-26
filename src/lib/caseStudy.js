@@ -44,7 +44,7 @@ function chaptersFrom(cs) {
     chapters.push({ title: "how it works", steps: cs.howItWorks });
   }
   if (cs.fullStack?.length) {
-    chapters.push({ title: "stack", chips: cs.fullStack, small: true });
+    chapters.push({ title: "stack", chips: cs.fullStack });
   }
   return chapters;
 }
@@ -63,7 +63,7 @@ export function getCaseStudy(slug) {
 
   // Meta cells, each with its grid width; cells without data are left out.
   const meta = [
-    p.role && { key: "role", label: "role", value: p.role, width: "1fr" },
+    p.role && { key: "role", label: "role", value: cs?.role ?? p.role, width: "1fr" },
     cs?.timeline && { key: "when", label: "when", value: shortWhen(cs.timeline), width: "1fr" },
     p.stack && { key: "stack", label: "stack", value: p.stack, width: "2fr" },
     links.length && { key: "links", label: "links", links, width: "1.2fr" },
