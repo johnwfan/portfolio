@@ -40,3 +40,8 @@ export function selectTick() {
 export function soundOnTick() {
   tick(1320, 0.06, 0.04);
 }
+
+// The loader's tick at 100. Only audible if the context was already unlocked.
+export function loaderTick() {
+  if (getSound()) tick(1320, 0.06, 0.04);
+}

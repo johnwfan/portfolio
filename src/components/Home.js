@@ -5,6 +5,7 @@ import Header from "./Header";
 import Fog from "./Fog";
 import FocusList from "./FocusList";
 import RecruiterView from "./RecruiterView";
+import Loader from "./Loader";
 import styles from "./Home.module.css";
 
 const MENU = [
@@ -63,11 +64,17 @@ export default function Home({ initialRecruiter = false }) {
 
   return (
     <main className={`${styles.home} ${idle ? styles.idle : ""}`}>
-      <Fog className={styles.fog} />
+      <div className={styles.fogIntro}>
+        <Fog className={styles.fog} />
+      </div>
 
-      <Header home onRecruiter={toggleRecruiter} className={styles.fadeBlur} />
+      <Header
+        home
+        onRecruiter={toggleRecruiter}
+        className={`${styles.fadeBlur} ${styles.introNav}`}
+      />
 
-      <p className={`${styles.intro} ${styles.fade}`}>
+      <p className={`${styles.intro} ${styles.fade} ${styles.introNav}`}>
         i&apos;m john. a computer science student and aspiring software engineer. previously at
         screenz.ai.
       </p>
@@ -82,12 +89,12 @@ export default function Home({ initialRecruiter = false }) {
         />
       </nav>
 
-      <div className={`${styles.caption} ${styles.fade}`}>
+      <div className={`${styles.caption} ${styles.fade} ${styles.introNav}`}>
         <span className={styles.capKey}>{current.label}</span>
         <span className={styles.capText}>{current.caption}</span>
       </div>
 
-      <footer className={`${styles.footer} ${styles.fade}`}>
+      <footer className={`${styles.footer} ${styles.fade} ${styles.introFooter}`}>
         <span>↑ ↓ to move, enter to open</span>
         <span>visitor no. 000001</span>
       </footer>
@@ -96,6 +103,8 @@ export default function Home({ initialRecruiter = false }) {
         <span className={styles.dot} />
         move your mouse to continue
       </div>
+
+      <Loader />
     </main>
   );
 }
