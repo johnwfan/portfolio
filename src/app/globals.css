@@ -97,9 +97,9 @@
     display: none;
   }
 
-  /* Reduced motion: no fog, drift, blur or weight transitions, no typing —
-     everything swaps instantly. (Components also handle their own cases:
-     loader skipped, typing shows full text, covers show the final frame.) */
+  /* Reduced motion: no fog, drift, blur or weight transitions, no page
+     transitions — everything swaps instantly. (Components also handle their
+     own cases: loader skipped, case study screenshots start sharp.) */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

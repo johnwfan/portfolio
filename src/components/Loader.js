@@ -23,8 +23,8 @@ function decode(src) {
   return img.decode().catch(() => {});
 }
 
-// Corner loader (HANDOFF §7). Progress follows real readiness — fonts, the fog
-// sprite, the first cover — paced by the reference curve, then hands off to the
+// Corner loader (HANDOFF §7). Progress follows real readiness — fonts and the
+// home's fog + glow sprites — paced by the reference curve, then hands off to the
 // home page by switching <html data-intro> from "in" to "out" (CSS does the rest).
 export default function Loader() {
   const [p, setP] = useState(0);
@@ -34,11 +34,15 @@ export default function Loader() {
     const root = document.documentElement;
     if (root.dataset.intro !== "in") return;
 
-    const fog = getComputedStyle(root).getPropertyValue("--fog-image").match(/url\(["']?([^"')]+)/);
+    const sprite = (name) =>
+      getComputedStyle(root)
+        .getPropertyValue(name)
+        .match(/url\(["']?([^"')]+)/)?.[1];
     const tasks = [
       document.fonts.ready,
-      fog ? decode(fog[1]) : Promise.resolve(),
-      decode("/covers/scuttle/0.png"),
+      ...["--fog-image", "--fog-glow-image"].map((v) =>
+        sprite(v) ? decode(sprite(v)) : Promise.resolve(),
+      ),
     ];
     let done = 0;
     tasks.forEach((t) => t.then(() => (done += 1)));

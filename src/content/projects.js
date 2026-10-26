@@ -222,7 +222,3 @@ export const PROJECTS = [
     },
   },
 ];
-
-export function coverFrames(slug) {
-  return [0, 1, 2, 3].map((n) => `/covers/${slug}/${n}.png`);
-}
