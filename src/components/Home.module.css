@@ -1,0 +1,232 @@
+.home {
+  /* menu size: 92 / 100 at 1440, scaling down to 56 below that (HANDOFF §9) */
+  --menu: clamp(56px, 6.4vw, 92px);
+  --menu-row: calc(var(--menu) * 100 / 92);
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--bg0);
+  color: var(--tx);
+}
+
+.fog {
+  opacity: 0.55;
+  transition: opacity 1.6s ease;
+  animation: hdrift 40s ease-in-out infinite alternate;
+}
+.idle .fog {
+  opacity: 0.85;
+}
+
+@keyframes hdrift {
+  from { transform: scale(1.03) translate(0, 0); }
+  to { transform: scale(1.08) translate(-1.5%, -1.2%); }
+}
+
+/* idle / attract mode: UI fades (and some of it blurs) out over 1.2s */
+.fade {
+  transition: opacity 1.2s ease;
+}
+.fadeBlur {
+  transition:
+    opacity 1.2s ease,
+    filter 1.2s ease;
+}
+.idle .fade,
+.idle .fadeBlur {
+  opacity: 0;
+}
+.idle .fadeBlur {
+  filter: blur(6px);
+}
+
+.intro {
+  position: absolute;
+  left: 56px;
+  top: 104px;
+  margin: 0;
+  width: 420px;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--t2);
+}
+
+.menu {
+  position: absolute;
+  left: 50px;
+  bottom: 96px;
+}
+
+.menuItem {
+  display: block;
+  height: var(--menu-row);
+  font-size: var(--menu);
+  line-height: var(--menu-row);
+  letter-spacing: -0.05em;
+  color: var(--tx);
+}
+.menuItem:hover {
+  color: var(--tx);
+}
+
+.caption {
+  position: absolute;
+  right: 56px;
+  bottom: 112px;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.capKey {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--acc2);
+}
+
+.capText {
+  font-size: 20px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.footer {
+  position: absolute;
+  left: 56px;
+  right: 56px;
+  bottom: 36px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+}
+
+.attract {
+  position: absolute;
+  right: 56px;
+  bottom: 36px;
+  font-family: var(--mono);
+  font-size: 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.idle .attract {
+  opacity: 1;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal);
+  animation: hblink 1.2s steps(2) infinite;
+}
+
+@keyframes hblink {
+  0%,
+  100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fog {
+    animation: none;
+  }
+}
+
+/* keyboard hint means nothing on touch screens */
+@media (hover: none) {
+  .keyHint {
+    visibility: hidden;
+  }
+}
+
+/* single column: menu stays bottom-left at 56px, caption moves above it */
+@media (max-width: 899px) {
+  .home {
+    --menu: 56px;
+    min-height: 640px;
+  }
+  .intro {
+    left: 24px;
+    right: 24px;
+    width: auto;
+  }
+  .menu {
+    left: 20px;
+  }
+  .caption {
+    left: 24px;
+    right: 24px;
+    width: auto;
+    bottom: calc(96px + 4 * var(--menu-row) + 28px);
+    align-items: flex-start;
+    text-align: left;
+  }
+  .footer {
+    left: 24px;
+    right: 24px;
+  }
+  .attract {
+    right: 24px;
+  }
+}
+
+/* First-load focus pull (HANDOFF §7). While <html data-intro="in"> the site waits
+   behind the corner loader; "out" plays the transitions below; then the attribute
+   is removed and everything is back on the normal rules (same end values). */
+.fogIntro {
+  position: absolute;
+  inset: 0;
+}
+
+:global(:root[data-intro="in"]) .fogIntro {
+  opacity: 0;
+  transform: scale(1.04);
+}
+:global(:root[data-intro="out"]) .fogIntro {
+  transition:
+    opacity 1.4s cubic-bezier(0.2, 0.7, 0.1, 1),
+    transform 2.4s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+:global(:root[data-intro="in"]) .introNav,
+:global(:root[data-intro="in"]) .introFooter {
+  opacity: 0;
+  filter: blur(6px);
+}
+:global(:root[data-intro="out"]) .introNav {
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.1, 1),
+    filter 0.9s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+:global(:root[data-intro="out"]) .introFooter {
+  transition:
+    opacity 0.9s ease 0.3s,
+    filter 0.9s ease 0.3s;
+}
+
+:global(:root[data-intro="in"]) .menu li {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(14px);
+}
+:global(:root[data-intro="out"]) .menu li {
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) var(--d),
+    filter 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) var(--d),
+    transform 1s cubic-bezier(0.2, 0.7, 0.1, 1) var(--d);
+}
+.menu li:nth-child(1) { --d: 0.18s; }
+.menu li:nth-child(2) { --d: 0.27s; }
+.menu li:nth-child(3) { --d: 0.36s; }
+.menu li:nth-child(4) { --d: 0.45s; }

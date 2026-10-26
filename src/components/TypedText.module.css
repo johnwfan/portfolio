@@ -1,0 +1,17 @@
+.caret {
+  display: inline-block;
+  width: 2px;
+  /* 26px tall / -4px at the 28px design size; em so it follows the clamp */
+  height: 0.92857em;
+  margin-left: 3px;
+  vertical-align: -0.142857em;
+  background: var(--acc2);
+  animation: wiblink 1s steps(1) infinite;
+}
+
+@keyframes wiblink {
+  0%,
+  49% { opacity: 1; }
+  50%,
+  100% { opacity: 0; }
+}

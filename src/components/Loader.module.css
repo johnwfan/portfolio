@@ -1,0 +1,75 @@
+/* Only exists while <html data-intro> is set (first load of "/" this session). */
+.loader {
+  display: none;
+  position: absolute;
+  left: 56px;
+  bottom: 48px;
+  z-index: 4;
+  width: 232px;
+  flex-direction: column;
+  gap: 10px;
+  transition:
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+:global(:root[data-intro]) .loader {
+  display: flex;
+}
+:global(:root[data-intro="out"]) .loader {
+  opacity: 0;
+  filter: blur(4px);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--tx);
+}
+
+.count {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--t2);
+  transition: color 0.3s ease;
+}
+.counting {
+  color: var(--tx);
+}
+.done .count {
+  color: var(--acc2);
+}
+
+.track {
+  position: relative;
+  height: 1px;
+  background: var(--ln);
+  overflow: hidden;
+}
+
+.fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: var(--tx);
+  transform-origin: left center;
+  transition: background-color 0.3s ease;
+}
+.done .fill {
+  background: var(--accent);
+}
+.retract .fill {
+  transform-origin: right center;
+  transition:
+    background-color 0.3s ease,
+    transform 0.44s cubic-bezier(0.4, 0, 0.2, 1);
+}

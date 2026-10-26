@@ -1,0 +1,141 @@
+.page {
+  position: relative;
+  width: 100%;
+  height: max(100svh, 800px);
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--tx);
+}
+
+.titleWrap {
+  position: absolute;
+  left: 56px;
+  top: 150px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(180px, 18.06vw, 260px);
+  line-height: 0.9;
+  font-weight: 640;
+  letter-spacing: -0.06em;
+  opacity: 0.16;
+}
+
+.tape {
+  position: absolute;
+  left: -80px;
+  right: -80px;
+  top: 330px;
+  height: 300px;
+}
+.shake {
+  animation: pshake 0.4s ease;
+}
+
+.strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 64px;
+  /* hazard tape is the same in both themes */
+  background: repeating-linear-gradient(-45deg, #ff6a2b 0 36px, #111214 36px 72px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.strip1 {
+  top: 40px;
+  transform: rotate(-7deg);
+  animation: ptape 3s linear infinite;
+}
+
+.strip2 {
+  top: 150px;
+  transform: rotate(5deg);
+  animation: ptape 3s linear infinite reverse;
+}
+
+.chip {
+  background: #111214;
+  color: #f2f2ef;
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  padding: 6px 16px;
+}
+
+@keyframes ptape {
+  from { background-position: 0 0; }
+  to { background-position: 72px 0; }
+}
+
+@keyframes pshake {
+  0%,
+  100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(3px); }
+}
+
+.status {
+  position: absolute;
+  left: 56px;
+  bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 520px;
+}
+
+.statusLine {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--acc2);
+}
+
+.note {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.4;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+.visitor {
+  position: absolute;
+  right: 56px;
+  bottom: 56px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+}
+
+@media (max-width: 899px) {
+  .titleWrap {
+    left: 24px;
+  }
+  .title {
+    font-size: 120px;
+  }
+  .status {
+    left: 24px;
+    right: 24px;
+    bottom: 64px;
+  }
+  .visitor {
+    right: 24px;
+    bottom: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip1,
+  .strip2,
+  .shake {
+    animation: none;
+  }
+}

@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.focus {
+  transition:
+    font-weight 0.45s ease,
+    filter 0.5s ease,
+    opacity 0.5s ease;
+}
+
+.on {
+  font-weight: 640;
+  filter: blur(0px);
+  opacity: 1;
+}
+
+.off {
+  font-weight: 220;
+  filter: blur(2px);
+  opacity: 0.3;
+}
