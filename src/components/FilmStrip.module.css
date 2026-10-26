@@ -1,6 +1,4 @@
 .film {
-  position: sticky;
-  top: 124px;
   width: 300px;
   display: flex;
   flex-direction: column;
@@ -85,7 +83,6 @@
 /* small screens: the strip runs sideways and scrolls, not tilted */
 @media (max-width: 899px) {
   .film {
-    position: static;
     width: auto;
   }
   .scroller {

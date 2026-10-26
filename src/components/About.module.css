@@ -1,4 +1,4 @@
-/* Simple scroll (UPDATE §5): text column + sticky film strip; 1720px at 1440. */
+/* Simple scroll (UPDATE §5): text column + film strip; 1720px at 1440. */
 .page {
   position: relative;
   box-sizing: border-box;
@@ -136,7 +136,6 @@
 
 .filmCol {
   margin-top: 8px;
-  align-self: stretch;
 }
 
 .footer {
