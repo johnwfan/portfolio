@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./TransitionLink";
 import ThemeToggle from "./ThemeToggle";
 import SoundToggle from "./SoundToggle";
 import RecruiterToggle from "./RecruiterToggle";

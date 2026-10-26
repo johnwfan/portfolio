@@ -3,7 +3,6 @@
   position: relative;
   width: 100%;
   min-height: max(100svh, 800px);
-  background: var(--bg);
   color: var(--tx);
 }
 

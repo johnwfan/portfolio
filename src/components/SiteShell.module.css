@@ -1,0 +1,67 @@
+/* Fixed behind every page; pages are transparent on top of it. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: var(--bg);
+  transition: background-color 0.6s ease;
+}
+.home {
+  background: var(--bg0);
+}
+
+.fog {
+  transition-property: opacity;
+  transition-timing-function: ease;
+  animation: hdrift 40s ease-in-out infinite alternate;
+}
+
+@keyframes hdrift {
+  from { transform: scale(1.03) translate(0, 0); }
+  to { transform: scale(1.08) translate(-1.5%, -1.2%); }
+}
+
+.intro {
+  position: absolute;
+  inset: 0;
+}
+
+/* First load (corner loader): the fog waits, then focus-pulls in (HANDOFF §7). */
+:global(:root[data-intro="in"]) .intro {
+  opacity: 0;
+  transform: scale(1.04);
+}
+:global(:root[data-intro="out"]) .intro {
+  transition:
+    opacity 1.4s cubic-bezier(0.2, 0.7, 0.1, 1),
+    transform 2.4s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Page transition halves (UPDATE §2), applied by app/template.js */
+.pageOut {
+  animation: fpOut 0.3s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+.pageIn {
+  animation: fpIn 0.46s cubic-bezier(0.2, 0.7, 0.1, 1) backwards;
+}
+
+@keyframes fpOut {
+  from { filter: blur(0); opacity: 1; transform: scale(1); }
+  to { filter: blur(12px); opacity: 0; transform: scale(0.985); }
+}
+
+@keyframes fpIn {
+  from { filter: blur(12px); opacity: 0; transform: translateY(14px); }
+  to { filter: blur(0); opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fog {
+    animation: none;
+  }
+}

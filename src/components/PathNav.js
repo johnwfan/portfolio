@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./TransitionLink";
 import styles from "./PathNav.module.css";
 
 // Where you are, in mono: `john fan / work / scuttle.gg` (UPDATE §1).

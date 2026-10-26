@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
+import Link from "./TransitionLink";
 import FocusList from "./FocusList";
 import ThemeToggle from "./ThemeToggle";
 import SoundToggle from "./SoundToggle";

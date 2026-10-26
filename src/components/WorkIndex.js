@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "./TransitionLink";
 import { PROJECTS, coverFrames } from "@/content/projects";
 import FocusList, { focusClass } from "./FocusList";
 import CoverResolve from "./CoverResolve";

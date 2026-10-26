@@ -7,23 +7,10 @@
   height: 100vh;
   height: 100svh;
   overflow: hidden;
-  background: var(--bg0);
   color: var(--tx);
 }
 
-.fog {
-  opacity: 0.55;
-  transition: opacity 1.6s ease;
-  animation: hdrift 40s ease-in-out infinite alternate;
-}
-.idle .fog {
-  opacity: 0.85;
-}
 
-@keyframes hdrift {
-  from { transform: scale(1.03) translate(0, 0); }
-  to { transform: scale(1.08) translate(-1.5%, -1.2%); }
-}
 
 /* idle / attract mode: UI fades (and some of it blurs) out over 1.2s */
 .fade {
@@ -137,11 +124,6 @@
   50% { opacity: 0.2; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .fog {
-    animation: none;
-  }
-}
 
 /* keyboard hint means nothing on touch screens */
 @media (hover: none) {
@@ -184,20 +166,7 @@
 /* First-load focus pull (HANDOFF §7). While <html data-intro="in"> the site waits
    behind the corner loader; "out" plays the transitions below; then the attribute
    is removed and everything is back on the normal rules (same end values). */
-.fogIntro {
-  position: absolute;
-  inset: 0;
-}
 
-:global(:root[data-intro="in"]) .fogIntro {
-  opacity: 0;
-  transform: scale(1.04);
-}
-:global(:root[data-intro="out"]) .fogIntro {
-  transition:
-    opacity 1.4s cubic-bezier(0.2, 0.7, 0.1, 1),
-    transform 2.4s cubic-bezier(0.2, 0.7, 0.1, 1);
-}
 
 :global(:root[data-intro="in"]) .introNav,
 :global(:root[data-intro="in"]) .introFooter {

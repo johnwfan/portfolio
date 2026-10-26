@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Header from "./Header";
-import Fog from "./Fog";
 import FocusList from "./FocusList";
 import RecruiterView from "./RecruiterView";
 import Loader from "./Loader";
 import { VisitorNo } from "./VisitorCount";
+import { useSite } from "./SiteShell";
 import styles from "./Home.module.css";
 
 const MENU = [
@@ -51,6 +51,12 @@ export default function Home({ initialRecruiter = false }) {
   const [sel, setSel] = useState(0);
   const [recruiter, setRecruiter] = useState(initialRecruiter);
   const idle = useIdle(!recruiter);
+  const { setFog } = useSite();
+
+  // Idle thickens the shared fog (.55 → .85 over 1.6s).
+  useEffect(() => {
+    setFog({ strength: idle ? 0.85 : 0.55, duration: 1.6 });
+  }, [idle, setFog]);
 
   // ?recruiter=1 keeps the mode in the URL so it can be shared.
   const toggleRecruiter = () => {
@@ -65,10 +71,6 @@ export default function Home({ initialRecruiter = false }) {
 
   return (
     <main className={`${styles.home} ${idle ? styles.idle : ""}`}>
-      <div className={styles.fogIntro}>
-        <Fog className={styles.fog} />
-      </div>
-
       <Header
         home
         onRecruiter={toggleRecruiter}

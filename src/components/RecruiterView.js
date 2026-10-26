@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./TransitionLink";
 import { PROJECTS } from "@/content/projects";
 import RecruiterToggle from "./RecruiterToggle";
 import styles from "./RecruiterView.module.css";

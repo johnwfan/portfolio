@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import Link from "./TransitionLink";
 import { selectTick } from "@/lib/sound";
+import { useSite } from "./SiteShell";
 import styles from "./FocusList.module.css";
 
 // Selected = weight 640, sharp, opaque. Everything else = 220, blurred, faded.
@@ -36,7 +36,7 @@ export default function FocusList({
   const listRef = useRef(null);
   const itemRefs = useRef([]);
   const tap = useRef(null);
-  const router = useRouter();
+  const { navigate } = useSite();
 
   const select = (i) => {
     if (i === selected) return;
@@ -69,12 +69,12 @@ export default function FocusList({
         if (!item?.href) return;
         e.preventDefault();
         if (item.external) window.open(item.href, "_blank", "noopener");
-        else router.push(item.href);
+        else navigate(item.href);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [keyboard, items, selected, router]);
+  }, [keyboard, items, selected, navigate]);
 
   return (
     <ul ref={listRef} className={`${styles.list} ${className}`} aria-label={label}>
