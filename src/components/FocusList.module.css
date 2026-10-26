@@ -24,3 +24,9 @@
   filter: blur(2px);
   opacity: 0.3;
 }
+
+.offSoft {
+  font-weight: 220;
+  filter: blur(1.5px);
+  opacity: 0.35;
+}

@@ -1,91 +1,580 @@
-/* Placeholder until the case study page is designed (HANDOFF §2). */
+/* Case study template (UPDATE §6). Spacing lands the reference's positions at
+   1440 (scuttle): hero screen y=620, facts 1540, body 1780. The next project
+   follows the last chapter with the chapter gap. */
 .page {
   position: relative;
-  width: 100%;
-  min-height: max(100svh, 800px);
+  padding: 140px 56px 130px;
   color: var(--tx);
 }
 
-.text {
-  position: absolute;
-  left: 56px;
-  top: 130px;
-  width: clamp(420px, 44.44vw, 640px);
+/* hero */
+.hero {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 36px;
 }
 
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+}
 
 .title {
   margin: 0;
-  font-size: clamp(52px, 5vw, 72px);
-  line-height: 1;
+  font-size: clamp(96px, 10.42vw, 150px);
+  line-height: 0.9;
   font-weight: 640;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.06em;
 }
 
-.line {
+.position {
+  padding-bottom: 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t3);
+  white-space: nowrap;
+}
+
+.lede {
   margin: 0;
-  font-size: 28px;
+  max-width: 860px;
+  font-size: 30px;
   line-height: 1.3;
   font-weight: 300;
   letter-spacing: -0.02em;
 }
 
-.rows {
+.meta {
   margin: 0;
+  display: grid;
+  gap: 32px;
+  border-top: 1px solid var(--ln);
+  padding-top: 18px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.metaCell {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
+}
+.metaCell dt {
+  color: var(--t3);
+}
+.metaCell dd {
+  margin: 0;
+}
+
+.metaLinks {
+  display: flex;
+  gap: 18px;
+}
+
+/* screens */
+.heroFigure {
+  margin: 135px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.shotFrame {
+  position: relative;
+  overflow: hidden;
+  background: var(--cv);
+}
+
+.heroShot {
+  height: clamp(520px, 55.56vw, 800px);
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px var(--ln),
+    0 50px 100px rgba(0, 0, 0, 0.35);
+}
+
+.chapterShot {
+  height: clamp(380px, 38.89vw, 560px);
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--ln);
+}
+
+/* focus pull once it scrolls into view */
+.shot {
+  object-fit: cover;
+  object-position: top left;
+  filter: blur(14px);
+  opacity: 0.35;
+  transform: scale(1.015);
+  transition:
+    filter 0.6s cubic-bezier(0.2, 0.7, 0.1, 1),
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+.shotSeen {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sf);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t3);
+}
+
+.caption {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+}
+
+/* facts */
+.facts {
+  margin: 90px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--ln);
+  border-bottom: 1px solid var(--ln);
+}
+
+.fact {
+  padding: 28px 0 30px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.fact + .fact {
+  border-left: 1px solid var(--ln);
+  padding-left: 28px;
+}
+
+.factN {
+  margin: 0;
+  font-size: 64px;
+  line-height: 1;
+  font-weight: 640;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.factLabel {
   font-family: var(--mono);
   font-size: 12px;
   color: var(--t2);
 }
 
-.row {
+/* body: sticky "on this page" + chapters */
+.bodyGrid {
+  margin-top: 92px;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  column-gap: 104px;
+}
+
+.toc {
+  position: sticky;
+  top: 120px;
   display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  border-top: 1px solid var(--ln);
-  padding-top: 10px;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.row dt {
+.tocLabel {
+  margin-bottom: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+}
+
+.tocItem {
+  display: block;
+  width: 100%;
+  height: 34px;
+  font-size: 22px;
+  line-height: 34px;
+  letter-spacing: -0.03em;
+}
+
+.tocRow {
+  display: none;
+}
+
+.chapters {
+  min-width: 0;
+}
+
+.chapter {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  /* "on this page" jumps line a chapter up with the sticky list */
+  scroll-margin-top: 120px;
+}
+.chapter + .chapter {
+  margin-top: 110px;
+}
+
+.chapterText {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.chapterTitle {
   margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--acc2);
 }
 
-.row dd {
+.lead {
   margin: 0;
-  color: var(--tx);
-  text-align: right;
+  font-size: 24px;
+  line-height: 1.45;
+  font-weight: 300;
+  letter-spacing: -0.015em;
 }
 
-.cover {
+.body {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--t2);
+}
+
+.list,
+.steps,
+.chips {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--t2);
+}
+.list li {
+  position: relative;
+  padding-left: 20px;
+}
+.list li::before {
+  content: "–";
   position: absolute;
-  right: 56px;
-  top: 150px;
-  width: clamp(300px, 29.58vw, 426px);
-  aspect-ratio: 426 / 520;
-  background: var(--cv);
-  overflow: hidden;
+  left: 0;
+  color: var(--t3);
 }
 
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--t2);
+}
+.steps li {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+}
+
+.stepN {
+  padding-top: 5px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t3);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chips li {
+  padding: 6px 10px;
+  border: 1px solid var(--ln2);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t2);
+}
+
+.credit {
+  margin: 32px 0 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t3);
+}
+
+.figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+/* pipeline line */
+.pipeline {
+  overflow-x: auto;
+}
+
+.pipelineRow {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  color: var(--t2);
+}
+
+.pipelineStep {
+  display: flex;
+  align-items: center;
+}
+
+.pipelineLink {
+  width: 44px;
+  height: 1px;
+  background: var(--ln2);
+}
+
+.node {
+  border: 1px solid var(--ln2);
+  padding: 10px 14px;
+  background: var(--bg);
+  font-family: var(--mono);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.nodeOn {
+  color: var(--tx);
+  border-color: var(--acc2);
+}
+
+/* validation diagram */
+.diagram {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.windows {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.window {
+  border: 1px solid var(--ln);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.windowLabel {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+}
+
+.bar {
+  display: flex;
+  gap: 4px;
+  height: 10px;
+}
+
+.train {
+  background: var(--ln2);
+}
+
+.test {
+  background: var(--acc2);
+}
+
+.legend {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t2);
+}
+
+/* next project */
+.next,
+.next:hover {
+  margin-top: 110px;
+  box-sizing: border-box;
+  height: 380px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(360px, 36.11vw, 520px);
+  gap: 40px;
+  align-items: end;
+  border-top: 1px solid var(--ln);
+  padding-top: 40px;
+  color: var(--tx);
+}
+
+.nextText {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 10px;
+}
+
+.nextLabel {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t3);
+}
+
+.nextName {
+  font-size: clamp(80px, 8.333vw, 120px);
+  line-height: 0.9;
+  font-weight: 220;
+  letter-spacing: -0.06em;
+  transition:
+    font-weight 0.45s ease,
+    letter-spacing 0.45s ease;
+}
+.next:hover .nextName {
+  font-weight: 640;
+}
+
+.nextLine {
+  font-size: 18px;
+  color: var(--t2);
+}
+
+.nextShot {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--sf);
+  box-shadow: 0 0 0 1px var(--ln);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: blur(10px);
+  opacity: 0.35;
+  transform: scale(1.02);
+  transition:
+    filter 0.6s cubic-bezier(0.2, 0.7, 0.1, 1),
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+.next:hover .nextShot {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nextImg {
+  object-fit: cover;
+  object-position: top left;
+}
+
+.nextPlaceholder {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shot {
+    filter: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* small screens: everything in one column */
 @media (max-width: 899px) {
   .page {
-    padding: 130px 24px 64px;
+    padding: 130px 24px 96px;
+  }
+  .titleRow {
+    flex-wrap: wrap;
+    gap: 8px 24px;
+  }
+  .title {
+    font-size: 64px;
+  }
+  .lede {
+    font-size: 24px;
+  }
+  .meta {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px 24px;
+  }
+  .heroFigure {
+    margin-top: 56px;
+  }
+  .heroShot,
+  .chapterShot {
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+  .facts {
+    margin-top: 56px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fact + .fact {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--ln);
+  }
+  .tocRow {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 4px;
+    margin-top: 40px;
+    overflow-x: auto;
   }
-  .text {
-    position: static;
+  .tocRow .tocList {
+    flex-direction: row;
+    gap: 24px;
+  }
+  .tocRow .tocItem {
     width: auto;
+    white-space: nowrap;
   }
-  .cover {
-    position: relative;
-    right: auto;
-    top: auto;
-    width: 100%;
+  .bodyGrid {
+    margin-top: 56px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .aside {
+    display: none;
+  }
+  .windows {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .next,
+  .next:hover {
+    height: auto;
+    margin-top: 96px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .nextName {
+    font-size: 64px;
+  }
+  .nextShot {
+    height: 220px;
   }
 }

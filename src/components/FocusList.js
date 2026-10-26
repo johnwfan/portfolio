@@ -6,9 +6,10 @@ import { selectTick } from "@/lib/sound";
 import { useSite } from "./SiteShell";
 import styles from "./FocusList.module.css";
 
-// Selected = weight 640, sharp, opaque. Everything else = 220, blurred, faded.
-export function focusClass(selected) {
-  return `${styles.focus} ${selected ? styles.on : styles.off}`;
+// Selected = weight 640, sharp, opaque. Everything else = 220, blurred, faded
+// (`soft`: a lighter blur and fade, for the case study's "on this page").
+export function focusClass(selected, soft = false) {
+  return `${styles.focus} ${selected ? styles.on : soft ? styles.offSoft : styles.off}`;
 }
 
 // The "focus + weight" list (HANDOFF §4). Selection follows mouseenter and
@@ -31,6 +32,7 @@ export default function FocusList({
   itemClassName = "",
   keyboard = false,
   tapToSelect = false,
+  soft = false,
   label,
 }) {
   const listRef = useRef(null);
@@ -101,7 +103,7 @@ export default function FocusList({
         const content = renderItem ? (
           renderItem(item, isSelected)
         ) : (
-          <span className={focusClass(isSelected)}>{item.label}</span>
+          <span className={focusClass(isSelected, soft)}>{item.label}</span>
         );
         let el;
         if (!item.href) {

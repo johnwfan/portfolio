@@ -1,16 +1,19 @@
-// All project facts. `description` is typed out on /work; `line` is the
-// recruiter-mode one-liner. `screens` are the screenshots shown on /work and
-// the case study (UPDATE §4), in order. Covers live in /public/covers/<slug>/0–3.png.
+// All project facts. `description` is the paragraph on /work; `line` is the
+// one-liner (recruiter mode, "next project"). `screens` are the screenshots on
+// /work and the case study (UPDATE §4), in order.
 //
-// `caseStudy` is the longer write-up carried over from the old site, kept for the
-// case study pages (not designed yet, so nothing renders it):
+// `caseStudy` drives /work/[slug] (UPDATE §6, built by src/lib/caseStudy.js):
+//   lede         optional one-liner under the title (else `description`)
+//   facts        optional [{ n, label }], 2–3 big numbers
+//   captions     one per screen
+//   chapters     optional [{ title, lead, body, pipeline?, screen?, caption?, diagram? }];
+//                without them, chapters are built from the fields below
 //   overview     a paragraph on what it is
 //   highlights   what was built, one line each
 //   howItWorks   pipeline / architecture steps (empty when there aren't any)
 //   fullStack    every tool; `stack` above is the short version
 //   timeline     when it was built
 //   credit       collaborators, for team projects
-//   screenshot   /public/screenshots/<slug>.png
 //   links        github, and live when there is one
 
 export const PROJECTS = [
@@ -29,6 +32,57 @@ export const PROJECTS = [
       "/screenshots/scuttle.png",
     ],
     caseStudy: {
+      lede: "a league of legends stats site. it started as a simple tracker and turned into an ml project.",
+      facts: [
+        { n: "11", label: "regions supported" },
+        { n: "14.8k", label: "master+ matches in the training set" },
+        { n: "2", label: "models compared: logistic regression, catboost" },
+      ],
+      captions: [
+        "the player page: profile, ranked, mastery and a 10-game trend",
+        "recent matches: kda, items, cs per minute and kill participation",
+      ],
+      chapters: [
+        {
+          title: "overview",
+          lead: "scuttle looks up any player across 11 regions and shows ranked stats, champion mastery, match history, performance trends and full-lobby analysis.",
+          // From the old site's overview, minus the sentence the lead covers. John to reword.
+          body: "under the hood it's a full authenticated app — github sign-in, saved search history, and a caching layer that keeps it fast under riot's rate limits. the standout feature is draft intelligence: a separate machine learning service that scores a 10-champion draft against a model trained on nearly 15,000 ranked matches, and lets you swap a single pick to see how the score shifts.",
+        },
+        {
+          title: "the api layer",
+          lead: "riot's api is rate-limited and split by region, so most of the work is in not asking it twice.",
+          body: "a typed riot api client handles regional routing, input validation and retry with backoff. responses are cached in upstash redis, with different ttls for each kind of request, which cuts duplicate calls and keeps the app under the rate limit.",
+          pipeline: [
+            { label: "riot api" },
+            { label: "typed client · routing · retry", highlight: true },
+            { label: "redis cache · per-route ttl" },
+            { label: "next.js app" },
+          ],
+          screen: "/screenshots/scuttle-matches.jpg",
+          caption: "recent matches: kda, items, cs per minute and kill participation",
+        },
+        {
+          title: "the ml part",
+          lead: "i wanted to know if a draft could predict who wins. mostly, it can't, and the site says so.",
+          body: 'a fastapi pipeline trains on 14.8k master+ matches. i compared logistic regression and catboost using rolling-forward validation across patches, so the model is always tested on games newer than the ones it learned from. the signal was weak, so instead of a win probability the site shows a low-confidence "draft edge".',
+          diagram: {
+            // train / test / unused, as flex weights, per patch window
+            windows: [
+              { label: "patch window 1", train: 3, test: 1, rest: 2 },
+              { label: "patch window 2", train: 4, test: 1, rest: 1 },
+              { label: "patch window 3", train: 5, test: 1, rest: 0 },
+            ],
+            legend: "train on grey · test on blue",
+            caption: "rolling-forward validation: every test set comes after its training data",
+          },
+        },
+        {
+          title: "what i learned",
+          lead: "[one or two sentences in john's words.]",
+          body: "[what he'd do next with it.]",
+        },
+      ],
       overview:
         "scuttle lets you search any riot id and see ranked progress, champion mastery, and match history across 11 regions. under the hood it's a full authenticated app — github sign-in, saved search history, and a caching layer that keeps it fast under riot's rate limits. the standout feature is draft intelligence: a separate machine learning service that scores a 10-champion draft against a model trained on nearly 15,000 ranked matches, and lets you swap a single pick to see how the score shifts.",
       highlights: [
@@ -48,7 +102,6 @@ export const PROJECTS = [
         "nextauth", "mongodb", "upstash redis", "fastapi", "scikit-learn",
       ],
       timeline: "november 2025 — present",
-      screenshot: "/screenshots/scuttle.png",
       links: {
         github: "https://github.com/johnwfan/lol-stats-tracker",
         live: "https://lol-stats-tracker-johnf.vercel.app/",
@@ -95,7 +148,6 @@ export const PROJECTS = [
         "radix ui", "prisma", "postgresql", "clerk", "docker", "aws",
       ],
       timeline: "april 2026 — present",
-      screenshot: "/screenshots/studioflow.png",
       links: {
         github: "https://github.com/johnwfan/studioflow",
       },
@@ -135,7 +187,6 @@ export const PROJECTS = [
       ],
       timeline: "fall 2025",
       credit: "built with kacem ettahali and diego rico at hackrice, fall 2025.",
-      screenshot: "/screenshots/storm.png",
       links: {
         github: "https://github.com/johnwfan/storm-flood-risk",
       },
@@ -165,7 +216,6 @@ export const PROJECTS = [
       howItWorks: [],
       fullStack: ["next.js", "react", "tailwind css", "fastapi", "python", "google-genai"],
       timeline: "december 2025",
-      screenshot: "/screenshots/outfit-picker.png",
       links: {
         github: "https://github.com/johnwfan/outfit-picker",
       },
