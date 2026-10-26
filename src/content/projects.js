@@ -64,7 +64,7 @@ export const PROJECTS = [
     description:
       "a focus coach that uses your webcam to tell when you’re losing focus and steps in. video stays on your computer. built with a team at hackrice 16.",
     line: "a focus coach that uses your webcam to tell when you’re distracted",
-    screens: [], // none yet: the work page shows a placeholder
+    screens: ["/screenshots/flow-tracker.png", "/screenshots/flow-landing.png"],
     // No case study content yet (the old site didn't have flow).
     caseStudy: null,
   },
