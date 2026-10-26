@@ -1,0 +1,23 @@
+.link,
+.link:hover {
+  position: relative;
+  padding-bottom: 3px;
+  color: var(--tx);
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  transform: scaleX(0.18);
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}

@@ -1,5 +1,6 @@
 // All project facts. `description` is typed out on /work; `line` is the
-// recruiter-mode one-liner. Covers live in /public/covers/<slug>/0–3.png.
+// recruiter-mode one-liner. `screens` are the screenshots shown on /work and
+// the case study (UPDATE §4), in order. Covers live in /public/covers/<slug>/0–3.png.
 //
 // `caseStudy` is the longer write-up carried over from the old site, kept for the
 // case study pages (not designed yet, so nothing renders it):
@@ -22,6 +23,11 @@ export const PROJECTS = [
     description:
       "a league of legends stats site. it started as a simple tracker and turned into an ml project. it looks up players across 11 regions and covers ranked stats, match history and full-team analytics.",
     line: "league of legends stats and match analytics, plus ml experiments",
+    screens: [
+      "/screenshots/scuttle-dashboard.jpg",
+      "/screenshots/scuttle-matches.jpg",
+      "/screenshots/scuttle.png",
+    ],
     caseStudy: {
       overview:
         "scuttle lets you search any riot id and see ranked progress, champion mastery, and match history across 11 regions. under the hood it's a full authenticated app — github sign-in, saved search history, and a caching layer that keeps it fast under riot's rate limits. the standout feature is draft intelligence: a separate machine learning service that scores a 10-champion draft against a model trained on nearly 15,000 ranked matches, and lets you swap a single pick to see how the score shifts.",
@@ -58,6 +64,7 @@ export const PROJECTS = [
     description:
       "a focus coach that uses your webcam to tell when you’re losing focus and steps in. video stays on your computer. built with a team at hackrice 16.",
     line: "a focus coach that uses your webcam to tell when you’re distracted",
+    screens: [], // none yet: the work page shows a placeholder
     // No case study content yet (the old site didn't have flow).
     caseStudy: null,
   },
@@ -70,6 +77,9 @@ export const PROJECTS = [
     description:
       "a project management tool for creative teams, with projects, tasks, a publishing calendar and a kanban board.",
     line: "project and asset management for creative teams",
+    screens: [
+      "/screenshots/studioflow.png",
+    ],
     caseStudy: {
       overview:
         "studioflow gives creative teams a structured, permissioned workspace for content work — projects, tasks, comments, and shared assets all live in one place, with role-based access control across 3 user roles enforcing who can see and touch what at the api level.",
@@ -99,6 +109,9 @@ export const PROJECTS = [
     stack: "react · python · pytorch · opencv · leaflet",
     description: "maps flood risk using street-level images.",
     line: "flood-risk mapping from street-level images",
+    screens: [
+      "/screenshots/storm.png",
+    ],
     caseStudy: {
       overview:
         "storm analyzes flood risk for any location by combining computer vision with environmental data. it pulls four-directional street view imagery, runs it through a segmentation model to classify surfaces as pavement, greenery, or other, and combines that with terrain slope, rainfall intensity, and drainage data into a weighted risk score — visualized on an interactive map with ai-generated mitigation recommendations.",
@@ -137,6 +150,9 @@ export const PROJECTS = [
     description:
       "recommends outfits from the clothes you’ve saved, ranks them, and generates a preview with gemini.",
     line: "outfit recommendations from the clothes you’ve saved",
+    screens: [
+      "/screenshots/outfit-picker.png",
+    ],
     caseStudy: {
       overview:
         "outfit picker is a full-stack app for visualizing outfits before you commit to them. you upload tops and bottoms into two browsable carousels, add a reference photo of yourself, describe a theme, and the backend generates an ai try-on image with gemini. it's built as a complete product loop — a next.js frontend talking to a fastapi backend, file storage, and an external generation api with caching and a fallback path when the quota runs out.",

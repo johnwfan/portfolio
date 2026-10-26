@@ -1,48 +1,46 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "./TransitionLink";
-import { PROJECTS, coverFrames } from "@/content/projects";
+import { useState } from "react";
+import { PROJECTS } from "@/content/projects";
 import FocusList, { focusClass } from "./FocusList";
-import CoverResolve from "./CoverResolve";
-import CursorPill from "./CursorPill";
-import TypedText from "./TypedText";
+import ScreenFrame from "./ScreenFrame";
+import UnderlineLink from "./UnderlineLink";
 import styles from "./WorkIndex.module.css";
 
 const ITEMS = PROJECTS.map((p) => ({ ...p, key: p.slug, label: p.name, href: `/work/${p.slug}` }));
 
-// Work: index list on the left, the selected project "projected" on the right.
+// Work (UPDATE §4): the index on the left, the selected project's screenshots
+// in a frame on the right, details underneath.
 export default function WorkIndex() {
   const [sel, setSel] = useState(0);
+  const [screen, setScreen] = useState(0);
   const [first, setFirst] = useState(true);
   const p = PROJECTS[sel];
-  const href = `/work/${p.slug}`;
-
-  // Warm every cover frame so switching never shows an empty frame.
-  useEffect(() => {
-    PROJECTS.forEach(({ slug }) =>
-      coverFrames(slug).forEach((src) => {
-        new Image().src = src;
-      }),
-    );
-  }, []);
+  const count = Math.max(1, p.screens.length);
 
   const select = (i) => {
     setFirst(false);
     setSel(i);
+    setScreen(0);
+  };
+
+  const show = (i) => {
+    setFirst(false);
+    setScreen(i % count);
   };
 
   return (
     <main className={styles.page}>
       <div className={styles.index}>
-        <div className={styles.titleRow}>
+        <div className={styles.titleBlock}>
           <h1 className={styles.title}>work</h1>
-          <span className={styles.count}>5 / 2025–26</span>
+          <span className={styles.count}>5 projects · 2025–26</span>
         </div>
         <FocusList
           items={ITEMS}
           selected={sel}
           onSelect={select}
+          className={styles.list}
           itemClassName={styles.item}
           label="projects"
           keyboard
@@ -56,43 +54,50 @@ export default function WorkIndex() {
             </>
           )}
         />
-        <span className={styles.hint}>↑ ↓ to browse</span>
+        <span className={styles.hint}>↑ ↓ to browse · enter to open</span>
       </div>
 
-      <div className={styles.projection}>
-        <Link href={href} className={styles.cover} aria-label={`open case study: ${p.name}`}>
-          <CoverResolve key={p.slug} slug={p.slug} name={p.name} priority={first} />
-          <CursorPill />
-        </Link>
-        <div className={styles.text}>
-          <div className={styles.top}>
-            <span className={styles.label}>
-              {String(sel + 1).padStart(2, "0")} — {p.name}
-            </span>
-            <p className={styles.desc}>
-              <TypedText key={p.slug} text={p.description} />
-            </p>
+      <div className={styles.screen}>
+        <ScreenFrame
+          project={p}
+          screen={screen}
+          onNext={() => show(screen + 1)}
+          priority={first}
+        />
+        <div className={styles.details}>
+          <div className={styles.about}>
+            <p className={styles.desc}>{p.description}</p>
+            <UnderlineLink href={`/work/${p.slug}`} className={styles.read}>
+              read the case study
+            </UnderlineLink>
           </div>
-          <div className={styles.bottom}>
-            <dl className={styles.rows}>
-              <div className={styles.row}>
-                <dt>role</dt>
-                <dd>{p.role}</dd>
-              </div>
-              <div className={styles.row}>
-                <dt>stack</dt>
-                <dd>{p.stack}</dd>
-              </div>
-              <div className={styles.row}>
-                <dt>year</dt>
-                <dd>{p.year}</dd>
-              </div>
-            </dl>
-            <Link href={href} className={styles.button}>
-              <span className={styles.dot} />
-              open case study
-            </Link>
-          </div>
+          <dl className={styles.rows}>
+            <div className={styles.row}>
+              <dt>role</dt>
+              <dd>{p.role}</dd>
+            </div>
+            <div className={styles.row}>
+              <dt>stack</dt>
+              <dd>{p.stack}</dd>
+            </div>
+            <div className={`${styles.row} ${styles.dotsRow}`}>
+              <dt>screens</dt>
+              <dd className={styles.dots}>
+                {Array.from({ length: count }, (_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    className={styles.dot}
+                    aria-label={`screen ${i + 1}`}
+                    aria-pressed={i === screen}
+                    onClick={() => i !== screen && show(i)}
+                  >
+                    <span className={i === screen ? styles.dotOn : undefined} />
+                  </button>
+                ))}
+              </dd>
+            </div>
+          </dl>
         </div>
       </div>
     </main>

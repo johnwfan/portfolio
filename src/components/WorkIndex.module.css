@@ -1,11 +1,10 @@
 .page {
   /* 1440 values, scaling down proportionally to 1024 (HANDOFF §9) */
-  --index-w: clamp(270px, 26.39vw, 380px);
-  --gap: clamp(40px, 4.444vw, 64px);
-  --cover-w: clamp(300px, 29.58vw, 426px);
+  --index-w: clamp(260px, 25vw, 360px);
+  --gap: clamp(40px, 4.167vw, 60px);
   position: relative;
   width: 100%;
-  height: max(100svh, 800px);
+  height: max(100svh, 900px);
   overflow: hidden;
   color: var(--tx);
 }
@@ -14,17 +13,17 @@
 .index {
   position: absolute;
   left: 56px;
-  top: 130px;
+  top: 124px;
   width: var(--index-w);
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 34px;
 }
 
-.titleRow {
+.titleBlock {
   display: flex;
-  align-items: baseline;
-  gap: 16px;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .title {
@@ -38,28 +37,33 @@
 .count {
   font-family: var(--mono);
   font-size: 12px;
-  color: var(--t2);
+  color: var(--t3);
+}
+
+.list {
+  border-top: 1px solid var(--ln);
 }
 
 .item,
 .item:hover {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  height: clamp(50px, 4.722vw, 68px);
+  align-items: center;
+  height: 72px;
+  border-bottom: 1px solid var(--ln);
   color: var(--tx);
 }
 
 .name {
-  font-size: clamp(32px, 3.056vw, 44px);
-  line-height: 1;
-  letter-spacing: -0.045em;
+  font-size: clamp(28px, 2.362vw, 34px);
+  letter-spacing: -0.04em;
 }
 
 .year {
   font-family: var(--mono);
   font-size: 11px;
   color: var(--t3);
+  transition: opacity 0.5s ease;
 }
 
 .hint {
@@ -68,84 +72,58 @@
   color: var(--t3);
 }
 
-/* projection */
-.projection {
+/* screen + details */
+.screen {
   position: absolute;
   left: calc(56px + var(--index-w) + var(--gap));
   right: 56px;
-  top: 150px;
-  height: 600px;
-  display: flex;
-  gap: 40px;
-}
-
-.cover {
-  display: block;
-  position: relative;
-  width: var(--cover-w);
-  aspect-ratio: 426 / 520;
-  flex-shrink: 0;
-  align-self: center;
-  background: var(--cv);
-  overflow: hidden;
-}
-@media (hover: hover) {
-  .cover {
-    cursor: none;
-  }
-}
-
-.text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-width: 0;
-}
-
-.top {
+  top: 124px;
   display: flex;
   flex-direction: column;
   gap: 22px;
 }
 
-.label {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--acc2);
+.details {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 40px;
+  align-items: start;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .desc {
   margin: 0;
-  font-size: clamp(22px, 1.944vw, 28px);
-  line-height: 1.3;
+  font-size: clamp(18px, 1.528vw, 22px);
+  line-height: 1.35;
   font-weight: 300;
-  letter-spacing: -0.02em;
-  min-height: 150px;
+  letter-spacing: -0.015em;
 }
 
-.bottom {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+.read {
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: 12px;
 }
 
 .rows {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   font-family: var(--mono);
   font-size: 12px;
-  color: var(--t2);
+  color: var(--t3);
 }
 
 .row {
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  border-top: 1px solid var(--ln);
-  padding-top: 10px;
 }
 
 .row dt {
@@ -158,26 +136,35 @@
   text-align: right;
 }
 
-.button {
-  align-self: flex-start;
-  display: inline-flex;
+.dotsRow {
   align-items: center;
-  gap: 10px;
-  height: 44px;
-  padding: 0 18px;
-  border: 1px solid var(--ln2);
-  font-family: var(--mono);
-  font-size: 12px;
+}
+
+.dots {
+  display: flex;
+  gap: 2px;
 }
 
 .dot {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot span {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--ln2);
 }
 
-/* single column: list on top, cover full width below it */
+.dot .dotOn {
+  background: var(--tx);
+}
+
+/* single column: list on top, frame full width (16:10), details under it */
 @media (max-width: 899px) {
   .page {
     height: auto;
@@ -188,20 +175,13 @@
     gap: 48px;
   }
   .index,
-  .projection {
+  .screen {
     position: static;
     width: auto;
-    height: auto;
   }
-  .projection {
-    flex-direction: column;
-  }
-  .cover {
-    width: 100%;
-    align-self: stretch;
-  }
-  .text {
-    gap: 32px;
+  .details {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
   }
   .hint {
     display: none;
