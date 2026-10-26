@@ -53,10 +53,11 @@ export default function Home({ initialRecruiter = false }) {
   const idle = useIdle(!recruiter);
   const { setFog } = useSite();
 
-  // Idle thickens the shared fog (.55 → .85 over 1.6s).
+  // The shared fog follows the selected item (its mood, UPDATE §3) and thickens
+  // while idle.
   useEffect(() => {
-    setFog({ strength: idle ? 0.85 : 0.55, duration: 1.6 });
-  }, [idle, setFog]);
+    setFog({ mood: sel, idle });
+  }, [sel, idle, setFog]);
 
   // ?recruiter=1 keeps the mode in the URL so it can be shared.
   const toggleRecruiter = () => {

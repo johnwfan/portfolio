@@ -16,6 +16,34 @@
   animation: hdrift 40s ease-in-out infinite alternate;
 }
 
+.fog > div {
+  transition: transform 2.2s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+.glow {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, 0.55) 45%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, 0.55) 45%, transparent 100%);
+  transition:
+    left 2.2s cubic-bezier(0.2, 0.7, 0.1, 1),
+    top 2.2s cubic-bezier(0.2, 0.7, 0.1, 1),
+    width 2.2s cubic-bezier(0.2, 0.7, 0.1, 1),
+    height 2.2s cubic-bezier(0.2, 0.7, 0.1, 1),
+    opacity 1.2s ease;
+}
+
+/* a full-viewport field, offset so it lines up with the page behind the window */
+.glowField {
+  inset: auto;
+  width: 100vw;
+  height: 100vh;
+  transition:
+    left 2.2s cubic-bezier(0.2, 0.7, 0.1, 1),
+    top 2.2s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
 @keyframes hdrift {
   from { transform: scale(1.03) translate(0, 0); }
   to { transform: scale(1.08) translate(-1.5%, -1.2%); }

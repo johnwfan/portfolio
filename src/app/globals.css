@@ -22,6 +22,7 @@
   --acc2: #6fa2ff;
   --panel: rgba(11, 12, 16, 0.86);
   --fog-image: url("/fog/fog-dark.png");
+  --fog-glow-image: url("/fog/fog-glow.png");
   color-scheme: dark;
 }
 
@@ -42,6 +43,7 @@
   --acc2: #1f5fe0;
   --panel: rgba(242, 242, 239, 0.9);
   --fog-image: url("/fog/fog-light.png");
+  --fog-glow-image: url("/fog/fog-light.png");
   color-scheme: light;
 }
 

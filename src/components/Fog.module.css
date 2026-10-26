@@ -17,6 +17,10 @@
     fogy 24s steps(12) infinite;
 }
 
+.fog > .glow {
+  background-image: var(--fog-glow-image);
+}
+
 /* 109.0909% = 12/11 × 100%, so steps(12) lands exactly on each column/row */
 @keyframes fogx {
   from { background-position-x: 0%; }
