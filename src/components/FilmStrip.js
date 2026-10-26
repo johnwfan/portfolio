@@ -4,7 +4,7 @@ import styles from "./FilmStrip.module.css";
 const FRAMES = [
   { src: "/photos/nyc.jpg", alt: "john in central park, new york", pos: "50% 60%", place: "new york", n: "01A" },
   { src: "/photos/kyoto.jpg", alt: "john at fushimi inari, kyoto", pos: "45% 35%", place: "kyoto", n: "02A" },
-  { src: "/photos/canyon.jpg", alt: "john in a slot canyon", pos: "50% 45%", place: "slot canyon", n: "03A" },
+  { src: "/photos/canyon.jpg", alt: "john in antelope canyon", pos: "50% 45%", place: "antelope canyon", n: "03A" },
 ];
 
 // About's photos on a short, slightly tilted strip of film (UPDATE §5). The

@@ -22,8 +22,8 @@ const OUTSIDE = [
   { name: "media", desc: "film, shows, animation, anime. no single favorite, i just like good filmmaking in any genre." },
   { name: "music", desc: "currently listening to i saw your face by malcolm todd." },
   { name: "lifting", desc: "going to the gym and lifting weights." },
-  { name: "travel", desc: "the photos here are from new york, kyoto and a slot canyon." },
-  { name: "creating", desc: "code, design, whatever. i just like making things." },
+  { name: "travel", desc: "the photos here are from new york, kyoto and antelope canyon." },
+  { name: "creating", desc: "code, design, video editing, whatever. i just like making things." },
 ];
 
 function Jobs({ label, items }) {
