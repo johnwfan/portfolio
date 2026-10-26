@@ -81,8 +81,8 @@ export const PROJECTS = [
         },
         {
           title: "what i learned",
-          lead: "[one or two sentences in john's words.]",
-          body: "[what he'd do next with it.]",
+          lead: "building scuttle.gg taught me a lot about turning an idea into an actual product and figuring things out along the way. beyond the technical side, i learned how much thought goes into designing something that's genuinely useful and deciding which features are actually worth building.",
+          body: "moving forward, i'd love to keep improving the design, refining the existing features, and eventually getting more people to use it so i can learn from their feedback.",
         },
       ],
       overview:

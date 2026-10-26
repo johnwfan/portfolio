@@ -9,7 +9,9 @@ import styles from "@/components/SiteShell.module.css";
 // back/forward). The first page of a visit just appears.
 export default function Template({ children }) {
   const pathname = usePathname();
-  const { leaving } = useSite();
+  // Next renders its global error boundary outside RootLayout/SiteShell while
+  // prerendering, so the transition context is unavailable on that path.
+  const leaving = useSite()?.leaving;
   const [animateIn] = useState(() => !isInitialLoad());
   const className = leaving?.from === pathname ? styles.pageOut : animateIn ? styles.pageIn : "";
   return <div className={className}>{children}</div>;
