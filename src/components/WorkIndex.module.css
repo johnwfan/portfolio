@@ -1,0 +1,174 @@
+.page {
+  position: relative;
+  width: 100%;
+  height: max(100svh, 800px);
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--tx);
+}
+
+/* index */
+.index {
+  position: absolute;
+  left: 56px;
+  top: 130px;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.title {
+  margin: 0;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 640;
+  letter-spacing: -0.05em;
+}
+
+.count {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t2);
+}
+
+.item,
+.item:hover {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  height: 68px;
+  color: var(--tx);
+}
+
+.name {
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.year {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+}
+
+.hint {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+}
+
+/* projection */
+.projection {
+  position: absolute;
+  left: 500px;
+  right: 56px;
+  top: 150px;
+  height: 600px;
+  display: flex;
+  gap: 40px;
+}
+
+.cover {
+  display: block;
+  position: relative;
+  height: 520px;
+  width: 426px;
+  flex-shrink: 0;
+  align-self: center;
+  background: var(--cv);
+  overflow: hidden;
+}
+@media (hover: hover) {
+  .cover {
+    cursor: none;
+  }
+}
+
+.text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.label {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--acc2);
+}
+
+.desc {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.3;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  min-height: 150px;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.rows {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t2);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--ln);
+  padding-top: 10px;
+}
+
+.row dt {
+  margin: 0;
+}
+
+.row dd {
+  margin: 0;
+  color: var(--tx);
+  text-align: right;
+}
+
+.button {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--ln2);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}

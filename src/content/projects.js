@@ -37,8 +37,7 @@ export const PROJECTS = [
     name: "storm",
     year: "2025",
     role: "frontend, team project",
-    // Waiting on John (HANDOFF §11.1); the references show this placeholder.
-    stack: "[stack]",
+    stack: "react · python · pytorch · opencv · leaflet",
     description: "maps flood risk using street-level images.",
     line: "flood-risk mapping from street-level images",
   },

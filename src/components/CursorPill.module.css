@@ -1,0 +1,38 @@
+.pos {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.on {
+  opacity: 1;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 17px;
+  background: var(--tx);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 12px;
+  white-space: nowrap;
+  transform: translate(-50%, -50%) scale(0.6);
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+.on .pill {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}

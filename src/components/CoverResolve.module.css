@@ -1,0 +1,21 @@
+.frame {
+  image-rendering: pixelated;
+}
+
+/* frame 0 visible 0–80ms, 1 until 160ms, 2 until 240ms, then 3 stays */
+.hide1 { animation: wihide 0s linear 0.08s forwards; }
+.hide2 { animation: wihide 0s linear 0.16s forwards; }
+.hide3 { animation: wihide 0s linear 0.24s forwards; }
+
+@keyframes wihide {
+  to { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hide1,
+  .hide2,
+  .hide3 {
+    animation: none;
+    opacity: 0;
+  }
+}
