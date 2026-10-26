@@ -81,7 +81,8 @@
   }
 
   a:focus-visible,
-  button:focus-visible {
+  button:focus-visible,
+  input:focus-visible {
     outline: 1px solid var(--acc2);
     outline-offset: 4px;
   }

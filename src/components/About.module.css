@@ -1,0 +1,199 @@
+.page {
+  position: relative;
+  width: 100%;
+  height: 1720px;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--tx);
+}
+
+.words {
+  position: absolute;
+  left: 56px;
+  top: 130px;
+  width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.title {
+  margin: 0;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 640;
+  letter-spacing: -0.05em;
+}
+
+.lead {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.4;
+  font-weight: 300;
+  letter-spacing: -0.015em;
+}
+
+.body {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--t2);
+}
+
+.into {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.label {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--t3);
+}
+
+.intoRow {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.intoItem {
+  display: block;
+  width: 100%;
+  height: 50px;
+  font-size: 40px;
+  line-height: 50px;
+  letter-spacing: -0.045em;
+}
+
+.intoDesc {
+  padding-top: 8px;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.intoKey {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--acc2);
+}
+
+.intoText {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--t4);
+}
+
+.photos {
+  position: absolute;
+  left: 776px;
+  right: 56px;
+  top: 130px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 398px 398px;
+  gap: 16px;
+}
+
+.photo {
+  position: relative;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+.tall {
+  grid-row: span 2;
+}
+
+.experience {
+  position: absolute;
+  left: 56px;
+  right: 56px;
+  top: 1010px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.externLabel {
+  margin-top: 36px;
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--ln);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 220px;
+  align-items: baseline;
+  gap: 24px;
+  height: 76px;
+  border-bottom: 1px solid var(--ln);
+  padding-top: 22px;
+  box-sizing: border-box;
+}
+
+.org {
+  font-size: 30px;
+  letter-spacing: -0.035em;
+  font-weight: 300;
+  transition:
+    font-weight 0.45s ease,
+    filter 0.5s ease,
+    opacity 0.5s ease;
+}
+
+.role {
+  font-size: 16px;
+  color: var(--t2);
+  transition: opacity 0.5s ease;
+}
+
+.when {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t2);
+  text-align: right;
+  transition: opacity 0.5s ease;
+}
+
+/* hovered row gets weight; once anything is hovered, every other row recedes */
+.hot .org {
+  font-weight: 600;
+}
+.cold .org {
+  filter: blur(1.5px);
+}
+.cold .org,
+.cold .role,
+.cold .when {
+  opacity: 0.35;
+}
+
+.footer {
+  position: absolute;
+  left: 56px;
+  right: 56px;
+  bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+}
