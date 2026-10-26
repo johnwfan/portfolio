@@ -1,0 +1,126 @@
+.film {
+  position: sticky;
+  top: 124px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.strip {
+  position: relative;
+  width: 300px;
+  padding: 22px 0;
+  background: #0e0f12;
+  box-shadow:
+    0 0 0 1px #1e2027,
+    0 30px 60px rgba(0, 0, 0, 0.28);
+  transform: rotate(1.6deg);
+}
+
+/* sprocket holes: a 12px column 10px in from each edge */
+.holes {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  width: 12px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 7px,
+    var(--bg) 7px 17px,
+    transparent 17px 24px
+  );
+}
+.holesA {
+  left: 10px;
+}
+.holesB {
+  right: 10px;
+}
+
+.frames {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+
+.frame {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+/* sits straight while you look at it */
+.frame:hover {
+  transform: scale(1.04) rotate(-1.6deg);
+}
+
+.photo {
+  position: relative;
+  width: 228px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #1a1c22;
+}
+
+.caption {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: #8a8d96;
+}
+
+.note {
+  padding-left: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+}
+
+/* small screens: the strip runs sideways and scrolls, not tilted */
+@media (max-width: 899px) {
+  .film {
+    position: static;
+    width: auto;
+  }
+  .scroller {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    margin: 0 -24px;
+    padding: 0 24px 8px;
+  }
+  .strip {
+    width: max-content;
+    padding: 22px 22px;
+    transform: none;
+  }
+  .holes {
+    top: auto;
+    bottom: auto;
+    left: 8px;
+    right: 8px;
+    width: auto;
+    height: 12px;
+    background: repeating-linear-gradient(
+      to right,
+      transparent 0 7px,
+      var(--bg) 7px 17px,
+      transparent 17px 24px
+    );
+  }
+  .holesA {
+    top: 4px;
+  }
+  .holesB {
+    bottom: 4px;
+  }
+  .frames {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
