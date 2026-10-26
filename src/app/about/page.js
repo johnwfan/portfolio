@@ -16,7 +16,7 @@ const PHOTOS = [
 export default function Page() {
   return (
     <>
-      <Header />
+      <Header path={[{ label: "about" }]} />
       <main className={styles.page}>
         <div className={styles.top}>
           <div className={styles.words}>

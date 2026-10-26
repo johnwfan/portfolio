@@ -18,7 +18,7 @@ export default function RecruiterView({ onToggle }) {
         <nav className={styles.nav} aria-label="site">
           <RecruiterToggle on onToggle={onToggle} />
           <a href="/resume.pdf" target="_blank" rel="noopener" className={styles.resume}>
-            résumé ↗
+            résumé
           </a>
         </nav>
       </header>

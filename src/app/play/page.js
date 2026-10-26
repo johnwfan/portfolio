@@ -9,7 +9,7 @@ export const metadata = { title: "play" };
 export default function Page() {
   return (
     <>
-      <Header />
+      <Header path={[{ label: "play" }]} />
       <main className={styles.page}>
         <Fog style={{ opacity: 0.22 }} />
         <div className={styles.titleWrap}>

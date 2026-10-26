@@ -21,7 +21,7 @@ const updated = new Date(process.env.BUILD_TIME)
 export default function Page() {
   return (
     <>
-      <Header />
+      <Header path={[{ label: "contact" }]} />
       <main className={styles.page}>
         <Fog style={{ opacity: 0.14 }} />
         <div className={styles.left}>

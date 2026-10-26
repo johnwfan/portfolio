@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import CoverResolve from "@/components/CoverResolve";
@@ -26,12 +25,9 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <Header />
+      <Header path={[{ label: "work", href: "/work" }, { label: p.name }]} />
       <main className={styles.page}>
         <div className={styles.text}>
-          <Link href="/work" className={styles.back}>
-            ← work
-          </Link>
           <h1 className={styles.title}>{p.name}</h1>
           <p className={styles.line}>{p.line}</p>
           <dl className={styles.rows}>

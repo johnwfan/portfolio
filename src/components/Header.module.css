@@ -9,23 +9,7 @@
   align-items: center;
 }
 
-.left {
-  display: flex;
-  gap: 22px;
-  align-items: baseline;
-}
 
-.back {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--t2);
-  min-height: 32px;
-  display: flex;
-  align-items: center;
-}
-.back:hover {
-  color: var(--t2);
-}
 
 .name {
   margin: 0;
@@ -155,7 +139,6 @@
     left: 24px;
     right: 24px;
   }
-  .back,
   .desktopNav {
     display: none;
   }

@@ -10,7 +10,7 @@ const LINKS = [
   { key: "github", label: "github", handle: "johnwfan", href: "https://github.com/johnwfan" },
   { key: "linkedin", label: "linkedin", handle: "johnwfan", href: "https://www.linkedin.com/in/johnwfan/" },
   { key: "x", label: "x", handle: "@johnwfan", href: "https://x.com/johnwfan" },
-  { key: "resume", label: "résumé", handle: "pdf ↗", href: "/resume.pdf" },
+  { key: "resume", label: "résumé", handle: "pdf", href: "/resume.pdf" },
 ].map((l) => ({ ...l, external: true }));
 
 export default function ContactLinks() {

@@ -104,7 +104,7 @@ export default function MobileMenu({ home, onRecruiter }) {
                   </Link>
                 )}
                 <a href="/resume.pdf" target="_blank" rel="noopener" className={styles.link}>
-                  résumé ↗
+                  résumé
                 </a>
               </div>
             </div>

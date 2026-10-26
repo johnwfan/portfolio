@@ -6,7 +6,7 @@ export const metadata = { title: "work" };
 export default function Page() {
   return (
     <>
-      <Header />
+      <Header path={[{ label: "work" }]} />
       <WorkIndex />
     </>
   );
