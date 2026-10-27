@@ -102,8 +102,6 @@ export default function SiteShell({ children }) {
   const base = mood
     ? `translate(${vw(mood.tx)}, ${vh(mood.ty)}) scale(${mood.sc})`
     : "translate(0, 0) scale(1)";
-  const glow = mood ?? MOOD[0];
-  const r = glow.r;
 
   return (
     <SiteContext.Provider value={{ navigate, leaving, setFog }}>
@@ -117,24 +115,21 @@ export default function SiteShell({ children }) {
             style={{ opacity: strength, transitionDuration: `${duration}s` }}
             spriteStyle={{ inset: "-6%", transform: base }}
           />
-          {/* glow: a sharper copy of the fog seen through a soft ellipse that
-              travels per menu item; the fog inside stays put while it moves */}
-          <div
-            className={styles.glow}
-            style={{
-              opacity: home ? (idle ? 0.6 : 1) : 0,
-              left: vw(glow.gx - r),
-              top: vh(glow.gy - 0.7 * r),
-              width: vw(2 * r),
-              height: vh(1.4 * r),
-            }}
-          >
+          {/* glow: a sharper copy of the fog seen through a cloud map, one per
+              menu item, fixed in place (centred on the item's spot); changing
+              item dissolves one into the next, nothing travels */}
+          {MOOD.map((m, i) => (
             <Fog
+              key={i}
               glow
-              className={styles.glowField}
-              style={{ left: vw(r - glow.gx), top: vh(0.7 * r - glow.gy) }}
+              className={styles.cloud}
+              style={{
+                opacity: mood === m ? (idle ? 0.4 : 0.65) : 0,
+                "--cloud-map": `url("/fog/glow-map-${i + 1}.png")`,
+                "--cloud-pos": `${vw(m.gx - 1440)} ${vh(m.gy - 900)}`,
+              }}
             />
-          </div>
+          ))}
         </div>
       </div>
       <div className={styles.content}>{children}</div>
