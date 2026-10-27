@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Header from "./Header";
+import Link from "./TransitionLink";
 import FocusList from "./FocusList";
 import RecruiterView from "./RecruiterView";
 import Loader from "./Loader";
@@ -10,13 +11,14 @@ import { useSite } from "./SiteShell";
 import styles from "./Home.module.css";
 
 const MENU = [
-  { key: "work", label: "work", href: "/work", caption: "5 projects from 2025–26" },
   {
-    key: "about",
-    label: "about",
-    href: "/about",
-    caption: "background, experience, and what i do outside of code",
+    key: "experience",
+    label: "experience",
+    href: "/experience",
+    caption: "software engineering at screenz.ai, teaching at icode, and three externships",
   },
+  { key: "projects", label: "projects", href: "/projects", caption: "5 projects from 2025–26" },
+  { key: "about", label: "about", href: "/about", caption: "who i am and what i do outside of code" },
   { key: "play", label: "play", href: "/play", caption: "under construction. nothing here yet" },
   { key: "contact", label: "contact", href: "/contact", caption: "email, links, and a guestbook" },
 ];
@@ -79,8 +81,11 @@ export default function Home({ initialRecruiter = false }) {
       />
 
       <p className={`${styles.intro} ${styles.fade} ${styles.introNav}`}>
-        i&apos;m john. a computer science student and aspiring software engineer. previously at
-        screenz.ai.
+        i&apos;m john. a computer science student and aspiring software engineer. previously at{" "}
+        <Link href="/experience" className={styles.introLink}>
+          screenz.ai
+        </Link>
+        .
       </p>
 
       <nav className={`${styles.menu} ${styles.fadeBlur}`} aria-label="main menu">

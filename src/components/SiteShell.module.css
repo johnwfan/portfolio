@@ -21,28 +21,19 @@
   transition: transform 2.2s cubic-bezier(0.2, 0.7, 0.1, 1);
 }
 
-.glow {
-  position: absolute;
-  overflow: hidden;
-  pointer-events: none;
-  -webkit-mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, 0.55) 45%, transparent 100%);
-  mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, 0.55) 45%, transparent 100%);
-  transition:
-    left 2.2s cubic-bezier(0.2, 0.7, 0.1, 1),
-    top 2.2s cubic-bezier(0.2, 0.7, 0.1, 1),
-    width 2.2s cubic-bezier(0.2, 0.7, 0.1, 1),
-    height 2.2s cubic-bezier(0.2, 0.7, 0.1, 1),
-    opacity 1.2s ease;
-}
-
-/* a full-viewport field, offset so it lines up with the page behind the window */
-.glowField {
-  inset: auto;
-  width: 100vw;
-  height: 100vh;
-  transition:
-    left 2.2s cubic-bezier(0.2, 0.7, 0.1, 1),
-    top 2.2s cubic-bezier(0.2, 0.7, 0.1, 1);
+/* The home glow (UPDATE-2): a round window that travelled per item read as a
+   flashlight, so the glow is shaped by a cloud map per menu item
+   (public/fog/glow-map-1…5.png) that dissolves in and out in place. */
+.cloud {
+  -webkit-mask-image: var(--cloud-map);
+  mask-image: var(--cloud-map);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 200vw 200vh;
+  mask-size: 200vw 200vh;
+  -webkit-mask-position: var(--cloud-pos);
+  mask-position: var(--cloud-pos);
+  transition: opacity 1.6s ease;
 }
 
 @keyframes hdrift {

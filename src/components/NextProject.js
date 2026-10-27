@@ -7,7 +7,7 @@ import styles from "./CaseStudy.module.css";
 export default function NextProject({ project, position }) {
   const shot = project.screens[0];
   return (
-    <Link href={`/work/${project.slug}`} className={styles.next}>
+    <Link href={`/projects/${project.slug}`} className={styles.next}>
       <div className={styles.nextText}>
         <span className={styles.nextLabel}>next project · {position}</span>
         <span className={styles.nextName}>{project.name}</span>

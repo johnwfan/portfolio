@@ -5,7 +5,7 @@ import NextProject from "./NextProject";
 import UnderlineLink from "./UnderlineLink";
 import styles from "./CaseStudy.module.css";
 
-// The case study template for /work/[slug] (UPDATE §6). `cs` comes from
+// The case study template for /projects/[slug] (UPDATE §6). `cs` comes from
 // getCaseStudy() in src/lib/caseStudy.js.
 export default function CaseStudy({ cs }) {
   const { project: p } = cs;

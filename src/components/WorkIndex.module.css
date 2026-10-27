@@ -78,12 +78,19 @@
   left: calc(56px + var(--index-w) + var(--gap));
   right: 56px;
   top: 124px;
+  bottom: 40px;
   display: flex;
   flex-direction: column;
   gap: 22px;
 }
 
+/* the details scroll on their own when the frame leaves them too little room */
 .details {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: 16px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;
   gap: 40px;
@@ -180,6 +187,8 @@
     width: auto;
   }
   .details {
+    overflow: visible;
+    padding-bottom: 0;
     grid-template-columns: minmax(0, 1fr);
     gap: 28px;
   }

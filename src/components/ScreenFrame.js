@@ -18,7 +18,7 @@ function preload(src) {
   img.src = props.src;
 }
 
-// The work page's screen (UPDATE §4): the selected project's current
+// The projects page's screen (UPDATE §4): the selected project's current
 // screenshot with a focus pull on every change, and the cursor pill. With
 // several screens a click shows the next one; otherwise it opens the case study.
 export default function ScreenFrame({ project, screen, onNext, priority = false }) {
@@ -32,7 +32,7 @@ export default function ScreenFrame({ project, screen, onNext, priority = false 
 
   return (
     <Link
-      href={`/work/${slug}`}
+      href={`/projects/${slug}`}
       className={styles.frame}
       aria-label={many ? `next ${name} screen` : `read the ${name} case study`}
       onClick={(e) => {

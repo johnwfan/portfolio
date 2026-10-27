@@ -1,7 +1,9 @@
 .frame {
   position: relative;
   display: block;
-  width: 100%;
+  /* capped by viewport height so the details below stay visible on wide screens */
+  width: min(100%, calc(56svh * 908 / 568));
+  flex-shrink: 0;
   aspect-ratio: 908 / 568;
   border-radius: 12px;
   overflow: hidden;
@@ -67,6 +69,7 @@
 
 @media (max-width: 899px) {
   .frame {
+    width: 100%;
     aspect-ratio: 16 / 10;
   }
 }
