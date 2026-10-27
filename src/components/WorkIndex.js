@@ -7,9 +7,9 @@ import ScreenFrame from "./ScreenFrame";
 import UnderlineLink from "./UnderlineLink";
 import styles from "./WorkIndex.module.css";
 
-const ITEMS = PROJECTS.map((p) => ({ ...p, key: p.slug, label: p.name, href: `/work/${p.slug}` }));
+const ITEMS = PROJECTS.map((p) => ({ ...p, key: p.slug, label: p.name, href: `/projects/${p.slug}` }));
 
-// Work (UPDATE §4): the index on the left, the selected project's screenshots
+// Projects (UPDATE §4): the index on the left, the selected project's screenshots
 // in a frame on the right, details underneath.
 export default function WorkIndex() {
   const [sel, setSel] = useState(0);
@@ -33,7 +33,7 @@ export default function WorkIndex() {
     <main className={styles.page}>
       <div className={styles.index}>
         <div className={styles.titleBlock}>
-          <h1 className={styles.title}>work</h1>
+          <h1 className={styles.title}>projects</h1>
           <span className={styles.count}>5 projects · 2025–26</span>
         </div>
         <FocusList
@@ -67,7 +67,7 @@ export default function WorkIndex() {
         <div className={styles.details}>
           <div className={styles.about}>
             <p className={styles.desc}>{p.description}</p>
-            <UnderlineLink href={`/work/${p.slug}`} className={styles.read}>
+            <UnderlineLink href={`/projects/${p.slug}`} className={styles.read}>
               read the case study
             </UnderlineLink>
           </div>

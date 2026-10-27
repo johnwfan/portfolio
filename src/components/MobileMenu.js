@@ -12,7 +12,7 @@ import styles from "./Header.module.css";
 
 const PAGES = [
   { key: "home", label: "home", href: "/" },
-  { key: "work", label: "work", href: "/work" },
+  { key: "projects", label: "projects", href: "/projects" },
   { key: "about", label: "about", href: "/about" },
   { key: "play", label: "play", href: "/play" },
   { key: "contact", label: "contact", href: "/contact" },

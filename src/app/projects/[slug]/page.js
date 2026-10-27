@@ -23,7 +23,7 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <Header path={[{ label: "work", href: "/work" }, { label: cs.project.name }]} />
+      <Header path={[{ label: "projects", href: "/projects" }, { label: cs.project.name }]} />
       <CaseStudy cs={cs} />
     </>
   );

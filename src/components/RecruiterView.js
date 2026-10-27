@@ -61,7 +61,7 @@ export default function RecruiterView({ onToggle }) {
         <section className={styles.list}>
           <h2 className={styles.label}>selected work</h2>
           {PROJECTS.map((p) => (
-            <Link key={p.slug} href={`/work/${p.slug}`} className={styles.project}>
+            <Link key={p.slug} href={`/projects/${p.slug}`} className={styles.project}>
               <span className={styles.pName}>{p.name}</span>
               <span className={styles.pLine}>
                 {p.line}

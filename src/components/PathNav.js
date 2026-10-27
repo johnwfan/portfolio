@@ -1,7 +1,7 @@
 import Link from "./TransitionLink";
 import styles from "./PathNav.module.css";
 
-// Where you are, in mono: `john fan / work / scuttle.gg` (UPDATE §1).
+// Where you are, in mono: `john fan / projects / scuttle.gg` (UPDATE §1).
 // Every piece but the last is a link; the last is the current page.
 export default function PathNav({ items }) {
   return (

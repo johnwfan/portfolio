@@ -1,8 +1,8 @@
-// All project facts. `description` is the paragraph on /work; `line` is the
+// All project facts. `description` is the paragraph on /projects; `line` is the
 // one-liner (recruiter mode, "next project"). `screens` are the screenshots on
-// /work and the case study (UPDATE §4), in order.
+// /projects and the case study (UPDATE §4), in order.
 //
-// `caseStudy` drives /work/[slug] (UPDATE §6, built by src/lib/caseStudy.js):
+// `caseStudy` drives /projects/[slug] (UPDATE §6, built by src/lib/caseStudy.js):
 //   lede         optional one-liner under the title (else `description`)
 //   role         optional fuller role for the case study (else `role`)
 //   facts        optional [{ n, label }], 2–3 big numbers

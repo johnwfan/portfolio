@@ -8,7 +8,7 @@ import styles from "./Header.module.css";
 
 // Site header (HANDOFF §6). On home the recruiter switch toggles in place;
 // elsewhere it links to /?recruiter=1, and the top-left is the page's path:
-// `path` lists the pieces after `john fan`, e.g. [{ label: "work", href: "/work" }, { label: "flow" }].
+// `path` lists the pieces after `john fan`, e.g. [{ label: "projects", href: "/projects" }, { label: "flow" }].
 export default function Header({ home = false, path = [], onRecruiter, className = "" }) {
   return (
     <header className={`${styles.header} ${className}`}>

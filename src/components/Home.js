@@ -10,7 +10,7 @@ import { useSite } from "./SiteShell";
 import styles from "./Home.module.css";
 
 const MENU = [
-  { key: "work", label: "work", href: "/work", caption: "5 projects from 2025–26" },
+  { key: "projects", label: "projects", href: "/projects", caption: "5 projects from 2025–26" },
   {
     key: "about",
     label: "about",
