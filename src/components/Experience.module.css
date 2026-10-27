@@ -1,0 +1,323 @@
+/* Experience (UPDATE-2 §2): title row, a timeline of three entries, a closing
+   line; 1660px at 1440. */
+.page {
+  --side: clamp(260px, 25vw, 360px);
+  --entry-gap: 108px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 124px 56px 96px;
+  color: var(--tx);
+}
+
+/* title row */
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.heading {
+  margin: 0;
+  font-size: clamp(52px, 5vw, 72px);
+  line-height: 1;
+  font-weight: 640;
+  letter-spacing: -0.05em;
+}
+
+.count {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--t3);
+}
+
+.resume {
+  margin-bottom: 4px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+/* timeline */
+.timeline {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--entry-gap);
+}
+
+.entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--side) minmax(0, 1fr);
+  gap: 56px;
+}
+
+/* the rail: each entry draws it from its dot down to the next entry's dot */
+.entry:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 26px;
+  bottom: calc(-1 * var(--entry-gap) - 26px);
+  width: 1px;
+  background: var(--ln);
+}
+
+.dot {
+  position: absolute;
+  left: -5px;
+  top: 20px;
+  z-index: 1;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--ln2);
+  box-shadow: 0 0 0 4px var(--bg);
+  transition: background 0.4s ease;
+}
+.first .dot {
+  top: 22px;
+}
+.dot.dotOn {
+  background: var(--accent);
+}
+
+.side {
+  padding-left: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.first .side {
+  gap: 12px;
+}
+
+.when {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--acc2);
+}
+
+.org {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 640;
+  letter-spacing: -0.05em;
+}
+.first .org {
+  font-size: 52px;
+}
+
+.role {
+  font-size: 18px;
+  color: var(--t2);
+}
+
+.aka {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+}
+
+.chips {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  border: 1px solid var(--ln2);
+  padding: 4px 9px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t2);
+  white-space: nowrap;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+/* numbers strip */
+.numbers {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--ln);
+  border-bottom: 1px solid var(--ln);
+}
+
+.number {
+  padding: 20px 0 22px 22px;
+  border-left: 1px solid var(--ln);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.number:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.value {
+  font-size: 44px;
+  line-height: 1;
+  font-weight: 640;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--t2);
+}
+
+/* rows: about's rows (slide right, name turns blue) with these columns */
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ln);
+}
+.first .rows {
+  border-top: 0;
+}
+
+.rows .win,
+.rows .ext {
+  gap: 24px;
+  padding: 18px 0;
+  align-items: baseline;
+}
+.rows .win:hover,
+.rows .ext:hover {
+  padding-left: 10px;
+}
+.rows .win {
+  grid-template-columns: 230px minmax(0, 1fr);
+}
+.rows .ext {
+  grid-template-columns: 230px minmax(0, 1fr) 170px;
+}
+
+.title {
+  line-height: 1.3;
+}
+
+.desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--t2);
+}
+
+.focus {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--t2);
+}
+
+.dates {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--t3);
+  text-align: right;
+}
+
+/* closing line */
+.bottom {
+  margin-top: var(--entry-gap);
+  padding-top: 22px;
+  border-top: 1px solid var(--ln);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+}
+
+.more {
+  margin: 0;
+  font-size: 18px;
+  color: var(--t2);
+}
+
+.mail {
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.footer {
+  position: absolute;
+  left: 56px;
+  right: 56px;
+  bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t3);
+}
+
+/* single column: the rail stays at the left edge, each entry stacks */
+@media (max-width: 899px) {
+  .page {
+    --entry-gap: 72px;
+    padding: 130px 24px 120px;
+  }
+  .titleRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .timeline {
+    margin-top: 56px;
+  }
+  .entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding-left: 24px;
+  }
+  .side {
+    padding-left: 0;
+  }
+  .numbers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .number:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .number:nth-child(n + 3) {
+    border-top: 1px solid var(--ln);
+  }
+  .rows .win,
+  .rows .ext {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+  .dates {
+    text-align: left;
+  }
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer {
+    left: 24px;
+    right: 24px;
+  }
+}

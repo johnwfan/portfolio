@@ -1,6 +1,7 @@
 .home {
-  /* menu size: 92 / 100 at 1440, scaling down to 56 below that (HANDOFF §9) */
-  --menu: clamp(56px, 6.4vw, 92px);
+  /* menu size: 92 / 100 at 1440, scaling down to 56 below that (HANDOFF §9);
+     the vh term keeps five rows clear of the intro on short screens */
+  --menu: clamp(56px, min(6.4vw, 10.22vh), 92px);
   --menu-row: calc(var(--menu) * 100 / 92);
   position: relative;
   width: 100%;
@@ -38,6 +39,15 @@
   font-size: 17px;
   line-height: 1.5;
   color: var(--t2);
+}
+
+.introLink,
+.introLink:hover {
+  color: inherit;
+}
+.introLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .menu {
@@ -136,7 +146,8 @@
 @media (max-width: 899px) {
   .home {
     --menu: 56px;
-    min-height: 640px;
+    /* five rows plus the caption still clear the intro */
+    min-height: 720px;
   }
   .intro {
     left: 24px;
@@ -150,7 +161,7 @@
     left: 24px;
     right: 24px;
     width: auto;
-    bottom: calc(96px + 4 * var(--menu-row) + 28px);
+    bottom: calc(96px + 5 * var(--menu-row) + 28px);
     align-items: flex-start;
     text-align: left;
   }
@@ -199,3 +210,4 @@
 .menu li:nth-child(2) { --d: 0.27s; }
 .menu li:nth-child(3) { --d: 0.36s; }
 .menu li:nth-child(4) { --d: 0.45s; }
+.menu li:nth-child(5) { --d: 0.54s; }
