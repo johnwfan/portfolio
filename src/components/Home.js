@@ -6,7 +6,7 @@ import Link from "./TransitionLink";
 import FocusList from "./FocusList";
 import RecruiterView from "./RecruiterView";
 import Loader from "./Loader";
-import { VisitorNo } from "./VisitorCount";
+import { VisitCount } from "./VisitCount";
 import { useSite } from "./SiteShell";
 import styles from "./Home.module.css";
 
@@ -106,7 +106,7 @@ export default function Home({ initialRecruiter = false }) {
 
       <footer className={`${styles.footer} ${styles.fade} ${styles.introFooter}`}>
         <span className={styles.keyHint}>↑ ↓ to move, enter to open</span>
-        <VisitorNo />
+        <VisitCount />
       </footer>
 
       <div className={styles.attract} aria-hidden={!idle}>

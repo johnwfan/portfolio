@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import FilmStrip from "@/components/FilmStrip";
 import UnderlineLink from "@/components/UnderlineLink";
-import { VisitorNo } from "@/components/VisitorCount";
+import { VisitCount } from "@/components/VisitCount";
 import styles from "@/components/About.module.css";
 
 export const metadata = { title: "about" };
@@ -63,7 +63,7 @@ export default function Page() {
 
         <footer className={styles.footer}>
           <span>john fan</span>
-          <VisitorNo />
+          <VisitCount />
         </footer>
       </main>
     </>

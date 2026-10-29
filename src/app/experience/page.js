@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import UnderlineLink from "@/components/UnderlineLink";
-import { VisitorNo } from "@/components/VisitorCount";
+import { VisitCount } from "@/components/VisitCount";
 import styles from "@/components/Experience.module.css";
 
 export const metadata = { title: "experience" };
@@ -38,7 +38,7 @@ export default function Page() {
 
         <footer className={styles.footer}>
           <span>john fan</span>
-          <VisitorNo />
+          <VisitCount />
         </footer>
       </main>
     </>
