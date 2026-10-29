@@ -2,20 +2,20 @@
 
 import { useSyncExternalStore } from "react";
 
-// This browser's visitor number. POST /api/visit counts the browser once
-// (cookie) and returns its number; one request per page load, shared by every
-// component that shows it. Shows 000000 until it arrives.
+// Total visits to the site. POST /api/visit counts this page load and returns
+// the new total; one request per page load, shared by every component that
+// shows it. Shows 000000 until it arrives.
 
 let request = null;
-let number = null;
+let count = null;
 const listeners = new Set();
 
 function load() {
   request ??= fetch("/api/visit", { method: "POST" })
     .then((r) => (r.ok ? r.json() : null))
     .then((d) => {
-      if (d?.number) {
-        number = d.number;
+      if (d?.count) {
+        count = d.count;
         listeners.forEach((fn) => fn());
       }
     })
@@ -28,15 +28,15 @@ function subscribe(fn) {
   return () => listeners.delete(fn);
 }
 
-export function useVisitorNumber() {
-  return useSyncExternalStore(subscribe, () => number, () => null);
+export function useVisitCount() {
+  return useSyncExternalStore(subscribe, () => count, () => null);
 }
 
 export function pad6(n) {
   return String(n ?? 0).padStart(6, "0");
 }
 
-export function VisitorNo() {
-  const n = useVisitorNumber();
-  return <span>visitor no. {pad6(n)}</span>;
+export function VisitCount() {
+  const n = useVisitCount();
+  return <span>visits {pad6(n)}</span>;
 }

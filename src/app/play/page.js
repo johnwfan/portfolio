@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import HazardTape from "@/components/HazardTape";
-import { VisitorNo } from "@/components/VisitorCount";
+import { VisitCount } from "@/components/VisitCount";
 import styles from "@/components/Play.module.css";
 
 export const metadata = { title: "play" };
@@ -15,7 +15,7 @@ export default function Page() {
         </div>
         <HazardTape />
         <span className={styles.visitor}>
-          <VisitorNo />
+          <VisitCount />
         </span>
       </main>
     </>

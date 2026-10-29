@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { pad6, useVisitorNumber } from "./VisitorCount";
+import { pad6, useVisitCount } from "./VisitCount";
 import styles from "./Contact.module.css";
 
 const ERRORS = {
@@ -24,7 +24,7 @@ export default function Guestbook() {
   const [draft, setDraft] = useState("");
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
-  const visitor = useVisitorNumber();
+  const visits = useVisitCount();
 
   useEffect(() => {
     let live = true;
@@ -113,11 +113,11 @@ export default function Guestbook() {
         </ul>
       </div>
       <div className={styles.counter}>
-        <span className={styles.counterLabel} id="gb-visitor">
-          you are visitor no.
+        <span className={styles.counterLabel} id="gb-visits">
+          total visits
         </span>
-        <div className={styles.digits} role="img" aria-label={String(visitor ?? "")}>
-          {pad6(visitor)
+        <div className={styles.digits} role="img" aria-label={String(visits ?? "")}>
+          {pad6(visits)
             .split("")
             .map((n, i) => (
               <span key={i} className={styles.digit} aria-hidden="true">
